@@ -4,39 +4,136 @@
     --dark: #1f242d;
     --light: #f8fafc;
     --darker: #171c24;
- 
     --dark: #0f172a;
     --darker: #020617;
 }
-body {
-    font-family: 'Space Grotesk', sans-serif;
-    background: var(--darker);
-    color: white;
-    overflow-x: hidden;
-    margin: 0;
-    padding: 0;
+:root {
+  --neon: #4ade80;
+  --neon-dark: #2ecc71;
+  --neon-glow: rgba(74, 222, 128, 0.5);
+  --dark: #0f172a;
+  --darker: #020617;
+  --light: #f8fafc;
+  --gray-light: #94a3b8;
 }
 
-.hero-img {
-    width: 280px;
-    border: 3px solid var(--neon);
-    box-shadow: 0 0 20px var(--neon);
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background: 
+    linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%),
+    url('images/tech-bg-pattern.png') center/cover no-repeat fixed;
+  color: var(--light);
+  overflow-x: clip;
+  margin: 0;
+  min-height: 100vh;
+  line-height: 1.6;
 }
+
+/* Typographie améliorée */
+h1, h2, h3 {
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.05em;
+}
+
 h1 span, .text-neon {
-    color: var(--neon);
-    text-shadow: 0 0 10px rgba(0, 238, 255, 0.5);
+  color: var(--neon);
+  text-shadow: 
+    0 0 10px var(--neon-glow),
+    0 0 20px var(--neon-glow);
+  position: relative;
+  display: inline-block;
 }
+
+.text-neon::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--neon);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.text-neon:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Boutons cyberpunk améliorés */
 .btn-neon {
-    background: transparent;
-    color: var(--neon);
-    border: 2px solid var(--neon);
-    transition: all 0.3s;
+  background: transparent;
+  color: var(--neon);
+  border: 2px solid var(--neon);
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 1;
+  box-shadow: 0 0 0 0 var(--neon-glow);
 }
+
+.btn-neon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(74, 222, 128, 0.2), 
+    transparent);
+  transition: left 0.7s ease;
+  z-index: -1;
+}
+
 .btn-neon:hover {
-    background: var(--neon);
-    color: var(--dark);
-    box-shadow: 0 0 20px var(--neon);
-    transform: translateY(-3px);
+  background: var(--neon);
+  color: var(--dark);
+  box-shadow: 
+    0 0 15px var(--neon-glow),
+    0 0 30px var(--neon-glow);
+  transform: translateY(-3px) scale(1.02);
+}
+
+.btn-neon:hover::before {
+  left: 100%;
+}
+
+.btn-neon:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+/* Effets globaux */
+::selection {
+  background: var(--neon);
+  color: var(--dark);
+  text-shadow: none;
+}
+
+/* Animation de fond optionnelle */
+@keyframes gradientPulse {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+body.animated-bg {
+  background: 
+    linear-gradient(-45deg, 
+      var(--darker), 
+      #020617, 
+      #0f172a, 
+      #1e293b);
+  background-size: 400% 400%;
+  animation: gradientPulse 15s ease infinite;
 }
 
 
@@ -51,21 +148,26 @@ h1 span, .text-neon {
     --neon: #4ade80;
     --dark: #0f172a;
     --light: #f8fafc;
-    --gray-light: #94a3b8;
+    --gray-light: #70a0e4;
   }
   
   /* Navbar Base */
   .navbar-custom {
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 2% ;
-    background: rgba(15, 23, 42, 0.9);
-    backdrop-filter: blur(10px);
+    padding: 1.5rem 5%; /* Augmentation du padding latéral */
+    background: rgba(15, 23, 42, 0.96); /* Opacité augmentée */
     position: fixed;
-    width: 100%;
+    top: 0;
+    left: 0;
+    width: 100vw; /* Utilisation de viewport width */
+    height: 70px; /* Hauteur fixe */
     z-index: 1000;
-    border-bottom: 1px solid rgba(74, 222, 128, 0.2);
+    border-bottom: 1px solid rgba(74, 222, 128, 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); /* Support Safari */
+    box-sizing: border-box; /* Inclut padding dans width */
   }
   
   /* Brand */
@@ -81,7 +183,7 @@ h1 span, .text-neon {
   }
   
   .name-highlight {
-    color: var(--neon);
+    color:rgb(53, 31, 245) ;
     font-weight: 700;
   }
   
@@ -136,7 +238,7 @@ h1 span, .text-neon {
     top: 0;
     left: 0;
     width: 0;
-    color: var(--neon);
+    color: rgb(229, 255, 0);
     overflow: hidden;
     transition: width 0.3s ease;
   }
@@ -246,6 +348,8 @@ h1 span, .text-neon {
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
+  overflow: visible !important;
+  padding: 6vw;   
 }
 
 /* Text Content */
@@ -258,7 +362,7 @@ h1 span, .text-neon {
   font-weight: 700;
   line-height: 1.1;
   margin-bottom: 1.5rem;
-  color: var(--light);
+  color: rgb(49, 49, 240);
 }
 
 .title-part {
