@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style2css">
+    <!-- AOS library for scroll animations -->
+     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+     <script src="script.js" defer></script>
+     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet"> 
+</head>
+
+<body>
+  <nav class="navbar-custom">
+    <div class="navbar-brand">
+      <span class="code-symbol">{</span>
+      <span class="name-highlight">JN</span>
+      <span class="code-symbol">}</span>
+    </div>
+  
+    <!-- Menu Hamburger -->
+    <button class="hamburger" aria-label="Menu" aria-expanded="false">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+  
+    <!-- Navigation Links -->
+    <div class="nav-container">
+      <div class="nav-links">
+        <a href="#hero" class="nav-link active" data-text="Accueil">Accueil</a>
+        <a href="#timeline" class="nav-link" data-text="Parcours">Parcours</a>
+        <a href="#projects" class="nav-link" data-text="Projets">Projets</a>
+        <a href="#services" class="nav-link" data-text="Services">Services</a>
+        <a href="#contact" class="nav-link" data-text="Contact">Contact</a>
+      </div>
+  
+      <div class="nav-social">
+        <a href="https://github.com/juniorngandu" target="_blank" aria-label="GitHub"><i class="bi bi-github"></i></a>
+        <a href="https://www.linkedin.com/in/junior-ngandu-304942220" target="_blank" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+      </div>
+    </div>
+  </nav>
+  
+    <!-- Hero Section Redesign -->
+<!-- Hero Section - Modern Layout -->
+<section id="hero" class="modern-hero-section">
+  <div class="hero-container">
+    <!-- Content Column -->
+    <div class="hero-text-content" data-aos="fade-right">
+      <!-- Nom principal avec effet neon -->
+      <h1 class="hero-title">
+        <span class="title-part">Junior</span>
+        <span class="title-part neon-text">NGANDU</span>
+      </h1>
+      
+      <!-- Sous-titre avec symboles code -->
+      <div class="hero-subtitle">
+        <span class="code-symbol neon-text">⟩</span>
+        <span class="subtitle-text">Full Stack Developer | Créateur de solutions numériques</span>
+        <span class="code-symbol neon-text">⟨</span>
+      </div>
+
+      <!-- Description -->
+      <div class="hero-description">
+        <p>Développeur Full Stack spécialisé dans la création de solutions digitales performantes. Je transforme des concepts complexes en interfaces intuitives, avec un faible particulier pour l'optimisation et l'expérience utilisateur. <br>Mon credo ? Des lignes de code qui allient élégance technique et efficacité business.</p>
+      </div>
+
+      <!-- Boutons d'action -->
+      <div class="hero-actions">
+        <a href="#projects" class="hero-btn primary-btn">
+          <span class="btn-icon">></span>
+          <span class="btn-text">Voir mes projets</span>
+        </a>
+        <a href="#contact" class="hero-btn secondary-btn">
+          <span class="btn-text">Contact rapide</span>
+          <span class="btn-icon">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Image Column -->
+    <div class="hero-image-container" data-aos="fade-left">
+      <div class="image-wrapper">
+        <img src="images/profil.jpg" alt="Junior Ngandu" class="profile-image">
+        <div class="image-border-effect"></div>
+        <div class="image-dots-effect"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="scroll-indicator">
+    <div class="indicator-line"></div>
+    <span class="indicator-text">Scroll</span>
+  </div>
+</section>
+
+
+<!-- Stats & Logos Section -->
+<section id="stats" class="section-padding bg-dark2">
+    <div class="content-wrapper">
+      <!-- Titre Section -->
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-badge">// Mes Réalisations</span>
+        <h2 class="section-title neon-underline">Impact en Chiffres</h2>
+        <p class="section-subtitle">Quelques statistiques significatives</p>
+      </div>
+  
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card" data-aos="zoom-in" data-aos-delay="100">
+          <div class="stat-number glow-text">12+</div>
+          <div class="stat-label">Projets Menés</div>
+          <div class="stat-decoration"></div>
+        </div>
+        
+        <div class="stat-card" data-aos="zoom-in" data-aos-delay="200">
+          <div class="stat-number glow-text">10+</div>
+          <div class="stat-label">Clients Satisfaits</div>
+          <div class="stat-decoration"></div>
+        </div>
+        
+        <div class="stat-card" data-aos="zoom-in" data-aos-delay="300">
+          <div class="stat-number glow-text">3+</div>
+          <div class="stat-label">Ans d'Expérience</div>
+          <div class="stat-decoration"></div>
+        </div>
+      </div>
+  
+      <!-- Logos Clients -->
+      <div class="clients-grid" data-aos="fade-up">
+        <div class="client-logo">
+          <img src="images/c.jpg" alt="Client 1" class="logo-hover-effect">
+        </div>
+        <div class="client-logo">
+          <img src="images/Csharp.jpg" alt="Client 2" class="logo-hover-effect">
+        </div>
+        <div class="client-logo">
+          <img src="images/c++.png" alt="Client 3" class="logo-hover-effect">
+        </div>
+        <div class="client-logo">
+          <img src="images/python.jpg" alt="Client 4" class="logo-hover-effect">
+        </div>
+        <div class="client-logo">
+          <img src="images/htmlcss.jpg" alt="Client 4" class="logo-hover-effect">
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
+  <!-- Citation / Vision Section -->
+<section id="vision" class="vision-section">
+    <div class="content-wrapper">
+      <div class="vision-content" data-aos="fade-up">
+        <span class="section-badge">// Philosophie</span>
+        
+        <blockquote class="vision-quote">
+          <p class="quote-text">
+            <span class="quote-mark">“</span>
+            Transformer les idées en code n'est pas juste mon métier – c'est ma passion.
+            <span class="quote-mark">”</span>
+          </p>
+          <footer class="quote-author">
+            <span class="author-name">Junior Ngandu</span>,
+            <span class="author-title">Développeur & Réalisateur de Rêves</span>
+          </footer>
+        </blockquote>
+        
+        <div class="tech-decoration">
+          <span class="tech-symbol">{ }</span>
+          <span class="tech-symbol">< ></span>
+          <span class="tech-symbol">[ ]</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+<!-- Grid Timeline Section -->
+<section id="timeline" class="grid-timeline-section">
+  <div class="content-wrapper">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-badge">// Parcours</span>
+      <h2 class="section-title neon-underline">Mon Évolution</h2>
+    </div>
+
+    <div class="timeline-grid">
+      <!-- Timeline Item 1 -->
+      <div class="grid-item" data-aos="zoom-in">
+        <div class="item-header">
+          <div class="item-year">2025</div>
+          <div class="item-marker"></div>
+        </div>
+        <div class="item-content">
+          <h3 class="item-title">Licence en Informatique de Gestion</h3>
+          <p class="item-subtitle">Institut Superieur Pedagogique de la GOMBE</p>
+          <div class="item-tech">
+            <span class="tech-tag">Diplôme</span>
+            <span class="tech-tag">Formation</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline Item 2 -->
+      <div class="grid-item" data-aos="zoom-in" data-aos-delay="100">
+        <div class="item-header">
+          <div class="item-year">2025</div>
+          <div class="item-marker"></div>
+        </div>
+        <div class="item-content">
+          <h3 class="item-title">Logiciel de gestion des contraventions</h3>
+          <p class="item-subtitle">Projet de fin d'études</p>
+          <div class="item-tech">
+            <span class="tech-tag">Frontend</span>
+            <span class="tech-tag">Backend</span>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Timeline Item 2 -->
+      <div class="grid-item" data-aos="zoom-in">
+        <div class="item-header">
+          <div class="item-year">2023</div>
+          <div class="item-marker"></div>
+        </div>
+        <div class="item-content">
+          <h3 class="item-title">Graduat en Informatique de Gestion</h3>
+          <p class="item-subtitle">Institut Superieur Pedagogique de la GOMBE</p>
+          <div class="item-tech">
+            <span class="tech-tag">Diplôme</span>
+            <span class="tech-tag">Formation</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline Item 2 -->
+      <div class="grid-item" data-aos="zoom-in" data-aos-delay="100">
+        <div class="item-header">
+          <div class="item-year">2023</div>
+          <div class="item-marker"></div>
+        </div>
+        <div class="item-content">
+          <h3 class="item-title">Logiciel de gestion des contraventions</h3>
+          <p class="item-subtitle">Projet de fin d'études - PCR (Kinshasa)</p>
+          <div class="item-tech">
+            <span class="tech-tag">C#</span>
+            <span class="tech-tag">SQL</span>
+            <span class="tech-tag">Desktop</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline Item 3 -->
+      
+
+      <!-- Timeline Item 4 -->
+      <div class="grid-item" data-aos="zoom-in" data-aos-delay="300">
+        <div class="item-header">
+          <div class="item-year">2021</div>
+          <div class="item-marker"></div>
+        </div>
+        <div class="item-content">
+          <h3 class="item-title">Auto-formation intensive</h3>
+          <p class="item-subtitle">MOOCs & projets personnels</p>
+          <div class="item-tech">
+            <span class="tech-tag">HTML</span>
+            <span class="tech-tag">CSS</span>
+            <span class="tech-tag">JavaScript</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  
+<!-- Projects Section -->
+<section id="projects" class="projects-section">
+  <div class="content-wrapper">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-badge">// Réalisations</span>
+      <h2 class="section-title neon-underline">Mes Projets</h2>
+    </div>
+
+    <div class="projects-grid">
+      <!-- Projet 1 -->
+      <div class="project-card" data-aos="zoom-in">
+        <div class="project-image-container">
+          <img src="images/5673734.jpg" alt="Gestion de stock" class="project-image">
+          <div class="project-overlay">
+            <span class="view-button">Voir le projet</span>
+          </div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Application de Gestion de Stock</h3>
+          <p class="project-description">Solution C# + SQL Server pour la gestion des produits, ventes et clients pour PME.</p>
+          <div class="project-tech">
+            <span class="tech-tag">C#</span>
+            <span class="tech-tag">SQL Server</span>
+            <span class="tech-tag">Desktop</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projet 2 -->
+      <div class="project-card" data-aos="zoom-in" data-aos-delay="100">
+        <div class="project-image-container">
+          <img src="images/5408546 (1).jpg" alt="App anti-addiction" class="project-image">
+          <div class="project-overlay">
+            <span class="view-button">Voir le projet</span>
+          </div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Application Interactive Anti-Addiction</h3>
+          <p class="project-description">Jeu de sensibilisation pour les jeunes <Br> contre les addictions.</p>
+          <div class="project-tech">
+            <span class="tech-tag">Unity</span>
+            <span class="tech-tag">C#</span>
+            <span class="tech-tag">Mobile</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projet 3 -->
+      <div class="project-card" data-aos="zoom-in" data-aos-delay="200">
+        <div class="project-image-container">
+          <img src="images/5673719.jpg" alt="Portfolio" class="project-image">
+          <div class="project-overlay">
+            <span class="view-button">Voir le projet</span>
+          </div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Portfolio Personnel</h3>
+          <p class="project-description">Portfolio one-page dynamique avec HTML, CSS, JS et animations.</p>
+          <div class="project-tech">
+            <span class="tech-tag">HTML5</span>
+            <span class="tech-tag">CSS3</span>
+            <span class="tech-tag">JavaScript</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Services Section -->
+<section id="services" class="services-section">
+  <div class="content-wrapper">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-badge">// Expertise</span>
+      <h2 class="section-title neon-underline">Mes Services</h2>
+    </div>
+
+    <div class="services-grid">
+      <!-- Service 1 -->
+      <div class="service-card" data-aos="zoom-in">
+        <div class="service-icon">
+          <i class="bi bi-code-slash"></i>
+          <div class="icon-backdrop"></div>
+        </div>
+        <h3 class="service-title">Développement Web</h3>
+        <p class="service-description">
+          Sites web responsives avec HTML5, CSS3, JavaScript et frameworks modernes.
+        </p>
+        <div class="service-tech">
+          <span class="tech-tag">React</span>
+          <span class="tech-tag">Node.js</span>
+          <span class="tech-tag">Responsive</span>
+        </div>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="service-card" data-aos="zoom-in" data-aos-delay="100">
+        <div class="service-icon">
+          <i class="bi bi-windows"></i>
+          <div class="icon-backdrop"></div>
+        </div>
+        <h3 class="service-title">Applications Desktop</h3>
+        <p class="service-description">
+          Solutions Windows sur mesure avec C#, .NET et bases de données relationnelles.
+        </p>
+        <div class="service-tech">
+          <span class="tech-tag">C#</span>
+          <span class="tech-tag">C++</span>
+          <span class="tech-tag">Java</span>
+          <span class="tech-tag">SQL Server</span>
+          <span class="tech-tag">WPF</span>
+        </div>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="service-card" data-aos="zoom-in" data-aos-delay="200">
+        <div class="service-icon">
+          <i class="bi bi-tools"></i>
+          <div class="icon-backdrop"></div>
+        </div>
+        <h3 class="service-title">Maintenance & Optimisation</h3>
+        <p class="service-description">
+          Debugging, refactoring et optimisation de systèmes existants.
+        </p>
+        <div class="service-tech">
+          <span class="tech-tag">Debugging</span>
+          <span class="tech-tag">Performance</span>
+          <span class="tech-tag">CI/CD</span>
+        </div>
+      </div>
+
+      <!-- Service 4 -->
+      <div class="service-card" data-aos="zoom-in" data-aos-delay="300">
+        <div class="service-icon">
+          <i class="bi bi-phone"></i>
+          <div class="icon-backdrop" style="background: rgba(138, 43, 226, 0.1);"></div>
+        </div>
+        <h3 class="service-title">Apps Multiplateformes</h3>
+        <p class="service-description">
+          Solutions natives et hybrides pour Android & iOS avec performances optimales.
+        </p>
+        <div class="service-tech">
+          <span class="tech-tag" style="--tag-color: #7158e2">Flutter</span>
+          <span class="tech-tag" style="--tag-color: #61dbfb">React Native</span>
+          <span class="tech-tag" style="--tag-color: #34a853">Android</span>
+          <span class="tech-tag" style="--tag-color: #0d96f6">iOS</span>
+        </div>
+        <div class="platform-badges">
+          <span class="android-badge"><i class="bi bi-android2"></i></span>
+          <span class="ios-badge"><i class="bi bi-apple"></i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+ 
+<!-- Contact Section - Modern Layout -->
+<section id="contact" class="modern-contact-section">
+  <span class="section-badge">// Contact</span>
+  <div class="contact-wrapper">
+    <!-- Left Column - Visual Element -->
+    <div class="contact-visual" data-aos="fade-right">
+      <div class="tech-circle"></div>
+      <h3 class="visual-title">Prêt à démarrer votre projet ?</h3>
+
+      <div class="contact-illustration">
+        <div class="pixel-grid"></div>
+        <div class="floating-icon">
+          <i class="bi bi-send-fill"></i>
+        </div>
+      </div>
+      <!-- Alternative Contact Methods -->
+      <div class="contact-alternatives">
+        <div class="alternative-item">
+          <i class="bi bi-geo-alt"></i>
+          <span>Kinshasa, RDC</span>
+        </div>
+        <div class="alternative-item">
+          <i class="bi bi-telephone"></i>
+          <span>+243 818 618 735</span>
+        </div>
+        <div class="alternative-item">
+          <i class="bi bi-send"></i>
+          <span>juniorngandu18@gmail.com</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column - Contact Form -->
+    <div class="contact-form-wrapper" data-aos="fade-left">
+      <div class="form-header">
+        <h2 class="section-title">Envoyez un message</h2>
+      </div>
+
+      <form id="modernContactForm" class="modern-form">
+        <div class="input-group floating">
+          <input type="text" id="modernName" required>
+          <label for="modernName">Votre nom complet</label>
+          <span class="input-decoration"><i class="bi bi-person"></i></span>
+        </div>
+
+        <div class="input-group floating">
+          <input type="email" id="modernEmail" required>
+          <label for="modernEmail">Adresse email</label>
+          <span class="input-decoration"><i class="bi bi-envelope"></i></span>
+        </div>
+
+        <div class="input-group floating">
+          <textarea id="modernMessage" rows="3" required></textarea>
+          <label for="modernMessage">Votre message</label>
+          <span class="input-decoration"><i class="bi bi-chat-left-text"></i></span>
+        </div>
+
+        <button type="submit" class="modern-submit-btn">
+          <span>Envoyer le message</span>
+          <i class="bi bi-arrow-right"></i>
+        </button>
+      </form>
+
+      
+    </div>
+  </div>
+</section>
+
+ 
+<footer class="cyber-footer">
+  <div class="footer-content">
+    <!-- Réseaux sociaux avec animation -->
+    <div class="social-links-grid">
+      <a href="https://www.linkedin.com/in/junior-ngandu-304942220" target="_blank" class="social-item" aria-label="LinkedIn">
+        <div class="social-icon">
+          <i class="bi bi-linkedin"></i>
+        </div>
+        <span class="social-tooltip">Connect on LinkedIn</span>
+      </a>
+      
+      <a href="https://github.com/juniorngandu" target="_blank" class="social-item" aria-label="GitHub">
+        <div class="social-icon">
+          <i class="bi bi-github"></i>
+        </div>
+        <span class="social-tooltip">View my GitHub</span>
+      </a>
+      
+      <a href="mailto:juniorngandu18@gmail.com" class="social-item" aria-label="Email">
+        <div class="social-icon">
+          <i class="bi bi-envelope-fill"></i>
+        </div>
+        <span class="social-tooltip">Contact on Mail</span>
+      </a>
+      
+      <a href="https://x.com/TheMiracleGnra1" target="_blank" class="social-item" aria-label="Tweeter">
+        <div class="social-icon">
+          <i class="fa-brands fa-x-twitter"></i>
+        </div>
+        <span class="social-tooltip">Follow on X</span>
+      </a>
+    </div>
+
+    <!-- Sélecteur de langue amélioré -->
+    <div class="language-selector">
+      <div class="selector-container">
+        <button class="language-option active" data-lang="fr">FR</button>
+        <div class="selector-divider"></div>
+        <button class="language-option" data-lang="en">EN</button>
+      </div>
+    </div>
+
+    <!-- Copyright avec effet -->
+    <div class="copyright">
+      <span class="copyright-text">&copy; 2025 Junior Ngandu</span>
+      <span class="copyright-glitch">Tous droits réservés</span>
+    </div>
+
+    <!-- Élément décoratif -->
+    <div class="footer-decoration">
+      <span class="code-symbol">//</span>
+      <span class="footer-quote">"Code is poetry"</span>
+    </div>
+  </div>
+</footer>
+
+
+  
+</body>
+</html>
