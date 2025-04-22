@@ -153,22 +153,22 @@ body.animated-bg {
   
   /* Navbar Base */
   .navbar-custom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 5%; /* Augmentation du padding latéral */
-    background: rgba(15, 23, 42, 0.96); /* Opacité augmentée */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw; /* Utilisation de viewport width */
-    height: 70px; /* Hauteur fixe */
-    z-index: 1000;
-    border-bottom: 1px solid rgba(74, 222, 128, 0.3);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px); /* Support Safari */
-    box-sizing: border-box; /* Inclut padding dans width */
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 5%; /* Augmentation du padding latéral */
+  background: rgba(15, 23, 42, 0.96); /* Opacité augmentée */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw; /* Utilisation de viewport width */
+  height: 70px; /* Hauteur fixe */
+  z-index: 1000;
+  border-bottom: 1px solid rgba(74, 222, 128, 0.3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); /* Support Safari */
+  box-sizing: border-box; /* Inclut padding dans width */
+}
   
   /* Brand */
   .navbar-brand {
