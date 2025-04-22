@@ -329,32 +329,35 @@ body.animated-bg {
   --gray-light: #94a3b8;
 }
 
-/* Hero Section Structure */
-.modern-hero-section {
-  background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding: 0 var(--side-padding);
-  position: relative;
-  overflow: hidden;
+/* Garantir la visibilité des éléments absolus */
+.hero-image-container::before {
+  content: '';
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  top: -10%;
+  left: -10%;
+  z-index: -1;
 }
 
-.hero-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 60px;
-  max-width: 1400px;
-  margin: 0 auto;
-  width: 100%;
-  overflow: visible !important;
-  padding: 6vw;   
-}
-
-/* Text Content */
+/* Solution pour le texte */
 .hero-text-content {
-  z-index: 2;
+  position: relative;
+  z-index: 3;
+  padding-right: 2vw;
+}
+
+/* Debug visuel (à désactiver après vérification) */
+.modern-hero-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,0,0,0.1);
+  z-index: -1;
+  display: none; /* Activer en cas de besoin */
 }
 
 .hero-title {
