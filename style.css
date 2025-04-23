@@ -153,22 +153,22 @@ body.animated-bg {
   
   /* Navbar Base */
   .navbar-custom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5rem 5%; /* Augmentation du padding latéral */
-  background: rgba(15, 23, 42, 0.96); /* Opacité augmentée */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw; /* Utilisation de viewport width */
-  height: 70px; /* Hauteur fixe */
-  z-index: 1000;
-  border-bottom: 1px solid rgba(74, 222, 128, 0.3);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px); /* Support Safari */
-  box-sizing: border-box; /* Inclut padding dans width */
-}
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%; /* Augmentation du padding latéral */
+    background: rgba(15, 23, 42, 0.96); /* Opacité augmentée */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw; /* Utilisation de viewport width */
+    height: 70px; /* Hauteur fixe */
+    z-index: 1000;
+    border-bottom: 1px solid rgba(74, 222, 128, 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); /* Support Safari */
+    box-sizing: border-box; /* Inclut padding dans width */
+  }
   
   /* Brand */
   .navbar-brand {
@@ -329,35 +329,32 @@ body.animated-bg {
   --gray-light: #94a3b8;
 }
 
-/* Garantir la visibilité des éléments absolus */
-.hero-image-container::before {
-  content: '';
-  position: absolute;
-  width: 120%;
-  height: 120%;
-  top: -10%;
-  left: -10%;
-  z-index: -1;
-}
-
-/* Solution pour le texte */
-.hero-text-content {
+/* Hero Section Structure */
+.modern-hero-section {
+  background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--side-padding);
   position: relative;
-  z-index: 3;
-  padding-right: 2vw;
+  overflow: hidden;
 }
 
-/* Debug visuel (à désactiver après vérification) */
-.modern-hero-section::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
+.hero-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 60px;
+  max-width: 100%;
+  margin: 0 auto;
   width: 100%;
-  height: 100%;
-  background: rgba(255,0,0,0.1);
-  z-index: -1;
-  display: none; /* Activer en cas de besoin */
+  overflow: visible !important;
+  padding: 6vw;   
+}
+
+/* Text Content */
+.hero-text-content {
+  z-index: 2;
 }
 
 .hero-title {
@@ -403,6 +400,7 @@ body.animated-bg {
 .hero-actions {
   display: flex;
   gap: 20px;
+  max-width: 600px;
   flex-wrap: wrap;
 }
 
@@ -556,6 +554,11 @@ body.animated-bg {
 @media (max-width: 768px) {
   .hero-title {
     font-size: 3.5rem;
+  }
+  .hero-btn {
+    width: 100%;
+    margin: 0.5rem 0;
+    justify-content: center;
   }
   
   .hero-subtitle {
