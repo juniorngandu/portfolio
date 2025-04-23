@@ -317,52 +317,62 @@ body.animated-bg {
     }
   }
   
- 
-  /* Structure Hero */
-/* Variables */
+ /*----------- SECTION HERO-------------------*/
+/* Variables améliorées */
 :root {
   --neon: #4ade80;
   --neon-dark: #2ecc71;
+  --neon-blue: rgb(49, 49, 240);
   --dark: #0f172a;
   --darker: #020617;
   --light: #f8fafc;
   --gray-light: #94a3b8;
+  --side-padding: 5vw;
 }
 
-/* Hero Section Structure */
+/* Reset et base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Hero Section Révisée */
 .modern-hero-section {
   background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 0 var(--side-padding);
+  padding: 80px var(--side-padding) 0;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  isolation: isolate;
 }
 
 .hero-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  gap: 60px;
-  max-width: 100%;
-  margin: 0 auto;
+  gap: 5vw;
   width: 100%;
-  overflow: visible !important;
-  padding: 6vw;   
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 4vw 0;
+  position: relative;
 }
 
-/* Text Content */
+/* Contenu Texte */
 .hero-text-content {
-  z-index: 2;
+  position: relative;
+  z-index: 10;
 }
 
 .hero-title {
-  font-size: 4.5rem;
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
   font-weight: 700;
   line-height: 1.1;
   margin-bottom: 1.5rem;
-  color: rgb(49, 49, 240);
+  color: var(--neon-blue);
 }
 
 .title-part {
@@ -372,6 +382,7 @@ body.animated-bg {
 .neon-text {
   color: var(--neon);
   text-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+  position: relative;
 }
 
 .hero-subtitle {
@@ -380,27 +391,22 @@ body.animated-bg {
   gap: 15px;
   margin-bottom: 2rem;
   font-family: 'Fira Code', monospace;
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
   color: var(--gray-light);
 }
 
-.code-symbol {
-  font-family: 'Fira Code', monospace;
-}
-
 .hero-description p {
-  font-size: 1.1rem;
+  font-size: clamp(1rem, 1.2vw, 1.1rem);
   line-height: 1.8;
   color: var(--gray-light);
   max-width: 600px;
   margin-bottom: 2.5rem;
 }
 
-/* Buttons */
+/* Boutons améliorés */
 .hero-actions {
   display: flex;
   gap: 20px;
-  max-width: 600px;
   flex-wrap: wrap;
 }
 
@@ -408,11 +414,14 @@ body.animated-bg {
   padding: 15px 30px;
   border-radius: 8px;
   font-weight: 600;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 10px;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
 }
 
 .primary-btn {
@@ -423,7 +432,7 @@ body.animated-bg {
 
 .primary-btn:hover {
   box-shadow: 0 0 25px rgba(74, 222, 128, 0.5);
-  transform: translateY(-3px);
+  transform: translateY(-3px) scale(1.02);
 }
 
 .secondary-btn {
@@ -438,17 +447,19 @@ body.animated-bg {
   box-shadow: 0 0 15px rgba(74, 222, 128, 0.3);
 }
 
-/* Image Container */
+/* Conteneur Image */
 .hero-image-container {
   position: relative;
   display: flex;
   justify-content: center;
+  align-items: center;
+  z-index: 5;
 }
 
 .image-wrapper {
   position: relative;
-  width: 350px;
-  height: 350px;
+  width: clamp(280px, 30vw, 350px);
+  height: clamp(280px, 30vw, 350px);
 }
 
 .profile-image {
@@ -491,7 +502,7 @@ body.animated-bg {
   z-index: 0;
 }
 
-/* Scroll Indicator */
+/* Indicateur de Scroll */
 .scroll-indicator {
   position: absolute;
   bottom: 40px;
@@ -500,6 +511,7 @@ body.animated-bg {
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 10;
 }
 
 .indicator-line {
@@ -533,62 +545,50 @@ body.animated-bg {
 @media (max-width: 1024px) {
   .hero-container {
     grid-template-columns: 1fr;
-    padding: 100px 0;
     text-align: center;
+    gap: 40px;
   }
-  
+
   .hero-description p {
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto 2.5rem;
   }
-  
+
   .hero-actions {
     justify-content: center;
   }
-  
-  .hero-image-container {
-    margin-top: 50px;
+
+  .hero-subtitle {
+    justify-content: center;
   }
 }
 
 @media (max-width: 768px) {
-  .hero-title {
-    font-size: 3.5rem;
+  .modern-hero-section {
+    padding-top: 70px;
   }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
   .hero-btn {
     width: 100%;
-    margin: 0.5rem 0;
-    text-align: center;
-  }
-  
-  .hero-subtitle {
-    font-size: 1rem;
-  }
-  
-  .image-wrapper {
-    width: 280px;
-    height: 280px;
+    max-width: 300px;
+    justify-content: center;
   }
 }
 
 @media (max-width: 480px) {
   .hero-title {
-    font-size: 2.8rem;
+    font-size: 2.5rem;
   }
-  
-  .hero-btn {
-    width: 100%;
-    justify-content: center;
-  }
-  
-  .hero-actions {
-    flex-direction: column;
-    gap: 15px;
+
+  .image-wrapper {
+    width: 250px;
+    height: 250px;
   }
 }
-
-
-
   /* section realisation */
   :root {
     --neon: #4ade80;
