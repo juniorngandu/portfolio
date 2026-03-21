@@ -1,1266 +1,1376 @@
 <!DOCTYPE html>
-<html lang="fr-EN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Junior NGANDU</title>
-        <!-- CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="style2css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-    <!-- JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-    <script src="script.js" defer></script>
-    <script src="gsap-animations.js" defer></script>
-    <script src="https://www.google.com/recaptcha/api.js?render=6LfAMS0rAAAAAMMUT4ZwEwpnTjI6YW-VL3C5NWL8"></script>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Junior Ngandu — Développeur Full-Stack & Formateur NTIC</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+–bg: #f5f4f0;
+–bg2: #eeecea;
+–noir: #0f0f14;
+–bleu: #0a3d6b;
+–bleu-vif: #1560a8;
+–accent: #00c896;
+–accent2: #ff6b35;
+–gris: #6b7280;
+–gris-clair: #d1d5db;
+–blanc: #ffffff;
+–card: #ffffff;
+–mono: ‘JetBrains Mono’, monospace;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+background: var(–bg);
+color: var(–noir);
+font-family: ‘DM Sans’, sans-serif;
+font-weight: 300;
+overflow-x: hidden;
+cursor: none;
+}
+
+/* ── Curseur ── */
+.cursor {
+position: fixed;
+width: 10px; height: 10px;
+background: var(–accent);
+border-radius: 50%;
+pointer-events: none;
+z-index: 9999;
+transform: translate(-50%,-50%);
+transition: width .3s, height .3s, background .3s;
+}
+.cursor-trail {
+position: fixed;
+width: 30px; height: 30px;
+border: 1.5px solid var(–bleu);
+border-radius: 50%;
+pointer-events: none;
+z-index: 9998;
+transform: translate(-50%,-50%);
+transition: transform .15s ease;
+opacity: .5;
+}
+
+/* ── Navigation ── */
+nav {
+position: fixed;
+top: 0; left: 0; right: 0;
+z-index: 500;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 1.4rem 5%;
+background: rgba(245,244,240,.92);
+backdrop-filter: blur(12px);
+border-bottom: 1px solid rgba(10,61,107,.08);
+}
+
+.nav-logo {
+font-family: ‘Syne’, sans-serif;
+font-weight: 800;
+font-size: 1.1rem;
+color: var(–bleu);
+text-decoration: none;
+letter-spacing: -.02em;
+}
+.nav-logo span { color: var(–accent); }
+
+.nav-links {
+display: flex;
+gap: 2.5rem;
+list-style: none;
+}
+.nav-links a {
+font-size: .78rem;
+font-weight: 400;
+letter-spacing: .06em;
+text-transform: uppercase;
+color: var(–gris);
+text-decoration: none;
+transition: color .25s;
+}
+.nav-links a:hover { color: var(–bleu); }
+
+.nav-btn {
+font-family: ‘DM Sans’, sans-serif;
+font-size: .75rem;
+font-weight: 500;
+letter-spacing: .08em;
+text-transform: uppercase;
+background: var(–bleu);
+color: #fff;
+border: none;
+padding: .7rem 1.6rem;
+text-decoration: none;
+transition: background .25s, transform .2s;
+cursor: none;
+}
+.nav-btn:hover { background: var(–bleu-vif); transform: translateY(-1px); }
+
+/* ── Hero ── */
+.hero {
+min-height: 100vh;
+display: grid;
+grid-template-columns: 1fr 1fr;
+align-items: center;
+padding: 8rem 5% 5rem;
+position: relative;
+overflow: hidden;
+gap: 4rem;
+}
+
+.hero-bg-grid {
+position: absolute;
+inset: 0;
+background-image:
+linear-gradient(rgba(10,61,107,.04) 1px, transparent 1px),
+linear-gradient(90deg, rgba(10,61,107,.04) 1px, transparent 1px);
+background-size: 48px 48px;
+pointer-events: none;
+}
+
+.hero-bg-blob {
+position: absolute;
+top: -10%; right: -5%;
+width: 600px; height: 600px;
+background: radial-gradient(ellipse, rgba(0,200,150,.08) 0%, transparent 65%);
+pointer-events: none;
+}
+.hero-bg-blob2 {
+position: absolute;
+bottom: -10%; left: 10%;
+width: 400px; height: 400px;
+background: radial-gradient(ellipse, rgba(10,61,107,.06) 0%, transparent 65%);
+pointer-events: none;
+}
+
+.hero-left { position: relative; }
+
+.hero-badge {
+display: inline-flex;
+align-items: center;
+gap: .5rem;
+background: rgba(0,200,150,.1);
+border: 1px solid rgba(0,200,150,.3);
+padding: .45rem 1rem;
+border-radius: 100px;
+font-family: var(–mono);
+font-size: .7rem;
+color: var(–accent);
+margin-bottom: 2rem;
+animation: fadeUp .8s ease both;
+}
+.hero-badge::before { content: ‘’; width: 7px; height: 7px; background: var(–accent); border-radius: 50%; animation: pulse 2s infinite; }
+
+@keyframes pulse {
+0%, 100% { opacity: 1; transform: scale(1); }
+50% { opacity: .5; transform: scale(.7); }
+}
+
+.hero-name {
+font-family: ‘Syne’, sans-serif;
+font-size: clamp(3rem, 6vw, 5.5rem);
+font-weight: 800;
+line-height: 1;
+letter-spacing: -.03em;
+color: var(–noir);
+animation: fadeUp .8s .1s ease both;
+}
+.hero-name .highlight { color: var(–bleu); }
+
+.hero-role {
+display: flex;
+align-items: center;
+gap: 1rem;
+margin: 1.5rem 0 2rem;
+animation: fadeUp .8s .2s ease both;
+}
+.hero-role-tag {
+font-family: var(–mono);
+font-size: .8rem;
+padding: .4rem .9rem;
+border-radius: 4px;
+}
+.tag-dev { background: rgba(10,61,107,.08); color: var(–bleu); }
+.tag-form { background: rgba(255,107,53,.1); color: var(–accent2); }
+.role-sep { color: var(–gris-clair); font-size: 1.2rem; }
+
+.hero-desc {
+font-size: 1rem;
+line-height: 1.85;
+color: var(–gris);
+max-width: 480px;
+margin-bottom: 2.5rem;
+animation: fadeUp .8s .3s ease both;
+}
+
+.hero-actions {
+display: flex;
+gap: 1rem;
+animation: fadeUp .8s .4s ease both;
+}
+
+.btn-primary {
+display: inline-flex;
+align-items: center;
+gap: .5rem;
+background: var(–bleu);
+color: #fff;
+padding: .9rem 2rem;
+font-size: .8rem;
+font-weight: 500;
+letter-spacing: .06em;
+text-transform: uppercase;
+text-decoration: none;
+border-radius: 4px;
+transition: background .25s, transform .2s, box-shadow .25s;
+}
+.btn-primary:hover { background: var(–bleu-vif); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(10,61,107,.2); }
+
+.btn-secondary {
+display: inline-flex;
+align-items: center;
+gap: .5rem;
+background: transparent;
+color: var(–bleu);
+border: 1.5px solid var(–bleu);
+padding: .9rem 2rem;
+font-size: .8rem;
+font-weight: 500;
+letter-spacing: .06em;
+text-transform: uppercase;
+text-decoration: none;
+border-radius: 4px;
+transition: background .25s, color .25s;
+}
+.btn-secondary:hover { background: var(–bleu); color: #fff; }
+
+/* Terminal hero */
+.hero-terminal {
+background: var(–noir);
+border-radius: 12px;
+overflow: hidden;
+box-shadow: 0 32px 64px rgba(15,15,20,.2), 0 0 0 1px rgba(255,255,255,.05);
+animation: fadeLeft .9s .3s ease both;
+position: relative;
+}
+
+@keyframes fadeLeft {
+from { opacity: 0; transform: translateX(40px); }
+to { opacity: 1; transform: translateX(0); }
+}
+
+.terminal-bar {
+background: #1e1e2a;
+padding: .9rem 1.2rem;
+display: flex;
+align-items: center;
+gap: .7rem;
+}
+.t-dot { width: 12px; height: 12px; border-radius: 50%; }
+.t-dot.r { background: #ff5f56; }
+.t-dot.y { background: #ffbd2e; }
+.t-dot.g { background: #27c93f; }
+.terminal-title { font-family: var(–mono); font-size: .7rem; color: #666; margin-left: auto; }
+
+.terminal-body {
+padding: 1.8rem;
+font-family: var(–mono);
+font-size: .82rem;
+line-height: 2;
+}
+
+.t-line { display: flex; align-items: flex-start; gap: .7rem; }
+.t-prompt { color: var(–accent); flex-shrink: 0; }
+.t-cmd { color: #e2e8f0; }
+.t-comment { color: #4a5568; font-style: italic; }
+.t-key { color: #7dd3fc; }
+.t-val { color: #fbbf24; }
+.t-str { color: #86efac; }
+.t-num { color: #f9a8d4; }
+.t-gap { height: .5rem; }
+
+.terminal-cursor {
+display: inline-block;
+width: 9px; height: 17px;
+background: var(–accent);
+vertical-align: middle;
+animation: blink 1.2s step-end infinite;
+margin-left: 2px;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* Stats hero */
+.hero-stats {
+display: flex;
+gap: 2.5rem;
+margin-top: 2.5rem;
+padding-top: 2rem;
+border-top: 1px solid var(–gris-clair);
+animation: fadeUp .8s .5s ease both;
+}
+.stat-val {
+font-family: ‘Syne’, sans-serif;
+font-weight: 800;
+font-size: 2rem;
+color: var(–bleu);
+line-height: 1;
+}
+.stat-val span { color: var(–accent); }
+.stat-label {
+font-size: .75rem;
+color: var(–gris);
+margin-top: .3rem;
+letter-spacing: .03em;
+}
+
+/* ── Section commons ── */
+section { padding: 7rem 5%; }
+
+.section-tag {
+font-family: var(–mono);
+font-size: .7rem;
+color: var(–accent);
+letter-spacing: .1em;
+text-transform: uppercase;
+margin-bottom: 1rem;
+display: flex;
+align-items: center;
+gap: .8rem;
+}
+.section-tag::before { content: ‘//’; color: var(–gris-clair); }
+
+.section-title {
+font-family: ‘Syne’, sans-serif;
+font-size: clamp(2rem, 4vw, 3.2rem);
+font-weight: 800;
+letter-spacing: -.02em;
+color: var(–noir);
+line-height: 1.1;
+margin-bottom: 1rem;
+}
+.section-title em { font-style: normal; color: var(–bleu); }
+
+.section-sub {
+font-size: .95rem;
+color: var(–gris);
+line-height: 1.8;
+max-width: 560px;
+}
+
+/* ── Compétences ── */
+.skills { background: var(–blanc); }
+
+.skills-inner {
+display: grid;
+grid-template-columns: 1fr 2fr;
+gap: 6rem;
+align-items: start;
+margin-top: 4rem;
+}
+
+.skills-categories { display: flex; flex-direction: column; gap: 1rem; }
+.skill-cat-btn {
+display: flex;
+align-items: center;
+gap: 1rem;
+padding: 1rem 1.2rem;
+background: none;
+border: 1.5px solid var(–gris-clair);
+border-radius: 8px;
+cursor: none;
+text-align: left;
+transition: all .25s;
+font-family: ‘DM Sans’, sans-serif;
+}
+.skill-cat-btn:hover, .skill-cat-btn.active {
+border-color: var(–bleu);
+background: rgba(10,61,107,.04);
+}
+.skill-cat-btn.active { border-color: var(–accent); background: rgba(0,200,150,.05); }
+.skill-cat-icon { font-size: 1.4rem; }
+.skill-cat-name { font-weight: 500; font-size: .9rem; color: var(–noir); }
+.skill-cat-count { font-family: var(–mono); font-size: .7rem; color: var(–gris); margin-left: auto; }
+
+.skills-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 1rem;
+}
+
+.skill-card {
+background: var(–bg);
+border: 1.5px solid transparent;
+border-radius: 10px;
+padding: 1.2rem;
+transition: all .25s;
+cursor: none;
+}
+.skill-card:hover {
+border-color: var(–bleu);
+background: #fff;
+transform: translateY(-3px);
+box-shadow: 0 8px 24px rgba(10,61,107,.08);
+}
+.skill-icon { font-size: 1.6rem; margin-bottom: .7rem; }
+.skill-name { font-weight: 500; font-size: .85rem; color: var(–noir); margin-bottom: .3rem; }
+.skill-lvl {
+font-family: var(–mono);
+font-size: .65rem;
+color: var(–accent);
+background: rgba(0,200,150,.1);
+padding: .15rem .5rem;
+border-radius: 3px;
+display: inline-block;
+}
+
+/* ── Expérience ── */
+.experience { background: var(–bg2); }
+.exp-inner { margin-top: 4rem; }
+
+.timeline { position: relative; padding-left: 3rem; }
+.timeline::before {
+content: ‘’;
+position: absolute;
+left: 0; top: 0; bottom: 0;
+width: 2px;
+background: linear-gradient(to bottom, var(–bleu), var(–accent), transparent);
+}
+
+.timeline-item {
+position: relative;
+margin-bottom: 3rem;
+animation: fadeLeft .6s ease both;
+}
+.timeline-item::before {
+content: ‘’;
+position: absolute;
+left: -3.4rem; top: .4rem;
+width: 14px; height: 14px;
+background: var(–blanc);
+border: 2.5px solid var(–bleu);
+border-radius: 50%;
+transition: background .3s;
+}
+.timeline-item:hover::before { background: var(–accent); border-color: var(–accent); }
+
+.exp-card {
+background: var(–blanc);
+border-radius: 12px;
+padding: 2rem;
+border: 1.5px solid rgba(10,61,107,.06);
+transition: box-shadow .25s, transform .25s;
+}
+.exp-card:hover {
+box-shadow: 0 12px 32px rgba(10,61,107,.1);
+transform: translateX(4px);
+}
+
+.exp-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+.exp-org {
+font-family: ‘Syne’, sans-serif;
+font-weight: 700;
+font-size: 1.1rem;
+color: var(–noir);
+}
+.exp-type {
+font-family: var(–mono);
+font-size: .65rem;
+padding: .3rem .8rem;
+border-radius: 100px;
+flex-shrink: 0;
+}
+.type-formateur { background: rgba(255,107,53,.12); color: var(–accent2); }
+.type-stage { background: rgba(10,61,107,.1); color: var(–bleu); }
+
+.exp-role {
+font-size: .85rem;
+font-weight: 500;
+color: var(–bleu);
+margin-bottom: .8rem;
+}
+.exp-desc {
+font-size: .88rem;
+color: var(–gris);
+line-height: 1.8;
+}
+.exp-highlight {
+display: inline-flex;
+align-items: center;
+gap: .4rem;
+margin-top: .8rem;
+background: rgba(0,200,150,.08);
+border: 1px solid rgba(0,200,150,.2);
+padding: .4rem .9rem;
+border-radius: 6px;
+font-size: .78rem;
+color: var(–accent);
+font-weight: 500;
+}
+.exp-highlight::before { content: ‘★’; font-size: .7rem; }
+
+/* ── Formation ── */
+.formation { background: var(–blanc); }
+.edu-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 1.5rem;
+margin-top: 4rem;
+}
+
+.edu-card {
+background: var(–bg);
+border-radius: 12px;
+padding: 2rem;
+border-left: 4px solid var(–bleu);
+transition: all .25s;
+position: relative;
+overflow: hidden;
+}
+.edu-card::after {
+content: ‘’;
+position: absolute;
+top: -20px; right: -20px;
+width: 80px; height: 80px;
+background: radial-gradient(circle, rgba(10,61,107,.06), transparent);
+border-radius: 50%;
+}
+.edu-card:hover {
+transform: translateY(-4px);
+box-shadow: 0 16px 32px rgba(10,61,107,.1);
+border-left-color: var(–accent);
+}
+
+.edu-icon { font-size: 2rem; margin-bottom: 1rem; }
+.edu-degree {
+font-family: ‘Syne’, sans-serif;
+font-weight: 700;
+font-size: 1rem;
+color: var(–noir);
+margin-bottom: .5rem;
+line-height: 1.3;
+}
+.edu-school {
+font-size: .82rem;
+color: var(–gris);
+line-height: 1.6;
+}
+.edu-badge {
+display: inline-block;
+margin-top: 1rem;
+font-family: var(–mono);
+font-size: .65rem;
+background: rgba(10,61,107,.08);
+color: var(–bleu);
+padding: .3rem .7rem;
+border-radius: 4px;
+}
+
+/* ── Projets ── */
+.projets { background: var(–bg2); }
+.projets-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+gap: 2rem;
+margin-top: 4rem;
+}
+
+.projet-card {
+background: var(–blanc);
+border-radius: 14px;
+overflow: hidden;
+border: 1.5px solid rgba(10,61,107,.07);
+transition: all .3s;
+}
+.projet-card:hover {
+transform: translateY(-6px);
+box-shadow: 0 24px 48px rgba(10,61,107,.12);
+border-color: var(–bleu);
+}
+
+.projet-top {
+padding: 2rem 2rem 1.5rem;
+border-bottom: 1px solid var(–bg);
+}
+.projet-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1rem; }
+.projet-icon { font-size: 2.2rem; }
+.projet-status {
+font-family: var(–mono);
+font-size: .62rem;
+padding: .25rem .7rem;
+border-radius: 100px;
+background: rgba(0,200,150,.1);
+color: var(–accent);
+}
+.projet-name {
+font-family: ‘Syne’, sans-serif;
+font-weight: 700;
+font-size: 1.15rem;
+color: var(–noir);
+margin-bottom: .5rem;
+}
+.projet-desc { font-size: .85rem; color: var(–gris); line-height: 1.7; }
+
+.projet-bottom { padding: 1.2rem 2rem; display: flex; flex-direction: column; gap: .8rem; }
+.tech-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+.tech-tag {
+font-family: var(–mono);
+font-size: .65rem;
+padding: .25rem .6rem;
+border-radius: 4px;
+background: var(–bg2);
+color: var(–bleu-vif);
+font-weight: 500;
+}
+.projet-links { display: flex; gap: .8rem; }
+.projet-link {
+font-size: .75rem;
+font-weight: 500;
+color: var(–bleu);
+text-decoration: none;
+display: flex;
+align-items: center;
+gap: .3rem;
+transition: color .2s;
+}
+.projet-link:hover { color: var(–accent); }
+
+/* ── Formation enseignée ── */
+.enseignement { background: var(–bleu); color: #fff; }
+.enseignement .section-tag::before { color: rgba(255,255,255,.2); }
+.enseignement .section-tag { color: var(–accent); }
+.enseignement .section-title { color: #fff; }
+.enseignement .section-title em { color: var(–accent); }
+.enseignement .section-sub { color: rgba(255,255,255,.65); }
+
+.modules-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+gap: 1.2rem;
+margin-top: 4rem;
+}
+
+.module-card {
+background: rgba(255,255,255,.06);
+border: 1px solid rgba(255,255,255,.1);
+border-radius: 12px;
+padding: 1.8rem;
+transition: all .25s;
+}
+.module-card:hover {
+background: rgba(255,255,255,.1);
+border-color: var(–accent);
+transform: translateY(-3px);
+}
+.module-icon { font-size: 2rem; margin-bottom: 1rem; }
+.module-name {
+font-family: ‘Syne’, sans-serif;
+font-weight: 700;
+font-size: .95rem;
+margin-bottom: .5rem;
+}
+.module-desc { font-size: .8rem; color: rgba(255,255,255,.6); line-height: 1.7; }
+
+.enseignement-impact {
+margin-top: 4rem;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 2rem;
+border-top: 1px solid rgba(255,255,255,.1);
+padding-top: 4rem;
+}
+.impact-item { text-align: center; }
+.impact-val {
+font-family: ‘Syne’, sans-serif;
+font-weight: 800;
+font-size: 3rem;
+color: var(–accent);
+line-height: 1;
+margin-bottom: .5rem;
+}
+.impact-label { font-size: .8rem; color: rgba(255,255,255,.5); letter-spacing: .05em; }
+
+/* ── Contact ── */
+.contact { background: var(–bg); }
+.contact-inner {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 6rem;
+align-items: start;
+margin-top: 4rem;
+}
+
+.contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+.contact-item {
+display: flex;
+align-items: center;
+gap: 1.2rem;
+padding: 1.2rem 1.5rem;
+background: var(–blanc);
+border-radius: 10px;
+border: 1.5px solid rgba(10,61,107,.06);
+transition: border-color .25s;
+}
+.contact-item:hover { border-color: var(–bleu); }
+.contact-item-icon {
+width: 44px; height: 44px;
+background: rgba(10,61,107,.07);
+border-radius: 8px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.2rem;
+flex-shrink: 0;
+}
+.contact-item-label { font-size: .7rem; color: var(–gris); letter-spacing: .05em; text-transform: uppercase; margin-bottom: .2rem; }
+.contact-item-val { font-size: .9rem; font-weight: 500; color: var(–noir); }
+
+.contact-form { display: flex; flex-direction: column; gap: 1rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-field { display: flex; flex-direction: column; gap: .4rem; }
+.form-label { font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(–gris); font-weight: 500; }
+.form-input, .form-textarea {
+background: var(–blanc);
+border: 1.5px solid var(–gris-clair);
+border-radius: 8px;
+padding: .9rem 1.1rem;
+font-family: ‘DM Sans’, sans-serif;
+font-size: .9rem;
+color: var(–noir);
+outline: none;
+transition: border-color .25s;
+cursor: none;
+}
+.form-input:focus, .form-textarea:focus { border-color: var(–bleu); }
+.form-textarea { min-height: 130px; resize: vertical; }
+.form-submit {
+background: var(–bleu);
+color: #fff;
+border: none;
+padding: 1.1rem 2.5rem;
+font-family: ‘DM Sans’, sans-serif;
+font-size: .82rem;
+font-weight: 500;
+letter-spacing: .08em;
+text-transform: uppercase;
+border-radius: 8px;
+cursor: none;
+transition: all .25s;
+align-self: flex-start;
+}
+.form-submit:hover { background: var(–bleu-vif); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(10,61,107,.2); }
+
+/* ── Footer ── */
+footer {
+background: var(–noir);
+color: rgba(255,255,255,.5);
+padding: 3rem 5%;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.footer-logo {
+font-family: ‘Syne’, sans-serif;
+font-weight: 800;
+color: #fff;
+font-size: 1rem;
+}
+.footer-logo span { color: var(–accent); }
+.footer-copy { font-family: var(–mono); font-size: .72rem; }
+.footer-links { display: flex; gap: 1.5rem; }
+.footer-links a {
+font-size: .78rem;
+color: rgba(255,255,255,.4);
+text-decoration: none;
+transition: color .2s;
+}
+.footer-links a:hover { color: var(–accent); }
+
+/* ── Reveal ── */
+.reveal {
+opacity: 0;
+transform: translateY(28px);
+transition: opacity .8s ease, transform .8s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── Animations ── */
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Mobile ── */
+@media (max-width: 900px) {
+.hero { grid-template-columns: 1fr; padding-top: 7rem; }
+.hero-terminal { display: none; }
+.skills-inner { grid-template-columns: 1fr; gap: 3rem; }
+.contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+.enseignement-impact { grid-template-columns: 1fr; gap: 1.5rem; }
+.nav-links { display: none; }
+}
+</style>
 
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <span style="color: var(--primary-color); font-weight: 700;">{</span>
-                <span style="color: black; font-weight: 700;">JN</span>
-                <span style="color: var(--primary-color); font-weight: 700;">}</span>
-            </a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
 
-        <!-- Hero Section -->
-    <section class="hero py-5" style="padding-top: 100px !important;">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6" data-aos="fade-right">
-                    <h1 class="display-4 fw-bold mb-3">Junior NGANDU</h1>
-                    <h2 class="mb-4" style="color: var(--primary-color);">Développeur Full-Stack</h2>
-                    <p class="lead mb-4">Je transforme des idées innovantes en solutions digitales performantes, alliant esthétique et simplicité. 
-                        <BR> Ma mission : créer des expériences utilisateurs fluides et intuitives.</p>
-                    <div class="d-flex gap-3">
-                        <a href="#services" class="btn btn-lg px-4" style="background-color: var(--primary-color);">Mes Services</a>
-                        <a href="#contact" class="btn btn-lg px-4 border">Contact</a>
-                    </div>
-                </div>
-                <div class="col-lg-6 text-center" data-aos="fade-left">
-                    <img src="images/profilerogner.PNG" alt="Profil" class="img-fluid rounded-circle" style="max-width: 400px; border: 5px solid var(--primary-color);">
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-trail" id="trail"></div>
 
-    <!-- Mes Services Section - Version améliorée -->
-<section id="services" class="services py-5">
-    <div class="container">
-        <div class="row mb-5">
-            <div class="col-12 text-center" data-aos="fade-up">
-                <h2 class="section-title mb-3">Mes Services</h2>
-                <p class="text-muted mb-4">Des solutions sur mesure pour vos besoins digitaux</p>
-                
-                <!-- Filtres par technologie -->
-                <div class="filter-buttons mb-4" data-aos="fade-up" data-aos-delay="100">
-                    <button class="btn btn-sm btn-outline-secondary active filter-btn" data-filter="all">Tous</button>
-                    <button class="btn btn-sm btn-outline-secondary filter-btn" data-filter="web">Web</button>
-                    <button class="btn btn-sm btn-outline-secondary filter-btn" data-filter="mobile">Mobile</button>
-                    <button class="btn btn-sm btn-outline-secondary filter-btn" data-filter="desktop">Desktop</button>
-                    <button class="btn btn-sm btn-outline-secondary filter-btn" data-filter="formation">Formation</button>
-                </div>
-            </div>
-        </div>
+<!-- ── NAV ── -->
 
-        <div class="row g-4" id="services-container">
-            <!-- Carte Service 1 -->
-            <div class="col-lg-4 col-md-6 service-item" data-category="web" data-aos="fade-up" data-aos-delay="100">
-                <div class="service-card h-100 p-4 rounded-4 position-relative">
-                    <div class="icon-box mb-4">
-                        <i class="fas fa-laptop-code fa-3x" style="color: var(--primary-color);"></i>
-                    </div>
-                    <h3 class="mb-3">Développement Web</h3>
-                    <p class="text-muted mb-3">Création de sites vitrine, e-commerce et applications web performantes avec les dernières technologies.</p>
-                    <div class="technologies mb-3">
-                        <span class="badge rounded-pill bg-secondary me-2">React</span>
-                        <span class="badge rounded-pill bg-secondary">Node.js</span>
-                        <span class="badge rounded-pill bg-secondary">Vue.js</span>
-                    </div>
-                    <div class="hover-content">
-                        <a href="#" class="stretched-link"></a>
-                        <div class="d-flex justify-content-center">
-                            <span class="btn btn-sm" style="background-color: var(--primary-color);">Voir détails</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<nav>
+  <a href="#" class="nav-logo">Junior<span>.</span>dev</a>
+  <ul class="nav-links">
+    <li><a href="#competences">Compétences</a></li>
+    <li><a href="#experience">Expérience</a></li>
+    <li><a href="#projets">Projets</a></li>
+    <li><a href="#enseignement">Formation</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-btn">Me contacter</a>
+</nav>
 
-            <!-- Carte Service 2 -->
-            <div class="col-lg-4 col-md-6 service-item" data-category="mobile" data-aos="fade-up" data-aos-delay="150">
-                <div class="service-card h-100 p-4 rounded-4 position-relative">
-                    <div class="icon-box mb-4">
-                        <i class="fas fa-mobile-screen-button fa-3x" style="color: var(--primary-color);"></i>
-                    </div>
-                    <h3 class="mb-3">Applications Mobile</h3>
-                    <p class="text-muted mb-3">Développement d'applications iOS et Android natives et cross-platform avec des performances optimales.</p>
-                    <div class="technologies mb-3">
-                        <span class="badge rounded-pill bg-secondary me-2">Flutter</span>
-                        <span class="badge rounded-pill bg-secondary">Swift</span>
-                        <span class="badge rounded-pill bg-secondary">Kotlin</span>
-                    </div>
-                    <div class="hover-content">
-                        <a href="#" class="stretched-link"></a>
-                        <div class="d-flex justify-content-center">
-                            <span class="btn btn-sm" style="background-color: var(--primary-color);">Voir détails</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- ── HERO ── -->
 
-            <!-- Carte Service 3 -->
-            <div class="col-lg-4 col-md-6 service-item" data-category="web" data-aos="fade-up" data-aos-delay="200">
-                <div class="service-card h-100 p-4 rounded-4 position-relative">
-                    <div class="icon-box mb-4">
-                        <i class="fas fa-desktop fa-3x" style="color: var(--primary-color);"></i>
-                    </div>
-                    <h3 class="mb-3">Applications Desktop</h3>
-                    <p class="text-muted mb-3">Création de logiciels Windows, macOS et Linux avec interfaces modernes et fonctionnalités avancées.</p>
-                    <div class="technologies mb-3">
-                        <span class="badge rounded-pill bg-secondary me-2">Electron</span>
-                        <span class="badge rounded-pill bg-secondary">.NET</span>
-                        <span class="badge rounded-pill bg-secondary">JavaFX</span>
-                    </div>
-                    <div class="hover-content">
-                        <a href="#" class="stretched-link"></a>
-                        <div class="d-flex justify-content-center">
-                            <span class="btn btn-sm" style="background-color: var(--primary-color);">Voir détails</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<section class="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-bg-blob"></div>
+  <div class="hero-bg-blob2"></div>
 
-            <!-- Carte Service 4 -->
-            <div class="col-lg-4 col-md-6 service-item" data-category="mobile,web" data-aos="fade-up" data-aos-delay="250">
-                <div class="service-card h-100 p-4 rounded-4 position-relative">
-                    <div class="icon-box mb-4">
-                        <i class="fas fa-sync-alt fa-3x" style="color: var(--primary-color);"></i>
-                    </div>
-                    <h3 class="mb-3">Maintenance & Optimisation</h3>
-                    <p class="text-muted mb-3">Amélioration des performances, corrections de bugs et mises à jour pour vos applications existantes.</p>
-                    <div class="technologies mb-3">
-                        <span class="badge rounded-pill bg-secondary me-2">SEO</span>
-                        <span class="badge rounded-pill bg-secondary">Performance</span>
-                        <span class="badge rounded-pill bg-secondary">Debugging</span>
-                    </div>
-                    <div class="hover-content">
-                        <a href="#" class="stretched-link"></a>
-                        <div class="d-flex justify-content-center">
-                            <span class="btn btn-sm" style="background-color: var(--primary-color);">Voir détails</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div class="hero-left">
+    <div class="hero-badge">Disponible pour projets &amp; collaborations</div>
 
-            <!-- Carte Service 5 -->
-            <div class="col-lg-4 col-md-6 service-item" data-category="mobile" data-aos="fade-up" data-aos-delay="300">
-                <div class="service-card h-100 p-4 rounded-4 position-relative">
-                    <div class="icon-box mb-4">
-                        <i class="fas fa-layer-group fa-3x" style="color: var(--primary-color);"></i>
-                    </div>
-                    <h3 class="mb-3">Apps Multiplateforme</h3>
-                    <p class="text-muted mb-3">Solutions unifiées pour web, mobile et desktop avec un codebase unique et des performances natives.</p>
-                    <div class="technologies mb-3">
-                        <span class="badge rounded-pill bg-secondary me-2">Flutter</span>
-                        <span class="badge rounded-pill bg-secondary">React Native</span>
-                        <span class="badge rounded-pill bg-secondary">Ionic</span>
-                    </div>
-                    <div class="hover-content">
-                        <a href="#" class="stretched-link"></a>
-                        <div class="d-flex justify-content-center">
-                            <span class="btn btn-sm" style="background-color: var(--primary-color);">Voir détails</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+```
+<h1 class="hero-name">
+  Junior<br>
+  <span class="highlight">Ngandu</span>
+</h1>
 
-            <!-- Carte Service 6 -->
-            <div class="col-lg-4 col-md-6 service-item" data-category="formation" data-aos="fade-up" data-aos-delay="350">
-                <div class="service-card h-100 p-4 rounded-4 position-relative">
-                    <div class="icon-box mb-4">
-                        <i class="fas fa-chalkboard-teacher fa-3x" style="color: var(--primary-color);"></i>
-                    </div>
-                    <h3 class="mb-3">Formation IT</h3>
-                    <p class="text-muted mb-3">Cours personnalisés en programmation, conception d'UI/UX et bonnes pratiques de développement.</p>
-                    <div class="technologies mb-3">
-                        <span class="badge rounded-pill bg-secondary me-2">Workshops</span>
-                        <span class="badge rounded-pill bg-secondary">Tutoriels</span>
-                        <span class="badge rounded-pill bg-secondary">Mentorat</span>
-                    </div>
-                    <div class="hover-content">
-                        <a href="#" class="stretched-link"></a>
-                        <div class="d-flex justify-content-center">
-                            <span class="btn btn-sm" style="background-color: var(--primary-color);">Voir détails</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!------------------------------------ Section Forfaits Premium ----------------------------------->
-<section id="plans" class="plans py-5 bg-light">
-    <div class="container">
-        <div class="row mb-5">
-            <div class="col-12 text-center">
-                <h2 class="display-5 fw-bold mb-3">Plans Tarifaires</h2>
-                <p class="lead text-muted">Des solutions sur mesure pour optimiser votre présence digitale</p>
-            </div>
-        </div>
-
-        <div class="row g-4">
-            <!-- Forfait Argent -->
-            <div class="col-lg-4">
-                <div class="plan-card h-100">
-                    <div class="plan-header p-4 text-center">
-                        <h3 class="text-muted">Argent</h3>
-                        <div class="price my-4">
-                            <span class="amount">0$</span>
-                            <span class="period">/heure</span>
-                        </div>
-                        <p class="text-muted">Solution d'entrée de gamme pour besoins basiques</p>
-                    </div>
-                    <div class="plan-body p-4">
-                        <ul class="features-list">
-                            <li class="included"><i class="fas fa-check me-2"></i> Conception d'interface utilisateur</li>
-                            <li class="included"><i class="fas fa-check me-2"></i> Développement Web</li>
-                            <li class="excluded"><i class="fas fa-times me-2"></i> <del>Conception de logo</del></li>
-                            <li class="excluded"><i class="fas fa-times me-2"></i> <del>Optimisation SEO</del></li>
-                            <li class="excluded"><i class="fas fa-times me-2"></i> <del>Intégration WordPress</del></li>
-                            <li class="excluded"><i class="fas fa-times me-2"></i> <del>5 sites Web</del></li>
-                            <li>Bande passante : 20 Go</li>
-                        </ul>
-                    </div>
-                    <div class="plan-footer p-4 text-center">
-                        <button class="btn btn-outline-primary w-100">Démarrer</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Forfait Or (Populaire) -->
-            <div class="col-lg-4">
-                <div class="plan-card h-100 popular">
-                    <div class="popular-badge">Le plus choisi</div>
-                    <div class="plan-header p-4 text-center">
-                        <h3>Or</h3>
-                        <div class="price my-4">
-                            <span class="amount">30$</span>
-                            <span class="period">/heure</span>
-                        </div>
-                        <p>Solution complète pour entreprises en croissance</p>
-                    </div>
-                    <div class="plan-body p-4">
-                        <ul class="features-list">
-                            <li class="included"><i class="fas fa-check me-2"></i> Conception d'interface utilisateur</li>
-                            <li class="included"><i class="fas fa-check me-2"></i> Développement Web</li>
-                            <li class="included"><i class="fas fa-check me-2"></i> Conception de logo</li>
-                            <li class="included"><i class="fas fa-check me-2"></i> Optimisation SEO</li>
-                            <li class="excluded"><i class="fas fa-times me-2"></i> <del>Intégration WordPress</del></li>
-                            <li class="excluded"><i class="fas fa-times me-2"></i> <del>5 sites Web</del></li>
-                            <li>Utilisateurs illimités</li>
-                        </ul>
-                    </div>
-                    <div class="plan-footer p-4 text-center">
-                        <button class="btn btn-primary w-100">Choisir ce plan</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Forfait Diamant -->
-            <div class="col-lg-4">
-                <div class="plan-card h-100">
-                    <div class="plan-header p-4 text-center">
-                        <h3>Diamant</h3>
-                        <div class="price my-4">
-                            <span class="amount">50$</span>
-                            <span class="period">/heure</span>
-                        </div>
-                        <p>Solution premium pour besoins exigeants</p>
-                    </div>
-                    <div class="plan-body p-4">
-                        <ul class="features-list">
-                            <li class="included"><i class="fas fa-check me-2"></i> Conception d'interface utilisateur</li>
-                            <li class="included"><i class="fas fa-check me-2"></i> Développement Web</li>
-                            <li class="included"><i class="fas fa-check me-2"></i> Conception de logo</li>
-                            <li class="included"><i class="fas fa-check me-2"></i> Optimisation SEO</li>
-                            <li class="included"><i class="fas fa-check me-2"></i> Intégration WordPress</li>
-                            <li class="included"><i class="fas fa-check me-2"></i> 5 sites Web</li>
-                            <li>Utilisateurs illimités + Support prioritaire</li>
-                        </ul>
-                    </div>
-                    <div class="plan-footer p-4 text-center">
-                        <button class="btn btn-outline-primary w-100">Personnaliser</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row mt-5">
-            <div class="col-12 text-center">
-                <p class="text-muted">* Tous les forfaits incluent un audit initial gratuit et un suivi mensuel</p>
-                <button class="btn btn-lg btn-dark mt-3">Besoin d'une solution sur mesure ?</button>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<!-- Section Plans Tarifaires Améliorée -->
-<section id="pricing" class="pricing py-5">
-    <div class="container">
-        <!-- En-tête avec sélecteur de devise -->
-        <div class="row mb-4">
-            <div class="col-12 text-end">
-                <div class="currency-selector btn-group">
-                    <button class="btn btn-sm btn-outline-secondary active" data-currency="eur">EUR €</button>
-                    <button class="btn btn-sm btn-outline-secondary" data-currency="usd">USD $</button>
-                    <button class="btn btn-sm btn-outline-secondary" data-currency="gbp">£</button>
-                </div>
-            </div>
-        </div>
-        <!-- Plans Tarifaires -->
-        <div class="row g-4 justify-content-center">
-            <!-- Plans (même structure qu'avant mais avec classes pour la conversion) -->
-            <!-- ... (le code des cartes précédentes reste inchangé) ... -->
-        </div>
-
-        <!-- Calculateur de devis -->
-        <div class="row mt-5" data-aos="fade-up">
-            <div class="col-lg-6">
-                <div class="calculator-card p-4 rounded-4">
-                    <h3 class="mb-4">Calculateur de Devis</h3>
-                    <div class="mb-3">
-                        <label class="form-label">Type de projet</label>
-                        <select class="form-select" id="project-type">
-                            <option value="website">Site Web</option>
-                            <option value="app">Application Mobile</option>
-                            <option value="desktop">Logiciel Desktop</option>
-                            <option value="desktop">Maintenance & Optimisation</option>
-                            <option value="desktop">Formation IT</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Complexité</label>
-                        <select class="form-select" id="project-complexity">
-                            <option value="simple">Simple</option>
-                            <option value="medium">Moyenne</option>
-                            <option value="complex">Complexe</option>
-                        </select>
-                    </div>
-                    <div class="mb-4">
-                        <label class="form-label">Durée estimée (mois)</label>
-                        <input type="range" class="form-range" min="1" max="12" id="project-duration">
-                        <div class="d-flex justify-content-between">
-                            <span>1 mois</span>
-                            <span id="duration-value">6 mois</span>
-                            <span>12 mois</span>
-                        </div>
-                    </div>
-                    <button class="btn btn-primary w-100" id="calculate-btn">Calculer</button>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="quote-result p-4 rounded-4 text-center">
-                    <h4 class="mb-3">Votre Devis Personnalisé</h4>
-                    <div class="display-4 mb-3" id="quote-amount">€ 0</div>
-                    <p class="text-muted" id="quote-details">Sélectionnez vos options pour voir une estimation</p>
-                    <a href="mailto:juniorngandu18@gmail.com"> <button class="btn btn-outline-primary mt-3" id="contact-btn">Contactez-moi</button></a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<!-- --------------------- Section Recommandations Améliorée ----------------- ------------------------->
-<section id="testimonials" class="testimonials py-5">
-    <div class="container">
-        <div class="row mb-5">
-            <div class="col-12 text-center" data-aos="fade-up">
-                <h2 class="section-title mb-3">Ils me font confiance</h2>
-                <p class="text-muted">Retours d'expérience et preuves tangibles</p>
-            </div>
-        </div>
-
-        <!-- Statistiques de satisfaction -->
-        <div class="row mb-5 stats-row" data-aos="fade-up">
-            <div class="col-md-3 col-6 text-center mb-4">
-                <div class="stat-card p-3">
-                    <div class="display-4 text-primary">98%</div>
-                    <p class="mb-0">Satisfaction clients</p>
-                </div>
-            </div>
-            <div class="col-md-3 col-6 text-center mb-4">
-                <div class="stat-card p-3">
-                    <div class="display-4 text-primary">5+</div>
-                    <p class="mb-0">Projets réalisés</p>
-                </div>
-            </div>
-            <div class="col-md-3 col-6 text-center mb-4">
-                <div class="stat-card p-3">
-                    <div class="display-4 text-primary">4.9/5</div>
-                    <p class="mb-0">Moyenne des avis</p>
-                </div>
-            </div>
-            <div class="col-md-3 col-6 text-center mb-4">
-                <div class="stat-card p-3">
-                    <div class="display-4 text-primary">92%</div>
-                    <p class="mb-0">Clients récurrents</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="row g-4">
-            <!-- Carousel Témoignages -->
-            <div class="col-lg-7" data-aos="fade-right">
-                <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <!-- Témoignage 1 (Vidéo) -->
-                        <div class="carousel-item active">
-                            <div class="testimonial-card h-100">
-                                <div class="ratio ratio-16x9 mb-4">
-                                    <iframe src="" allowfullscreen></iframe>
-                                </div>
-                                <div class="testimonial-header d-flex align-items-center mb-3">
-                                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client" class="rounded-circle me-3" width="60">
-                                    <div>
-                                        <h5 class="mb-1">Sophie Lambert</h5>
-                                        <p class="text-muted small mb-0">CEO @WebSolutions</p>
-                                    </div>
-                                </div>
-                                <p>"La refonte de notre site a boosté nos conversions de 150% en 3 mois. Un travail exceptionnel !"</p>
-                                <a href="#case-study-1" class="btn btn-sm btn-outline-primary">Voir l'étude de cas</a>
-                            </div>
-                        </div>
-
-                        <!-- Témoignage 2 (Texte) -->
-                        <div class="carousel-item">
-                            <div class="testimonial-card h-100">
-                                <div class="testimonial-header d-flex align-items-center mb-4">
-                                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" class="rounded-circle me-3" width="60">
-                                    <div>
-                                        <h5 class="mb-1">Marc Dubois</h5>
-                                        <p class="text-muted small mb-0">Directeur Marketing @TechCorp</p>
-                                        <div class="rating text-warning small">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half-alt"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="mb-4">"John a su comprendre nos besoins complexes et livrer une application mobile parfaitement adaptée à notre secteur. Son professionnalisme et sa réactivité font toute la différence."</p>
-                                <a href="#case-study-2" class="btn btn-sm btn-outline-primary">Voir l'étude de cas</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-controls">
-                        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Études de cas -->
-            <div class="col-lg-5" data-aos="fade-left">
-                <div class="case-studies">
-                    <h4 class="mb-4">Études de Cas Récentes</h4>
-                    
-                    <div class="case-study-card mb-4">
-                        <div class="d-flex">
-                            <img src="images/c++.png" alt="Projet" class="rounded me-3" width="80">
-                            <div>
-                                <h5>Refonte E-commerce</h5>
-                                <p class="small text-muted">Augmentation de 150% du taux de conversion</p>
-                                <a href="#case-study-1" class="btn btn-sm btn-primary">Détails</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="case-study-card mb-4">
-                        <div class="d-flex">
-                            <img src="images/5673719.jpg" alt="Projet" class="rounded me-3" width="80">
-                            <div>
-                                <h5>Application Mobile</h5>
-                                <p class="small text-muted">4.8/5 sur les stores avec 50k téléchargements</p>
-                                <a href="#case-study-2" class="btn btn-sm btn-primary">Détails</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="case-study-card">
-                        <div class="d-flex">
-                            <img src="images/LOGO_ISP.png" alt="Projet" class="rounded me-3" width="80">
-                            <div>
-                                <h5>Optimisation SEO</h5>
-                                <p class="small text-muted">+300% de trafic organique en 6 mois</p>
-                                <a href="#case-study-3" class="btn btn-sm btn-primary">Détails</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Logos clients -->
-        <div class="row mt-5">
-            <div class="col-12">
-                <div class="client-logos d-flex flex-wrap justify-content-center align-items-center">
-                    <img src="images/python.jpg" alt="Logo client" class="img-fluid m-3" style="max-height: 60px;">
-                    <img src="images/Csharp.jpg" alt="Logo client" class="img-fluid m-3" style="max-height: 60px;">
-                    <img src="images/c++.png" alt="Logo client" class="img-fluid m-3" style="max-height: 60px;">
-                    <img src="images/htmlcss.jpg" alt="Logo client" class="img-fluid m-3" style="max-height: 60px;">
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Section Éducation Améliorée -->
-<section id="education" class="education py-5">
-    <div class="container">
-        <div class="row mb-5">
-            <div class="col-12 text-center" data-aos="fade-up">
-                <h2 class="section-title mb-3">Parcours Académique</h2>
-                <p class="text-muted">Formations, certifications et compétences acquises</p>
-                
-                <!-- Filtres -->
-                <div class="filter-buttons mt-4" data-aos="fade-up">
-                    <button class="btn btn-sm btn-outline-secondary active" data-filter="all">Tout voir</button>
-                    <button class="btn btn-sm btn-outline-secondary" data-filter="diplome">Diplômes</button>
-                    <button class="btn btn-sm btn-outline-secondary" data-filter="certification">Certifications</button>
-                    <button class="btn btn-sm btn-outline-secondary" data-filter="formation">Formations</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <!-- Timeline Éducation -->
-            <div class="col-lg-10 mx-auto">
-                <div class="timeline">
-                    <!-- Diplôme 1 -->
-                    <div class="timeline-item" data-category="diplome" data-aos="fade-right">
-                        <div class="timeline-date">2023 - 2025</div>
-                        <div class="timeline-content">
-                            <div class="d-flex align-items-start">
-                                <img src="images/LOGO_ISP.png" alt="Université TechSup Paris" class="rounded-circle me-3" width="60">
-                                <div class="flex-grow-1">
-                                    <div class="timeline-header d-flex justify-content-between">
-                                        <h4>Master en Informatique</h4>
-                                        <span class="badge bg-primary">En cours</span>
-                                    </div>
-                                    <h5 class="text-muted">Institut Superieur Pedagogique de la GOMBE</h5>
-                                </div>
-                                <div class="qr-code ms-3" data-qr="https://example.com/diplome-master">
-                                    <i class="fas fa-qrcode fa-lg"></i>
-                                    <div class="qr-tooltip">Scanner pour vérifier</div>
-                                </div>
-                            </div>
-                            <p class="mt-2">Spécialisation en Intelligence Artificielle et Développement Web Avancé. Mention Très Bien.</p>
-                            
-                            <!-- Projet académique -->
-                            <div class="academic-project mt-3">
-                                <div class="project-preview d-flex">
-                                    <img src="images/Csharp.jpg" alt="Projet IA" class="rounded me-2" width="80">
-                                    <div>
-                                        <h6 class="mb-1">Logiciel de gestion contravention routiere</h6>
-                                        <p class="small text-muted mb-1">Projet de fin d'études - Note: 18/20</p>
-                                        <div class="d-flex">
-                                            <a href="#" class="btn btn-xs btn-outline-primary me-2">Voir le projet</a>
-                                            <a href="#" class="btn btn-xs btn-outline-secondary">Code source</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="skills mt-3">
-                                <span class="badge rounded-pill bg-light text-dark">C#</span>
-                                <span class="badge rounded-pill bg-light text-dark">SQL Server</span>
-                                <span class="badge rounded-pill bg-light text-dark">Node.js</span>
-                                <span class="badge rounded-pill bg-light text-dark">Boostrap</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Diplôme 2 -->
-                    <div class="timeline-item" data-category="diplome" data-aos="fade-right">
-                        <div class="timeline-date">2020 - 2023</div>
-                        <div class="timeline-content">
-                            <div class="d-flex align-items-start">
-                                <img src="images/LOGO_ISP.png" alt="Université TechSup Paris" class="rounded-circle me-3" width="60">
-                                <div class="flex-grow-1">
-                                    <div class="timeline-header d-flex justify-content-between">
-                                        <h4>Licence en Informatique</h4>
-                                        <span class="badge bg-primary">Diplômé</span>
-                                    </div>
-                                    <h5 class="text-muted">Institut Superieur Pedagogique de la GOMBE</h5>
-                                </div>
-                                <div class="qr-code ms-3" data-qr="https://example.com/diplome-master">
-                                    <i class="fas fa-qrcode fa-lg"></i>
-                                    <div class="qr-tooltip">Scanner pour vérifier</div>
-                                </div>
-                            </div>
-                            <p class="mt-2">Spécialisation en Intelligence Artificielle et Développement Web Avancé. Mention Très Bien.</p>
-                            
-                            <!-- Projet académique -->
-                            <div class="academic-project mt-3">
-                                <div class="project-preview d-flex">
-                                    <img src="images/Csharp.jpg" alt="Projet IA" class="rounded me-2" width="80">
-                                    <div>
-                                        <h6 class="mb-1">Logiciel de gestion contravention routiere</h6>
-                                        <p class="small text-muted mb-1">Projet de fin d'études - Note: 15/20</p>
-                                        <div class="d-flex">
-                                            <a href="#" class="btn btn-xs btn-outline-primary me-2">Voir le projet</a>
-                                            <a href="#" class="btn btn-xs btn-outline-secondary">Code source</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="skills mt-3">
-                                <span class="badge rounded-pill bg-light text-dark">C#</span>
-                                <span class="badge rounded-pill bg-light text-dark">SQL Server</span>
-                                <span class="badge rounded-pill bg-light text-dark">.NET</span>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!-- Certification 1 
-                    <div class="timeline-item" data-category="certification" data-aos="fade-left">
-                        <div class="timeline-date">2022</div>
-                        <div class="timeline-content">
-                            <div class="d-flex align-items-start">
-                                <img src="https://via.placeholder.com/60x60?text=AWS" alt="AWS" class="rounded-circle me-3" width="60">
-                                <div class="flex-grow-1">
-                                    <div class="timeline-header d-flex justify-content-between">
-                                        <h4>Certification..................</h4>
-                                        <span class="badge bg-warning text-dark">Certification</span>
-                                    </div>
-                                    <h5 class="text-muted">centre</h5>
-                                </div>
-                                <div class="qr-code ms-3" data-qr="https://example.com/certif-aws">
-                                    <i class="fas fa-qrcode fa-lg"></i>
-                                    <div class="qr-tooltip">Vérifier la certification</div>
-                                </div>
-                            </div>
-                            <p class="mt-2">Validation des compétences en développement et déploiement d'applications cloud sur AWS.</p>
-                            <div class="skills mt-3">
-                                <span class="badge rounded-pill bg-light text-dark">Lambda</span>
-                                <span class="badge rounded-pill bg-light text-dark">S3</span>
-                                <span class="badge rounded-pill bg-light text-dark">EC2</span>
-                            </div>
-                        </div>
-                    </div>
-                    -->
-
-                    <!-- Ajoutez d'autres éléments de timeline ici -->
-                </div>
-            </div>
-        </div>
-
-        <!-- Compétences Techniques (même structure qu'avant) -->
-    </div>
-</section>
-
-
-<!-- Modal QR Code -->
-<div class="modal fade qr-modal" id="qrModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Vérification du diplôme</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body text-center">
-                <div id="qrCodeDisplay" class="mb-3"></div>
-                <p class="small text-muted">Scanner ce code pour vérifier l'authenticité</p>
-                <a href="#" id="verificationLink" class="btn btn-sm btn-primary">Voir la vérification en ligne</a>
-            </div>
-        </div>
-    </div>
+<div class="hero-role">
+  <span class="hero-role-tag tag-dev">Développeur Full-Stack</span>
+  <span class="role-sep">·</span>
+  <span class="hero-role-tag tag-form">Formateur NTIC</span>
 </div>
 
-<!-- Section Expérience Professionnelle -->
-<section id="experience" class="experience py-5 bg-light">
-    <div class="container">
-        <div class="row mb-5">
-            <div class="col-12 text-center" data-aos="fade-up">
-                <h2 class="section-title mb-3">Expérience Professionnelle</h2>
-                <p class="text-muted">Mon parcours et réalisations en entreprise</p>
-            </div>
-        </div>
+<p class="hero-desc">
+  Développeur passionné et formateur engagé basé à Kinshasa, RDC. Je conçois des applications web & mobiles robustes et je transmets les savoirs numériques aux professionnels et institutions publiques.
+</p>
 
-        <div class="row">
-            <div class="col-lg-10 mx-auto">
-                <!-- Filtres -->
-                <div class="filter-buttons mb-4 text-center" data-aos="fade-up">
-                    <button class="btn btn-sm btn-outline-secondary active" data-filter="all">Tout voir</button>
-                    <button class="btn btn-sm btn-outline-secondary" data-filter="developpement">Développement</button>
-                    <button class="btn btn-sm btn-outline-secondary" data-filter="conseil">Conseil</button>
-                    <button class="btn btn-sm btn-outline-secondary" data-filter="management">Management</button>
-                </div>
-
-                <!-- Timeline Expérience -->
-                <div class="timeline-experience">
-                    <!-- Expérience 1 
-                    <div class="timeline-item" data-category="developpement management" data-aos="fade-right">
-                        <div class="timeline-date">2023 - Présent</div>
-                        <div class="timeline-content">
-                            <div class="company-header d-flex align-items-center mb-3">
-                                <img src="https://via.placeholder.com/60x60?text=TechCorp" alt="TechCorp" class="rounded-circle me-3" width="60">
-                                <div>
-                                    <h4 class="mb-0">Développeur Full-Stack</h4>
-                                    <p class="text-muted mb-0">Freelance</p>
-                                </div>
-                            </div>
-                            
-                            <div class="achievements mb-3">
-                                <h6>Principales réalisations :</h6>
-                                <ul>
-                                    <li>Refonte complète de l'architecture front-end (migration vers Next.js)</li>
-                                    <li>Mise en place d'une CI/CD avec gain de 40% sur les déploiements</li>
-                                    <li>Encadrement d'une équipe de 5 développeurs</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="technologies">
-                                <h6>Technologies utilisées :</h6>
-                                <div class="d-flex flex-wrap gap-2">
-                                    <span class="badge bg-primary">Next.js</span>
-                                    <span class="badge bg-primary">Node.js</span>
-                                    <span class="badge bg-primary">AWS</span>
-                                    <span class="badge bg-primary">Docker</span>
-                                </div>
-                            </div>
-                            
-                            <div class="project-showcase mt-3">
-                                <div class="d-flex align-items-center">
-                                    <i class="fas fa-star text-warning me-2"></i>
-                                    <strong>Projet phare :</strong> 
-                                    <a href="#" class="ms-2">Plateforme SaaS de gestion de contenu</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Expérience 2 
-                    <div class="timeline-item" data-category="developpement conseil" data-aos="fade-left">
-                        <div class="timeline-date">2019 - 2021</div>
-                        <div class="timeline-content">
-                            <div class="company-header d-flex align-items-center mb-3">
-                                <img src="https://via.placeholder.com/60x60?text=WebAgency" alt="WebAgency" class="rounded-circle me-3" width="60">
-                                <div>
-                                    <h4 class="mb-0">Développeur Full-Stack</h4>
-                                    <p class="text-muted mb-0">Freelance </p>
-                                </div>
-                            </div>
-                            
-                            <div class="achievements mb-3">
-                                <h6>Principales réalisations :</h6>
-                                <ul>
-                                    <li>Développement de 12 sites e-commerce avec React/Node.js</li>
-                                    <li>Optimisation des performances (réduction de 60% du LCP)</li>
-                                    <li>Formation des clients à l'utilisation des back-offices</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="technologies">
-                                <h6>Technologies utilisées :</h6>
-                                <div class="d-flex flex-wrap gap-2">
-                                    <span class="badge bg-primary">React</span>
-                                    <span class="badge bg-primary">Express</span>
-                                    <span class="badge bg-primary">MongoDB</span>
-                                    <span class="badge bg-primary">GraphQL</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                     Expérience 3 
-                    <div class="timeline-item" data-category="conseil" data-aos="fade-right">
-                        <div class="timeline-date">2017 - 2019</div>
-                        <div class="timeline-content">
-                            <div class="company-header d-flex align-items-center mb-3">
-                                <img src="https://via.placeholder.com/60x60?text=StartUp" alt="StartUp" class="rounded-circle me-3" width="60">
-                                <div>
-                                    <h4 class="mb-0">Consultant Technique</h4>
-                                    <p class="text-muted mb-0">StartUp Innov · Stage</p>
-                                </div>
-                            </div>
-                            
-                            <div class="achievements mb-3">
-                                <h6>Principales réalisations :</h6>
-                                <ul>
-                                    <li>Audit des infrastructures techniques</li>
-                                    <li>Migration vers des solutions cloud</li>
-                                    <li>Rédaction de documentation technique</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="technologies">
-                                <h6>Technologies utilisées :</h6>
-                                <div class="d-flex flex-wrap gap-2">
-                                    <span class="badge bg-primary">AWS</span>
-                                    <span class="badge bg-primary">Python</span>
-                                    <span class="badge bg-primary">Terraform</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>-->
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Section Portfolio Améliorée -->
-<section id="portfolio" class="portfolio py-5">
-    <div class="container">
-        <div class="row mb-5">
-            <div class="col-12 text-center" data-aos="fade-up">
-                <h2 class="section-title mb-3">Mes Réalisations</h2>
-                <p class="text-muted">Découvrez une sélection de mes projets récents</p>
-            </div>
-        </div>
-
-        <!-- Filtres et Statistiques -->
-        <div class="row mb-4">
-            <div class="col-md-8">
-                <div class="portfolio-filters" data-aos="fade-up">
-                    <button class="btn btn-sm btn-outline-secondary active" data-filter="all">Tous</button>
-                    <button class="btn btn-sm btn-outline-secondary" data-filter="web">Web</button>
-                    <button class="btn btn-sm btn-outline-secondary" data-filter="mobile">Mobile</button>
-                    <button class="btn btn-sm btn-outline-secondary" data-filter="design">Design</button>
-                </div>
-            </div>
-            <div class="col-md-4 text-md-end" data-aos="fade-up">
-                <div class="portfolio-stats">
-                    <span class="badge bg-primary me-2">
-                        <i class="fas fa-project-diagram me-1"></i> <span id="total-projects">12</span> projets
-                    </span>
-                    <span class="badge bg-success">
-                        <i class="fas fa-star me-1"></i> <span id="client-rating">4.9</span>/5
-                    </span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Grille de projets -->
-        <div class="row portfolio-grid g-4" id="portfolio-container">
-            <!-- Les projets seront chargés dynamiquement via JavaScript -->
-        </div>
-
-        <!-- Pagination -->
-        <div class="row mt-4">
-            <div class="col-12">
-                <nav aria-label="Page navigation">
-                    <ul class="pagination justify-content-center" id="portfolio-pagination">
-                        <!-- La pagination sera générée dynamiquement -->
-                    </ul>
-                </nav>
-            </div>
-        </div>
-
-        <!-- Bouton Voir plus -->
-        <div class="row mt-3">
-            <div class="col-12 text-center" data-aos="fade-up">
-                <button id="load-more" class="btn btn-outline-primary">Charger plus de projets</button>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Modal Portfolio -->
-<div class="modal fade portfolio-modal" id="portfolioModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modal-project-title">Titre du projet</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <!-- Vidéo ou Image Principale -->
-                        <div class="ratio ratio-16x9 mb-4" id="modal-main-media">
-                            <!-- Contenu dynamique -->
-                        </div>
-                        
-                        <!-- Statistiques de Performance -->
-                        <div class="performance-stats mb-4 p-3 rounded">
-                            <h6>Performances du projet :</h6>
-                            <div class="row text-center">
-                                <div class="col-4">
-                                    <div class="display-6 text-primary" id="performance-score">98%</div>
-                                    <small>Score global</small>
-                                </div>
-                                <div class="col-4">
-                                    <div class="display-6 text-primary" id="performance-speed">0.8s</div>
-                                    <small>Temps de chargement</small>
-                                </div>
-                                <div class="col-4">
-                                    <div class="display-6 text-primary" id="performance-uptime">99.9%</div>
-                                    <small>Disponibilité</small>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Gallerie -->
-                        <div class="row g-3 mb-4" id="modal-gallery">
-                            <!-- Contenu dynamique -->
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <h6>Description :</h6>
-                        <p id="modal-project-description">Description du projet...</p>
-                        
-                        <h6 class="mt-4">Détails techniques :</h6>
-                        <ul id="modal-tech-details">
-                            <!-- Contenu dynamique -->
-                        </ul>
-                        
-                        <h6 class="mt-4">Technologies :</h6>
-                        <div class="mb-4" id="modal-tech-badges">
-                            <!-- Contenu dynamique -->
-                        </div>
-                        
-                        <div class="d-flex flex-wrap gap-2">
-                            <a href="#" class="btn btn-primary" id="modal-project-link">
-                                <i class="fas fa-external-link-alt me-2"></i>Voir le projet
-                            </a>
-                            <a href="#" class="btn btn-outline-secondary" id="modal-code-link">
-                                <i class="fab fa-github me-2"></i>Code source
-                            </a>
-                            <a href="#" class="btn btn-outline-danger" id="modal-video-link">
-                                <i class="fas fa-play me-2"></i>Vidéo démo
-                            </a>
-                        </div>
-                        
-                        <div class="client-testimonial mt-4 p-3 bg-light rounded">
-                            <div class="d-flex align-items-center mb-2">
-                                <img src="images/htmlcss.jpg" alt="Client" class="rounded-circle me-2" width="40">
-                                <div>
-                                    <h6 class="mb-0" id="client-name">Client</h6>
-                                    <small class="text-muted" id="client-position">Position</small>
-                                </div>
-                            </div>
-                            <p class="mb-0" id="client-testimonial">"Témoignage client..."</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="hero-actions">
+  <a href="#projets" class="btn-primary">↓ Voir mes projets</a>
+  <a href="#contact" class="btn-secondary">Collaborer</a>
 </div>
-</Section>
 
+<div class="hero-stats">
+  <div>
+    <div class="stat-val">100<span>+</span></div>
+    <div class="stat-label">Agents formés DGI</div>
+  </div>
+  <div>
+    <div class="stat-val">5<span>+</span></div>
+    <div class="stat-label">Années d'expérience</div>
+  </div>
+  <div>
+    <div class="stat-val">Bac<span>+5</span></div>
+    <div class="stat-label">Informatique de gestion</div>
+  </div>
+</div>
+```
 
-<!-- Section Contact -->
-<section id="contact" class="contact py-5">
-    <div class="container">
-        <div class="row mb-5">
-            <div class="col-12 text-center" data-aos="fade-up">
-                <h2 class="section-title mb-3">Contactez-moi</h2>
-                <p class="text-muted">Une question, un projet ? Échangeons ensemble</p>
-            </div>
-        </div>
+  </div>
 
-        <div class="row g-5">
-            <!-- 10. Laissez-nous vos informations -->
-            <div class="col-lg-7" data-aos="fade-right">
-                <div class="contact-form card border-0 shadow-sm p-4">
-                    <h4 class="mb-4">Laissez-nous vos informations</h4>
-                    
-            <!-- Formulaire de contact avec EmailJS -->
-            <form id="contactForm">
-                <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="name" name="user_name" placeholder="Votre nom" required>
-                <label for="name">Votre nom *</label>
-                </div>
-                
-                <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="email" name="user_email" placeholder="Votre email" required>
-                <label for="email">Votre email *</label>
-                </div>
-                
-                <div class="form-floating mb-3">
-                <textarea class="form-control" id="message" name="message" placeholder="Votre message" style="height: 150px" required></textarea>
-                <label for="message">Votre message *</label>
-                </div>
-                <input type="hidden" id="recaptchaToken" name="recaptchaToken">
-                <button type="submit" class="btn btn-primary">
-                <span id="submitText">Envoyer</span>
-                <span id="submitSpinner" class="spinner-border spinner-border-sm d-none"></span>
-                </button>
-            </form>
-            
-            <!-- Message de succès (caché par défaut) -->
-            <div id="successMessage" class="alert alert-success mt-3 d-none">
-                Message envoyé avec succès!
-            </div>
-            
-            <!-- Message d'erreur (caché par défaut) -->
-            <div id="errorMessage" class="alert alert-danger mt-3 d-none">
-                Une erreur s'est produite. Veuillez réessayer.
-            </div>
-        </div>
+  <!-- Terminal -->
+
+  <div class="hero-terminal">
+    <div class="terminal-bar">
+      <div class="t-dot r"></div>
+      <div class="t-dot y"></div>
+      <div class="t-dot g"></div>
+      <div class="terminal-title">junior@portfolio ~ profile.json</div>
     </div>
-
-            <!-- 11. Informations de contact -->
-            <div class="col-lg-5" data-aos="fade-left">
-                <div class="contact-info card border-0 shadow-sm h-100 p-4">
-                    <h4 class="mb-4">Informations de contact</h4>
-                    
-                    <div class="contact-details">
-                        <div class="contact-item d-flex mb-4">
-                            <div class="contact-icon bg-primary rounded-circle d-flex align-items-center justify-content-center flex-shrink-0">
-                                <i class="fas fa-map-marker-alt text-white"></i>
-                            </div>
-                            <div class="ms-3">
-                                <h6 class="mb-1">Adresse</h6>
-                                <p class="mb-0 text-muted">GOMBE, Kinshasa</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item d-flex mb-4">
-                            <div class="contact-icon bg-primary rounded-circle d-flex align-items-center justify-content-center flex-shrink-0">
-                                <i class="fas fa-envelope text-white"></i>
-                            </div>
-                            <div class="ms-3">
-                                <h6 class="mb-1">Email</h6>
-                                <p class="mb-0 text-muted">junirngandu18@gmail.com</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item d-flex mb-4">
-                            <div class="contact-icon bg-primary rounded-circle d-flex align-items-center justify-content-center flex-shrink-0">
-                                <i class="fas fa-phone-alt text-white"></i>
-                            </div>
-                            <div class="ms-3">
-                                <h6 class="mb-1">Téléphone</h6>
-                                <p class="mb-0 text-muted">+243 81 86 18 735</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item d-flex">
-                            <div class="contact-icon bg-primary rounded-circle d-flex align-items-center justify-content-center flex-shrink-0">
-                                <i class="fas fa-clock text-white"></i>
-                            </div>
-                            <div class="ms-3">
-                                <h6 class="mb-1">Disponibilité</h6>
-                                <p class="mb-0 text-muted">Lun-Ven : 9h-18h</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <hr class="my-4">
-                    
-                    <h6 class="mb-3">Réseaux sociaux</h6>
-                    <div class="social-links d-flex gap-3">
-                        <a href="https://www.linkedin.com/in/junior-ngandu-304942220" target="_blank" class="btn btn-outline-primary btn-sm rounded-circle">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="https://github.com/juniorngandu" target="_blank" class="btn btn-outline-primary btn-sm rounded-circle">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://x.com/TheMiracleGnra1" target="_blank" class="btn btn-outline-primary btn-sm rounded-circle">
-                            <i class="fa-brands fa-x-twitter"></i>
-                        </a>
-                        
-                    </div>
-                    
-                    <hr class="my-4">
-                    
-                    <div class="map-container rounded overflow-hidden">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31828.20135885227!2d15.28401304688052!3d-4.311924222364714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1a6a317b816515b9%3A0x7eeb5b3e73ad44aa!2sGombe%2C%20Kinshasa%2C%20R%C3%A9publique%20d%C3%A9mocratique%20du%20Congo!5e0!3m2!1sfr!2sfr!4v1746307428623!5m2!1sfr!2sfr"
-
-                                width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="terminal-body">
+      <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">cat profile.json</span></div>
+      <div class="t-gap"></div>
+      <div class="t-line"><span class="t-cmd">{</span></div>
+      <div class="t-line" style="padding-left:1.2rem"><span class="t-key">"nom"</span><span class="t-cmd">: </span><span class="t-str">"Junior Ngandu"</span><span class="t-cmd">,</span></div>
+      <div class="t-line" style="padding-left:1.2rem"><span class="t-key">"base"</span><span class="t-cmd">: </span><span class="t-str">"Kinshasa, RDC"</span><span class="t-cmd">,</span></div>
+      <div class="t-line" style="padding-left:1.2rem"><span class="t-key">"roles"</span><span class="t-cmd">: [</span></div>
+      <div class="t-line" style="padding-left:2.4rem"><span class="t-str">"Développeur Full-Stack"</span><span class="t-cmd">,</span></div>
+      <div class="t-line" style="padding-left:2.4rem"><span class="t-str">"Formateur NTIC"</span></div>
+      <div class="t-line" style="padding-left:1.2rem"><span class="t-cmd">],</span></div>
+      <div class="t-line" style="padding-left:1.2rem"><span class="t-key">"stack"</span><span class="t-cmd">: [</span><span class="t-str">"Laravel"</span><span class="t-cmd">, </span><span class="t-str">"React"</span><span class="t-cmd">, </span><span class="t-str">"PHP"</span><span class="t-cmd">],</span></div>
+      <div class="t-line" style="padding-left:1.2rem"><span class="t-key">"diplome"</span><span class="t-cmd">: </span><span class="t-str">"Licence Informatique"</span><span class="t-cmd">,</span></div>
+      <div class="t-line" style="padding-left:1.2rem"><span class="t-key">"formé"</span><span class="t-cmd">: </span><span class="t-num">100</span><span class="t-cmd">,</span></div>
+      <div class="t-line" style="padding-left:1.2rem"><span class="t-key">"open_to_work"</span><span class="t-cmd">: </span><span class="t-val">true</span></div>
+      <div class="t-line"><span class="t-cmd">}</span></div>
+      <div class="t-gap"></div>
+      <div class="t-line">
+        <span class="t-prompt">$</span>
+        <span class="t-cmd"> </span>
+        <span class="terminal-cursor"></span>
+      </div>
     </div>
+  </div>
 </section>
-<!-- Footer Amélioré -->
-<footer class="footer bg-dark text-white py-5">
-    <div class="container">
-        <div class="row g-4">
-            <!-- Colonne À propos + Badges -->
-            <div class="col-lg-3" data-aos="fade-up">
-                <div class="footer-about">
-                    <h5 class="text-white mb-4">À propos</h5>
-                    <p>Développeur full-stack passionné par la création de solutions digitales innovantes et performantes.</p>
-                    
-                    <!-- Badges de certifications -->
-                    <div class="certification-badges mt-4">
-                        <h6 class="text-white mb-3">Certifications :</h6>
-                       <!--  <div class="d-flex flex-wrap gap-2">
-                            <img src="https://via.placeholder.com/60x60?text=AWS" alt="AWS Certified" class="img-fluid" width="60" data-bs-toggle="tooltip" title="AWS Certified Developer">
-                            <img src="https://via.placeholder.com/60x60?text=Google" alt="Google Cloud" class="img-fluid" width="60" data-bs-toggle="tooltip" title="Google Cloud Professional">
-                            <img src="https://via.placeholder.com/60x60?text=React" alt="React Expert" class="img-fluid" width="60" data-bs-toggle="tooltip" title="React Professional">
-                        </div>-->
-                    </div>
-                </div>
-            </div>
 
-            <!-- Colonne Articles récents -->
-            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="footer-posts">
-                    <h5 class="text-white mb-4">Derniers articles</h5>
-                    <ul class="list-unstyled">
-                        <!--<li class="mb-3">
-                            <a href="#" class="d-flex text-white-50">
-                                <img src="https://via.placeholder.com/60x60?text=Blog1" alt="Article 1" class="img-fluid rounded me-3" width="60">
-                                <div>
-                                    <h6 class="small text-white mb-1">Les tendances frontend 2023</h6>
-                                    <span class="small">15 mai 2023</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="d-flex text-white-50">
-                                <img src="https://via.placeholder.com/60x60?text=Blog2" alt="Article 2" class="img-fluid rounded me-3" width="60">
-                                <div>
-                                    <h6 class="small text-white mb-1">Optimiser ses APIs REST</h6>
-                                    <span class="small">8 mai 2023</span>
-                                </div>
-                            </a>
-                        </li>-->
-                    </ul>
-                </div>
-            </div>
+<!-- ── COMPÉTENCES ── -->
 
-            <!-- Widget de contact rapide -->
-            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                <div class="footer-contact">
-                    <h5 class="text-white mb-4">Contact rapide</h5>
-                    <form id="quickContactForm" class="mb-4">
-                        <div class="mb-3">
-                            <input type="text" class="form-control form-control-sm" placeholder="Votre nom" required>
-                        </div>
-                        <div class="mb-3">
-                            <input type="email" class="form-control form-control-sm" placeholder="Votre email" required>
-                        </div>
-                        <div class="mb-3">
-                            <textarea class="form-control form-control-sm" rows="2" placeholder="Votre message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-sm w-100">Envoyer</button>
-                    </form>
-                    
-                    <!-- Localisation Google Maps -->
-                    <div class="map-widget">
-                        <h6 class="text-white mb-2">Localisation :</h6>
-                        <div class="ratio ratio-16x9">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31828.20135885227!2d15.28401304688052!3d-4.311924222364714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1a6a317b816515b9%3A0x7eeb5b3e73ad44aa!2sGombe%2C%20Kinshasa%2C%20R%C3%A9publique%20d%C3%A9mocratique%20du%20Congo!5e0!3m2!1sfr!2sfr!4v1746307428623!5m2!1sfr!2sfr"
-                                    allowfullscreen="" loading="lazy"></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Colonne Newsletter Mailchimp -->
-            <div class="col-lg-3" data-aos="fade-up" data-aos-delay="300">
-                <div class="footer-newsletter">
-                    <h5 class="text-white mb-4">Newsletter</h5>
-                    <p class="text-white-50">Abonnez-vous pour recevoir mes dernières actualités et ressources.</p>
-                    
-                    <!-- Formulaire Mailchimp -->
-                    <form action="https://YOURUSERNAME.usXX.list-manage.com/subscribe/post?u=YOURAPIKEY&amp;id=YOURLISTID" 
-                          method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" 
-                          class="validate" target="_blank" novalidate>
-                        <div class="mb-3">
-                            <input type="email" class="form-control form-control-sm" name="EMAIL" 
-                                   id="mce-EMAIL" placeholder="Votre email" required>
-                        </div>
-                        <div class="mb-3">
-                            <input type="text" class="form-control form-control-sm" name="FNAME" 
-                                   id="mce-FNAME" placeholder="Votre prénom">
-                        </div>
-                        <!-- Champ caché anti-robot -->
-                        <div style="position: absolute; left: -5000px;" aria-hidden="true">
-                            <input type="text" name="b_YOURAPIKEY_YOURLISTID" tabindex="-1" value="">
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-sm w-100">S'abonner</button>
-                    </form>
-                    
-                    <div class="form-check mt-3">
-                        <input class="form-check-input" type="checkbox" id="gdprConsent" required>
-                        <label class="form-check-label small text-white-50" for="gdprConsent">
-                            J'accepte la politique de confidentialité
-                        </label>
-                    </div>
-                    
-                    <!-- Réseaux sociaux -->
-                    <div class="social-links mt-4">
-                        <a href="https://www.linkedin.com/in/junior-ngandu-304942220"target="_blank" class="text-white me-3"><i class="fab fa-linkedin-in fa-lg"></i></a>
-                        <a href="https://github.com/juniorngandu" target="_blank" class="text-white me-3"><i class="fab fa-github fa-lg"></i></a>
-                        <a href="https://x.com/TheMiracleGnra1" target="_blank" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <hr class="my-4 bg-secondary">
-
-        <!-- Copyright et liens légaux -->
-        <div class="row">
-            <div class="col-md-6 text-center text-md-start" data-aos="fade-up">
-                <p class="small text-white-50 mb-0">Junior NGANDU &copy;2025. Tous droits réservés.</p>
-            </div>
-            <div class="col-md-6 text-center text-md-end" data-aos="fade-up" data-aos-delay="100">
-                <ul class="list-inline mb-0">
-                    <li class="list-inline-item"><a href="#" class="text-white-50 small">Mentions légales</a></li>
-                    <li class="list-inline-item"><span class="text-white-50 mx-2">•</span></li>
-                    <li class="list-inline-item"><a href="#" class="text-white-50 small">Politique de cookies</a></li>
-                    <li class="list-inline-item"><span class="text-white-50 mx-2">•</span></li>
-                    <li class="list-inline-item"><a href="#" class="text-white-50 small">Conditions d'utilisation</a></li>
-                </ul>
-            </div>
-        </div>
+<section class="skills" id="competences">
+  <div class="reveal">
+    <div class="section-tag">Stack technique</div>
+    <h2 class="section-title">Mes <em>compétences</em></h2>
+    <p class="section-sub">Un arsenal technologique couvrant le développement fullstack, les bases de données et les outils pédagogiques numériques.</p>
+  </div>
+  <div class="skills-inner reveal">
+    <div class="skills-categories">
+      <button class="skill-cat-btn active">
+        <span class="skill-cat-icon">💻</span>
+        <span class="skill-cat-name">Backend</span>
+        <span class="skill-cat-count">4 techs</span>
+      </button>
+      <button class="skill-cat-btn">
+        <span class="skill-cat-icon">🎨</span>
+        <span class="skill-cat-name">Frontend</span>
+        <span class="skill-cat-count">4 techs</span>
+      </button>
+      <button class="skill-cat-btn">
+        <span class="skill-cat-icon">🗄️</span>
+        <span class="skill-cat-name">Base de données</span>
+        <span class="skill-cat-count">3 techs</span>
+      </button>
+      <button class="skill-cat-btn">
+        <span class="skill-cat-icon">🛠️</span>
+        <span class="skill-cat-name">Outils</span>
+        <span class="skill-cat-count">4 techs</span>
+      </button>
     </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">🔷</div>
+        <div class="skill-name">Laravel</div>
+        <div class="skill-lvl">Expert</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🐘</div>
+        <div class="skill-name">PHP</div>
+        <div class="skill-lvl">Expert</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">⚛️</div>
+        <div class="skill-name">React.js</div>
+        <div class="skill-lvl">Avancé</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🗃️</div>
+        <div class="skill-name">MySQL</div>
+        <div class="skill-lvl">Avancé</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🎯</div>
+        <div class="skill-name">JavaScript</div>
+        <div class="skill-lvl">Avancé</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📱</div>
+        <div class="skill-name">Capacitor</div>
+        <div class="skill-lvl">Intermédiaire</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🖥️</div>
+        <div class="skill-name">Tauri</div>
+        <div class="skill-lvl">Intermédiaire</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🔧</div>
+        <div class="skill-name">Git / GitHub</div>
+        <div class="skill-lvl">Avancé</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🎨</div>
+        <div class="skill-name">Tailwind CSS</div>
+        <div class="skill-lvl">Avancé</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPÉRIENCE ── -->
+
+<section class="experience" id="experience">
+  <div class="reveal">
+    <div class="section-tag">Parcours professionnel</div>
+    <h2 class="section-title">Mon <em>expérience</em></h2>
+    <p class="section-sub">Formateur certifié et stagiaire dans des institutions financières et pédagogiques de référence en RDC.</p>
+  </div>
+  <div class="exp-inner reveal">
+    <div class="timeline">
+
+```
+  <div class="timeline-item">
+    <div class="exp-card">
+      <div class="exp-top">
+        <div>
+          <div class="exp-org">École Nationale des Finances (ENF)</div>
+          <div class="exp-role">Formateur en NTIC · Direction Générale des Impôts</div>
+        </div>
+        <span class="exp-type type-formateur">Formateur</span>
+      </div>
+      <p class="exp-desc">Formation intensive en outils numériques, bureautique avancée et systèmes d'information à destination des agents et cadres de la DGI. Conception de modules pédagogiques adaptés aux besoins fiscaux de l'administration congolaise.</p>
+      <div class="exp-highlight">Plus de 100 agents & cadres de la DGI formés</div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="exp-card">
+      <div class="exp-top">
+        <div>
+          <div class="exp-org">EDAP</div>
+          <div class="exp-role">Stage Pédagogique</div>
+        </div>
+        <span class="exp-type type-stage">Stage pédagogique</span>
+      </div>
+      <p class="exp-desc">Immersion dans l'environnement pédagogique d'un établissement d'enseignement. Observation, conception de séquences didactiques et animation de cours en informatique. Développement des compétences en transmission et vulgarisation des savoirs techniques.</p>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="exp-card">
+      <div class="exp-top">
+        <div>
+          <div class="exp-org">FIRSTBANK</div>
+          <div class="exp-role">Stage Professionnel · Systèmes d'Information Bancaire</div>
+        </div>
+        <span class="exp-type type-stage">Stage pro</span>
+      </div>
+      <p class="exp-desc">Stage au sein du département informatique d'une institution bancaire. Découverte des systèmes de gestion bancaire, des processus de sécurité des données et des architectures logicielles du secteur financier.</p>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="exp-card">
+      <div class="exp-top">
+        <div>
+          <div class="exp-org">CADECO</div>
+          <div class="exp-role">Stage Professionnel · Systèmes d'Information</div>
+        </div>
+        <span class="exp-type type-stage">Stage pro</span>
+      </div>
+      <p class="exp-desc">Stage en informatique au sein de la Caisse d'Épargne du Congo. Participation à la gestion des systèmes d'information, des bases de données clients et des processus de traitement numérique des opérations financières.</p>
+    </div>
+  </div>
+
+</div>
+```
+
+  </div>
+</section>
+
+<!-- ── FORMATION ── -->
+
+<section class="formation" id="formation">
+  <div class="reveal">
+    <div class="section-tag">Diplômes & études</div>
+    <h2 class="section-title">Mon <em>parcours académique</em></h2>
+    <p class="section-sub">Une formation pluridisciplinaire alliant informatique de gestion et sciences agronomiques à l'ISP de la Gombe, Kinshasa.</p>
+  </div>
+  <div class="edu-grid reveal">
+    <div class="edu-card">
+      <div class="edu-icon">🎓</div>
+      <div class="edu-degree">Licence en Informatique de Gestion</div>
+      <div class="edu-school">Institut Supérieur Pédagogique de la Gombe (ISPG)<br>Kinshasa, RDC</div>
+      <span class="edu-badge">Bac+5 · Niveau Master</span>
+    </div>
+    <div class="edu-card">
+      <div class="edu-icon">📚</div>
+      <div class="edu-degree">Graduat en Informatique de Gestion</div>
+      <div class="edu-school">Institut Supérieur Pédagogique de la Gombe (ISPG)<br>Kinshasa, RDC</div>
+      <span class="edu-badge">Bac+3 · Licence</span>
+    </div>
+    <div class="edu-card" style="border-left-color: var(--accent2);">
+      <div class="edu-icon">🌱</div>
+      <div class="edu-degree">Baccalauréat en Agriculture Générale</div>
+      <div class="edu-school">Institut Technique Agricole de Mombele (ITA)<br>Kinshasa, RDC</div>
+      <span class="edu-badge" style="background:rgba(255,107,53,.1);color:var(--accent2);">Formation secondaire</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROJETS ── -->
+
+<section class="projets" id="projets">
+  <div class="reveal">
+    <div class="section-tag">Réalisations</div>
+    <h2 class="section-title">Mes <em>projets</em></h2>
+    <p class="section-sub">Applications concrètes développées pour des institutions publiques et privées en RDC.</p>
+  </div>
+  <div class="projets-grid reveal">
+
+```
+<div class="projet-card">
+  <div class="projet-top">
+    <div class="projet-header">
+      <div class="projet-icon">🏛️</div>
+      <span class="projet-status">En production</span>
+    </div>
+    <div class="projet-name">RedressApp</div>
+    <p class="projet-desc">Application enterprise de gestion des audits fiscaux et redressements pour la Direction Générale des Impôts (DGI). Système de rôles avancé, 2FA, tableaux de bord analytiques et calcul automatique des taxes (TVA, IBP, IPR...).</p>
+  </div>
+  <div class="projet-bottom">
+    <div class="tech-tags">
+      <span class="tech-tag">Laravel</span>
+      <span class="tech-tag">React</span>
+      <span class="tech-tag">MySQL</span>
+      <span class="tech-tag">2FA / TOTP</span>
+      <span class="tech-tag">RBAC</span>
+    </div>
+    <div class="projet-links">
+      <span class="projet-link">📋 Projet confidentiel DGI</span>
+    </div>
+  </div>
+</div>
+
+<div class="projet-card">
+  <div class="projet-top">
+    <div class="projet-header">
+      <div class="projet-icon">🚗</div>
+      <span class="projet-status">En cours</span>
+    </div>
+    <div class="projet-name">Fleet Manager</div>
+    <p class="projet-desc">Application cross-platform de gestion de parc automobile couvrant iOS, Android et Windows. Suivi des véhicules, maintenance, conducteurs et rapports analytiques en temps réel.</p>
+  </div>
+  <div class="projet-bottom">
+    <div class="tech-tags">
+      <span class="tech-tag">Laravel</span>
+      <span class="tech-tag">React</span>
+      <span class="tech-tag">Capacitor</span>
+      <span class="tech-tag">Tauri</span>
+      <span class="tech-tag">MySQL</span>
+    </div>
+    <div class="projet-links">
+      <a href="#" class="projet-link">→ En développement</a>
+    </div>
+  </div>
+</div>
+
+<div class="projet-card">
+  <div class="projet-top">
+    <div class="projet-header">
+      <div class="projet-icon">🍽️</div>
+      <span class="projet-status">Livré</span>
+    </div>
+    <div class="projet-name">Restaurant Luxe — Site Web</div>
+    <p class="projet-desc">Landing page haut de gamme pour un restaurant gastronomique. Design cinématographique, animations fluides, curseur personnalisé, galerie immersive et système de réservation.</p>
+  </div>
+  <div class="projet-bottom">
+    <div class="tech-tags">
+      <span class="tech-tag">HTML/CSS</span>
+      <span class="tech-tag">JavaScript</span>
+      <span class="tech-tag">Animations CSS</span>
+      <span class="tech-tag">Design UX</span>
+    </div>
+    <div class="projet-links">
+      <a href="#" class="projet-link">→ Voir le projet</a>
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- ── ENSEIGNEMENT ── -->
+
+<section class="enseignement" id="enseignement">
+  <div class="reveal">
+    <div class="section-tag">Transmission des savoirs</div>
+    <h2 class="section-title">Ce que <em>j'enseigne</em></h2>
+    <p class="section-sub">Des modules pratiques, orientés terrain, pour des professionnels et institutions qui veulent maîtriser le numérique.</p>
+  </div>
+
+  <div class="modules-grid reveal">
+    <div class="module-card">
+      <div class="module-icon">🖥️</div>
+      <div class="module-name">Bureautique avancée</div>
+      <p class="module-desc">Word, Excel, PowerPoint — utilisation professionnelle et productivité pour l'administration.</p>
+    </div>
+    <div class="module-card">
+      <div class="module-icon">🔐</div>
+      <div class="module-name">Sécurité informatique</div>
+      <p class="module-desc">Bonnes pratiques, protection des données, authentification et risques numériques.</p>
+    </div>
+    <div class="module-card">
+      <div class="module-icon">🗄️</div>
+      <div class="module-name">Bases de données</div>
+      <p class="module-desc">Conception de BDD, requêtes SQL, modélisation et gestion de données métier.</p>
+    </div>
+    <div class="module-card">
+      <div class="module-icon">🌐</div>
+      <div class="module-name">Développement web</div>
+      <p class="module-desc">Introduction au HTML/CSS, aux frameworks modernes et à la logique de programmation.</p>
+    </div>
+    <div class="module-card">
+      <div class="module-icon">📊</div>
+      <div class="module-name">Systèmes d'information</div>
+      <p class="module-desc">Comprendre les SI d'entreprise, les ERP et les flux de données institutionnels.</p>
+    </div>
+    <div class="module-card">
+      <div class="module-icon">🤖</div>
+      <div class="module-name">Intelligence Artificielle</div>
+      <p class="module-desc">Introduction à l'IA, outils pratiques et impacts sur les métiers administratifs.</p>
+    </div>
+  </div>
+
+  <div class="enseignement-impact reveal">
+    <div class="impact-item">
+      <div class="impact-val">100+</div>
+      <div class="impact-label">Apprenants formés</div>
+    </div>
+    <div class="impact-item">
+      <div class="impact-val">1</div>
+      <div class="impact-label">Institution nationale (DGI / ENF)</div>
+    </div>
+    <div class="impact-item">
+      <div class="impact-val">6+</div>
+      <div class="impact-label">Modules pédagogiques conçus</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+
+<section class="contact" id="contact">
+  <div class="reveal">
+    <div class="section-tag">Travaillons ensemble</div>
+    <h2 class="section-title">Me <em>contacter</em></h2>
+    <p class="section-sub">Disponible pour des projets de développement, des missions de formation ou des collaborations techniques à Kinshasa et à distance.</p>
+  </div>
+
+  <div class="contact-inner reveal">
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-item-icon">📍</div>
+        <div>
+          <div class="contact-item-label">Localisation</div>
+          <div class="contact-item-val">Kinshasa, République Démocratique du Congo</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">💼</div>
+        <div>
+          <div class="contact-item-label">Disponibilité</div>
+          <div class="contact-item-val">Projets freelance · Formation · Emploi</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">🎓</div>
+        <div>
+          <div class="contact-item-label">Formation</div>
+          <div class="contact-item-val">Licence Informatique de Gestion · ISP Gombe</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">🌍</div>
+        <div>
+          <div class="contact-item-label">Langues</div>
+          <div class="contact-item-val">Français · Lingala · Anglais (notions)</div>
+        </div>
+      </div>
+    </div>
+
+```
+<div class="contact-form">
+  <div class="form-row">
+    <div class="form-field">
+      <label class="form-label">Nom</label>
+      <input class="form-input" type="text" placeholder="Votre nom">
+    </div>
+    <div class="form-field">
+      <label class="form-label">Email</label>
+      <input class="form-input" type="email" placeholder="votre@email.com">
+    </div>
+  </div>
+  <div class="form-field">
+    <label class="form-label">Objet</label>
+    <input class="form-input" type="text" placeholder="Projet de développement, formation...">
+  </div>
+  <div class="form-field">
+    <label class="form-label">Message</label>
+    <textarea class="form-textarea" placeholder="Décrivez votre besoin..."></textarea>
+  </div>
+  <button class="form-submit">→ Envoyer le message</button>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+
+<footer>
+  <div class="footer-logo">Junior<span>.</span>dev</div>
+  <p class="footer-copy">© 2025 Junior Ngandu · Kinshasa, RDC</p>
+  <div class="footer-links">
+    <a href="#competences">Stack</a>
+    <a href="#projets">Projets</a>
+    <a href="#contact">Contact</a>
+  </div>
 </footer>
 
-<!-- Bouton Retour en haut -->
-<div class="back-to-top position-fixed bottom-3 end-3">
-    <a href="#home" class="btn btn-primary rounded-circle p-3 shadow" data-aos="fade-up">
-        <i class="fas fa-arrow-up"></i>
-    </a>
-</div>
+<script>
+// Curseur
+const cur = document.getElementById('cursor');
+const trail = document.getElementById('trail');
+let mx = 0, my = 0, tx = 0, ty = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cur.style.left = mx + 'px';
+  cur.style.top = my + 'px';
+});
+
+(function loop() {
+  tx += (mx - tx) * .14;
+  ty += (my - ty) * .14;
+  trail.style.left = tx + 'px';
+  trail.style.top = ty + 'px';
+  requestAnimationFrame(loop);
+})();
+
+document.querySelectorAll('a, button, input, textarea').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cur.style.width = '18px';
+    cur.style.height = '18px';
+    trail.style.opacity = '0';
+  });
+  el.addEventListener('mouseleave', () => {
+    cur.style.width = '10px';
+    cur.style.height = '10px';
+    trail.style.opacity = '.5';
+  });
+});
+
+// Scroll reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Tabs compétences
+document.querySelectorAll('.skill-cat-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.skill-cat-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+</script>
+
 </body>
 </html>
