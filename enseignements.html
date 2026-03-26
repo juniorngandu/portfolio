@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enseignements — Junior Ngandu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:#F7F6F2;--bg2:#EFEDE8;--bg3:#E6E3DC;
+      --noir:#0D0D10;--noir2:#1A1A22;
+      --bleu:#0B3D6B;--bleu-vif:#1565C0;--bleu-clair:#4A90D9;
+      --accent:#00C896;--accent2:#FF6635;--violet:#7C5CBF;
+      --gris:#68717D;--gris-clair:#C8CDD4;--blanc:#FFFFFF;
+      --font-display:'Syne',sans-serif;
+      --font-body:'DM Sans',sans-serif;
+      --font-mono:'JetBrains Mono',monospace;
+      --r-sm:6px;--r-md:12px;--r-lg:20px;
+      --shadow-sm:0 2px 8px rgba(13,13,16,.06);
+      --shadow-md:0 8px 24px rgba(13,13,16,.1);
+      --shadow-lg:0 24px 48px rgba(13,13,16,.14);
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
+    body{background:var(--bg);color:var(--noir);font-family:var(--font-body);font-weight:300;overflow-x:hidden;cursor:none;}
+    a{text-decoration:none;}
+    button{font-family:var(--font-body);}
+
+    /* CURSOR */
+    .cursor{position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);}
+    .cursor-dot{width:8px;height:8px;background:var(--accent);border-radius:50%;transition:width .3s,height .3s;}
+    .cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid rgba(11,61,107,.35);border-radius:50%;pointer-events:none;z-index:9997;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s;}
+    body.cur-h .cursor-dot{width:14px;height:14px;background:var(--bleu);}
+    body.cur-h .cursor-ring{width:52px;height:52px;border-color:var(--accent);}
+
+    .scroll-progress{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--accent),var(--bleu-vif));z-index:9999;transition:width .1s;}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 5%;background:rgba(247,246,242,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(11,61,107,.08);transition:box-shadow .3s;}
+    nav.scrolled{box-shadow:0 4px 20px rgba(13,13,16,.07);}
+    .nav-logo{font-family:var(--font-display);font-weight:800;font-size:1.15rem;color:var(--bleu);letter-spacing:-.02em;}
+    .nav-logo span{color:var(--accent);}
+    .nav-links{display:flex;gap:2.4rem;list-style:none;}
+    .nav-links a{font-size:.75rem;font-weight:400;letter-spacing:.07em;text-transform:uppercase;color:var(--gris);transition:color .2s;position:relative;}
+    .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1.5px;background:var(--accent);transition:width .3s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--noir);}
+    .nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+    .nav-right{display:flex;align-items:center;gap:1.2rem;}
+    .nav-back{font-size:.74rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--bleu);border:1.5px solid rgba(11,61,107,.25);padding:.6rem 1.3rem;border-radius:var(--r-sm);transition:all .25s;display:flex;align-items:center;gap:.5rem;}
+    .nav-back:hover{background:var(--bleu);color:#fff;border-color:var(--bleu);}
+    .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:none;padding:4px;}
+    .hamburger span{display:block;width:22px;height:2px;background:var(--noir);border-radius:2px;transition:all .3s;}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    .hamburger.open span:nth-child(2){opacity:0;}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+    .mobile-menu{position:fixed;top:64px;left:0;right:0;background:rgba(247,246,242,.98);backdrop-filter:blur(16px);z-index:499;max-height:0;overflow:hidden;transition:max-height .4s;border-bottom:1px solid rgba(11,61,107,.08);}
+    .mobile-menu.open{max-height:360px;}
+    .mobile-menu ul{list-style:none;padding:1.5rem 5% 2rem;display:flex;flex-direction:column;gap:1.2rem;}
+    .mobile-link{font-size:1.1rem;font-weight:600;color:var(--noir);font-family:var(--font-display);}
+
+    /* PAGE HERO */
+    .page-hero{min-height:44vh;display:flex;align-items:flex-end;padding:9rem 5% 4rem;position:relative;overflow:hidden;}
+    .ph-bg{position:absolute;inset:0;background:var(--bleu);}
+    .ph-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:52px 52px;}
+    .ph-orb1{position:absolute;width:600px;height:600px;top:-20%;right:-5%;background:radial-gradient(circle,rgba(0,200,150,.18) 0%,transparent 65%);border-radius:50%;filter:blur(70px);pointer-events:none;}
+    .ph-orb2{position:absolute;width:350px;height:350px;bottom:-15%;left:10%;background:radial-gradient(circle,rgba(255,102,53,.12) 0%,transparent 65%);border-radius:50%;filter:blur(60px);pointer-events:none;}
+    .ph-content{position:relative;}
+    .page-breadcrumb{display:flex;align-items:center;gap:.5rem;font-family:var(--font-mono);font-size:.65rem;color:rgba(255,255,255,.3);margin-bottom:1.5rem;}
+    .page-breadcrumb a{color:rgba(255,255,255,.45);transition:color .2s;}
+    .page-breadcrumb a:hover{color:var(--accent);}
+    .bc-sep{color:rgba(255,255,255,.2);}
+    .ph-eyebrow{font-family:var(--font-mono);font-size:.68rem;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1rem;}
+    .ph-title{font-family:var(--font-display);font-weight:800;font-size:clamp(2.6rem,5vw,4.5rem);color:#fff;letter-spacing:-.03em;line-height:1;margin-bottom:1rem;}
+    .ph-title em{font-style:normal;color:var(--accent);}
+    .ph-sub{font-size:1rem;color:rgba(255,255,255,.55);max-width:540px;line-height:1.8;}
+
+    /* MAIN */
+    main{padding:5rem 5%;}
+
+    /* IMPACT BAND */
+    .impact-band{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(11,61,107,.08);border-radius:var(--r-md);overflow:hidden;margin-bottom:5rem;}
+    .impact-box{background:var(--blanc);padding:2rem;text-align:center;}
+    .impact-num{font-family:var(--font-display);font-weight:800;font-size:2.5rem;color:var(--bleu);line-height:1;}
+    .impact-num span{color:var(--accent);}
+    .impact-lbl{font-size:.75rem;color:var(--gris);margin-top:.4rem;line-height:1.4;}
+
+    /* SECTION HEADER */
+    .sh{margin-bottom:2.5rem;}
+    .sh-eyebrow{font-family:var(--font-mono);font-size:.65rem;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.7rem;display:flex;align-items:center;gap:.5rem;}
+    .sh-eyebrow::before{content:'//';color:var(--gris-clair);}
+    .sh-title{font-family:var(--font-display);font-weight:800;font-size:clamp(1.5rem,3vw,2.3rem);color:var(--noir);letter-spacing:-.02em;}
+    .sh-title em{font-style:normal;color:var(--bleu);}
+    .sh-sub{font-size:.92rem;color:var(--gris);line-height:1.8;max-width:560px;margin-top:.5rem;}
+
+    /* INSTITUTION CARD */
+    .institutions-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem;margin-bottom:5rem;}
+    .inst-card{background:var(--blanc);border:1.5px solid rgba(11,61,107,.07);border-radius:var(--r-lg);overflow:hidden;transition:all .3s;}
+    .inst-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md);}
+    .inst-header{background:var(--bleu);padding:2rem;position:relative;overflow:hidden;}
+    .inst-header::after{content:'';position:absolute;top:-30px;right:-30px;width:120px;height:120px;background:rgba(255,255,255,.05);border-radius:50%;}
+    .inst-header.alt{background:linear-gradient(135deg,var(--bleu),var(--violet));}
+    .inst-name{font-family:var(--font-display);font-weight:700;font-size:1.05rem;color:#fff;margin-bottom:.3rem;}
+    .inst-role{font-family:var(--font-mono);font-size:.68rem;color:rgba(255,255,255,.6);}
+    .inst-badge{display:inline-block;margin-top:.8rem;font-family:var(--font-mono);font-size:.62rem;background:rgba(0,200,150,.2);color:var(--accent);padding:.3rem .7rem;border-radius:100px;border:1px solid rgba(0,200,150,.3);}
+    .inst-body{padding:1.8rem;}
+    .inst-stat-row{display:flex;gap:1.5rem;margin-bottom:1.2rem;}
+    .inst-stat{text-align:center;}
+    .inst-stat-num{font-family:var(--font-display);font-weight:700;font-size:1.5rem;color:var(--bleu);}
+    .inst-stat-num span{color:var(--accent);}
+    .inst-stat-lbl{font-size:.7rem;color:var(--gris);}
+    .inst-desc{font-size:.84rem;color:var(--gris);line-height:1.8;}
+
+    /* MODULES ACCORDION */
+    .modules-section{margin-bottom:5rem;}
+    .modules-list{display:flex;flex-direction:column;gap:.8rem;}
+    .module-item{background:var(--blanc);border:1.5px solid rgba(11,61,107,.07);border-radius:var(--r-md);overflow:hidden;transition:border-color .25s;}
+    .module-item.open{border-color:var(--accent);}
+    .module-toggle{width:100%;display:flex;align-items:center;gap:1.2rem;padding:1.5rem 2rem;background:none;border:none;text-align:left;cursor:none;transition:background .2s;}
+    .module-toggle:hover{background:rgba(11,61,107,.02);}
+    .module-num{font-family:var(--font-mono);font-size:.68rem;color:var(--accent);background:rgba(0,200,150,.1);padding:.25rem .6rem;border-radius:4px;flex-shrink:0;}
+    .module-icon-wrap{width:40px;height:40px;background:var(--bg2);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;color:var(--bleu);flex-shrink:0;transition:background .25s,color .25s;}
+    .module-item.open .module-icon-wrap{background:rgba(11,61,107,.1);color:var(--bleu);}
+    .module-toggle-text{flex:1;}
+    .module-title{font-family:var(--font-display);font-weight:700;font-size:.95rem;color:var(--noir);margin-bottom:.2rem;}
+    .module-meta{font-size:.75rem;color:var(--gris);}
+    .module-chevron{color:var(--gris);transition:transform .3s;}
+    .module-item.open .module-chevron{transform:rotate(180deg);}
+    .module-body{max-height:0;overflow:hidden;transition:max-height .4s ease;}
+    .module-item.open .module-body{max-height:400px;}
+    .module-content{padding:0 2rem 1.8rem;}
+    .module-desc-full{font-size:.87rem;color:var(--gris);line-height:1.8;margin-bottom:1.2rem;}
+    .module-topics{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem;}
+    .topic-item{display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--noir);}
+    .topic-dot{width:6px;height:6px;background:var(--accent);border-radius:50%;flex-shrink:0;}
+    .module-duration{display:inline-flex;align-items:center;gap:.4rem;margin-top:1rem;font-family:var(--font-mono);font-size:.68rem;color:var(--gris);background:var(--bg2);padding:.35rem .8rem;border-radius:100px;}
+
+    /* PUBLIC CIBLE SECTION */
+    .audience-section{background:var(--blanc);border-radius:var(--r-lg);border:1.5px solid rgba(11,61,107,.07);padding:3rem;margin-bottom:5rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+    .audience-left h3{font-family:var(--font-display);font-weight:700;font-size:1.3rem;color:var(--noir);margin-bottom:.6rem;}
+    .audience-left p{font-size:.9rem;color:var(--gris);line-height:1.8;margin-bottom:2rem;}
+    .audience-tags{display:flex;flex-wrap:wrap;gap:.6rem;}
+    .aud-tag{padding:.5rem 1rem;border-radius:100px;font-size:.8rem;font-weight:500;}
+    .aud-tag.blue{background:rgba(11,61,107,.08);color:var(--bleu);}
+    .aud-tag.green{background:rgba(0,200,150,.1);color:var(--accent);}
+    .aud-tag.orange{background:rgba(255,102,53,.1);color:var(--accent2);}
+    .audience-right h3{font-family:var(--font-display);font-weight:700;font-size:1.1rem;color:var(--noir);margin-bottom:1.5rem;}
+    .method-list{display:flex;flex-direction:column;gap:1rem;}
+    .method-item{display:flex;align-items:flex-start;gap:1rem;padding:1.2rem;background:var(--bg);border-radius:var(--r-md);}
+    .method-icon{width:40px;height:40px;background:var(--blanc);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;color:var(--accent);border:1px solid rgba(0,200,150,.2);flex-shrink:0;}
+    .method-name{font-weight:500;font-size:.88rem;color:var(--noir);margin-bottom:.2rem;}
+    .method-desc{font-size:.78rem;color:var(--gris);line-height:1.6;}
+
+    /* TESTIMONIALS */
+    .testimonials-section{margin-bottom:5rem;}
+    .testi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;}
+    .testi-card{background:var(--blanc);border:1.5px solid rgba(11,61,107,.07);border-radius:var(--r-md);padding:2rem;transition:all .3s;}
+    .testi-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);}
+    .testi-quote{font-size:.9rem;color:var(--gris);line-height:1.85;font-style:italic;margin-bottom:1.5rem;position:relative;padding-left:1.2rem;}
+    .testi-quote::before{content:'"';position:absolute;left:0;top:-.3rem;font-family:var(--font-display);font-size:2rem;color:var(--accent);line-height:1;}
+    .testi-author{display:flex;align-items:center;gap:.8rem;}
+    .testi-avatar{width:40px;height:40px;background:linear-gradient(135deg,var(--bleu),var(--accent));border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:.85rem;color:#fff;flex-shrink:0;}
+    .testi-name{font-weight:500;font-size:.88rem;color:var(--noir);}
+    .testi-role{font-size:.75rem;color:var(--gris);}
+
+    /* CTA */
+    .cta-section{background:var(--bleu);border-radius:var(--r-lg);padding:3.5rem;display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap;position:relative;overflow:hidden;}
+    .cta-section::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:rgba(0,200,150,.12);border-radius:50%;filter:blur(40px);}
+    .cta-left h3{font-family:var(--font-display);font-weight:800;font-size:1.6rem;color:#fff;margin-bottom:.5rem;}
+    .cta-left p{color:rgba(255,255,255,.65);font-size:.95rem;max-width:420px;}
+    .cta-btns{display:flex;gap:.8rem;flex-wrap:wrap;position:relative;}
+    .cta-btn-main{display:flex;align-items:center;gap:.5rem;background:#fff;color:var(--bleu);padding:1rem 2rem;border-radius:var(--r-sm);font-size:.82rem;font-weight:600;transition:all .25s;flex-shrink:0;}
+    .cta-btn-main:hover{background:var(--accent);color:#fff;transform:translateY(-2px);}
+    .cta-btn-sec{display:flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.2);padding:1rem 2rem;border-radius:var(--r-sm);font-size:.82rem;font-weight:500;transition:all .25s;}
+    .cta-btn-sec:hover{background:rgba(255,255,255,.18);}
+
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+
+    /* FOOTER */
+    footer{background:var(--noir);padding:2.5rem 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-top:4rem;}
+    .footer-logo{font-family:var(--font-display);font-weight:800;color:#fff;font-size:1rem;}
+    .footer-logo span{color:var(--accent);}
+    .footer-copy{font-family:var(--font-mono);font-size:.68rem;color:rgba(255,255,255,.3);}
+    .footer-nav{display:flex;gap:1.5rem;}
+    .footer-nav a{font-size:.75rem;color:rgba(255,255,255,.35);transition:color .2s;}
+    .footer-nav a:hover{color:var(--accent);}
+
+    @media(max-width:900px){
+      .nav-links,.nav-back{display:none;}
+      .hamburger{display:flex;}
+      .impact-band{grid-template-columns:repeat(2,1fr);}
+      .audience-section{grid-template-columns:1fr;}
+      .institutions-grid{grid-template-columns:1fr;}
+    }
+    @media(max-width:600px){main{padding:4rem 5%;}.module-topics{grid-template-columns:1fr;}.cta-btns{flex-direction:column;}.testi-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="cursor" id="cursor"><div class="cursor-dot"></div></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">Junior<span>.</span>dev</a>
+  <ul class="nav-links">
+    <li><a href="competences.html">Compétences</a></li>
+    <li><a href="projets.html">Projets</a></li>
+    <li><a href="enseignements.html" class="active">Formation</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="index.html" class="nav-back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Portfolio
+    </a>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="competences.html" class="mobile-link">Compétences</a></li>
+    <li><a href="projets.html" class="mobile-link">Projets</a></li>
+    <li><a href="enseignements.html" class="mobile-link">Formation</a></li>
+    <li><a href="index.html" class="mobile-link">← Portfolio</a></li>
+  </ul>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="ph-bg"></div>
+  <div class="ph-grid"></div>
+  <div class="ph-orb1"></div>
+  <div class="ph-orb2"></div>
+  <div class="ph-content">
+    <div class="page-breadcrumb">
+      <a href="index.html">Accueil</a>
+      <span class="bc-sep">/</span>
+      <span>Enseignements</span>
+    </div>
+    <div class="ph-eyebrow">// Transmission des savoirs</div>
+    <h1 class="ph-title">Ce que <em>j'enseigne</em></h1>
+    <p class="ph-sub">Des modules pratiques, orientés terrain, conçus pour des professionnels et institutions qui veulent maîtriser les outils numériques d'aujourd'hui.</p>
+  </div>
+</section>
+
+<main>
+
+  <!-- IMPACT BAND -->
+  <div class="impact-band reveal">
+    <div class="impact-box">
+      <div class="impact-num" data-target="100">0<span>+</span></div>
+      <div class="impact-lbl">Apprenants formés</div>
+    </div>
+    <div class="impact-box">
+      <div class="impact-num" data-target="2">0<span>+</span></div>
+      <div class="impact-lbl">Institutions nationales</div>
+    </div>
+    <div class="impact-box">
+      <div class="impact-num" data-target="6">0</div>
+      <div class="impact-lbl">Modules pédagogiques</div>
+    </div>
+    <div class="impact-box">
+      <div class="impact-num" data-target="3">0<span>+</span></div>
+      <div class="impact-lbl">Années d'enseignement</div>
+    </div>
+  </div>
+
+  <!-- INSTITUTIONS -->
+  <div class="sh reveal">
+    <div class="sh-eyebrow">Où j'ai enseigné</div>
+    <h2 class="sh-title">Mes <em>institutions</em></h2>
+    <p class="sh-sub">Deux établissements de référence en RDC où j'ai développé et dispensé des formations NTIC.</p>
+  </div>
+
+  <div class="institutions-grid reveal">
+    <div class="inst-card">
+      <div class="inst-header">
+        <div class="inst-name">École Nationale des Finances (ENF)</div>
+        <div class="inst-role">Formateur en NTIC</div>
+        <span class="inst-badge">Institution phare</span>
+      </div>
+      <div class="inst-body">
+        <div class="inst-stat-row">
+          <div class="inst-stat">
+            <div class="inst-stat-num">100<span>+</span></div>
+            <div class="inst-stat-lbl">Agents formés</div>
+          </div>
+          <div class="inst-stat">
+            <div class="inst-stat-num">3</div>
+            <div class="inst-stat-lbl">Modules dispensés</div>
+          </div>
+          <div class="inst-stat">
+            <div class="inst-stat-num">DGI</div>
+            <div class="inst-stat-lbl">Public cible</div>
+          </div>
+        </div>
+        <p class="inst-desc">Formation intensive en outils numériques, bureautique avancée et systèmes d'information à destination des agents et cadres de la Direction Générale des Impôts. Conception de modules pédagogiques adaptés aux besoins fiscaux de l'administration congolaise.</p>
+      </div>
+    </div>
+
+    <div class="inst-card">
+      <div class="inst-header alt">
+        <div class="inst-name">École d'Application ISP/GOMBE</div>
+        <div class="inst-role">Stage Pédagogique</div>
+        <span class="inst-badge">Stage pédagogique</span>
+      </div>
+      <div class="inst-body">
+        <div class="inst-stat-row">
+          <div class="inst-stat">
+            <div class="inst-stat-num">1</div>
+            <div class="inst-stat-lbl">Année d'immersion</div>
+          </div>
+          <div class="inst-stat">
+            <div class="inst-stat-num">ISP</div>
+            <div class="inst-stat-lbl">Établissement</div>
+          </div>
+        </div>
+        <p class="inst-desc">Immersion dans l'environnement pédagogique d'un établissement d'enseignement supérieur. Observation, conception de séquences didactiques et animation de cours en informatique. Développement des compétences en transmission et vulgarisation des savoirs techniques pour des élèves débutants.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULES ACCORDION -->
+  <div class="modules-section">
+    <div class="sh reveal">
+      <div class="sh-eyebrow">Programmes détaillés</div>
+      <h2 class="sh-title">Les <em>6 modules</em> enseignés</h2>
+      <p class="sh-sub">Cliquez sur chaque module pour voir le programme détaillé, les objectifs et les compétences développées.</p>
+    </div>
+
+    <div class="modules-list reveal" id="modulesList">
+
+      <div class="module-item" id="m1">
+        <button class="module-toggle" onclick="toggleModule('m1')">
+          <span class="module-num">01</span>
+          <div class="module-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <div class="module-toggle-text">
+            <div class="module-title">Bureautique avancée</div>
+            <div class="module-meta">Word · Excel · PowerPoint · Outils de productivité</div>
+          </div>
+          <svg class="module-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="module-body">
+          <div class="module-content">
+            <p class="module-desc-full">Maîtrise avancée des outils bureautiques professionnels pour améliorer la productivité dans l'administration publique congolaise. Ce module couvre l'utilisation professionnelle de la suite Office avec des cas pratiques orientés administration fiscale.</p>
+            <div class="module-topics">
+              <div class="topic-item"><div class="topic-dot"></div>Publipostage et fusion de documents</div>
+              <div class="topic-item"><div class="topic-dot"></div>Tableaux croisés dynamiques Excel</div>
+              <div class="topic-item"><div class="topic-dot"></div>Formules avancées (INDEX/MATCH, VLOOKUP)</div>
+              <div class="topic-item"><div class="topic-dot"></div>Automatisation de tâches répétitives</div>
+              <div class="topic-item"><div class="topic-dot"></div>Présentations professionnelles PowerPoint</div>
+              <div class="topic-item"><div class="topic-dot"></div>Gestion avancée des styles Word</div>
+            </div>
+            <div class="module-duration">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              16 heures · Théorie + pratique + évaluation
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-item" id="m2">
+        <button class="module-toggle" onclick="toggleModule('m2')">
+          <span class="module-num">02</span>
+          <div class="module-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <div class="module-toggle-text">
+            <div class="module-title">Sécurité informatique</div>
+            <div class="module-meta">Cybersécurité · Protection des données · Bonnes pratiques</div>
+          </div>
+          <svg class="module-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="module-body">
+          <div class="module-content">
+            <p class="module-desc-full">Sensibilisation et formation aux bonnes pratiques de sécurité informatique en milieu professionnel. Module particulièrement adapté aux agents de l'administration fiscale qui manipulent des données sensibles au quotidien.</p>
+            <div class="module-topics">
+              <div class="topic-item"><div class="topic-dot"></div>Menaces numériques et phishing</div>
+              <div class="topic-item"><div class="topic-dot"></div>Gestion sécurisée des mots de passe</div>
+              <div class="topic-item"><div class="topic-dot"></div>Authentification à deux facteurs (2FA)</div>
+              <div class="topic-item"><div class="topic-dot"></div>Protection des données personnelles</div>
+              <div class="topic-item"><div class="topic-dot"></div>Sauvegardes et récupération</div>
+              <div class="topic-item"><div class="topic-dot"></div>Sécurité des réseaux Wi-Fi</div>
+            </div>
+            <div class="module-duration">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              12 heures · Ateliers pratiques inclus
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-item" id="m3">
+        <button class="module-toggle" onclick="toggleModule('m3')">
+          <span class="module-num">03</span>
+          <div class="module-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          </div>
+          <div class="module-toggle-text">
+            <div class="module-title">Bases de données</div>
+            <div class="module-meta">MySQL · SQL · Modélisation · Conception BDD</div>
+          </div>
+          <svg class="module-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="module-body">
+          <div class="module-content">
+            <p class="module-desc-full">Introduction complète à la conception et à la gestion des bases de données relationnelles. De la modélisation conceptuelle à l'implémentation avec MySQL, en passant par l'écriture de requêtes SQL professionnelles.</p>
+            <div class="module-topics">
+              <div class="topic-item"><div class="topic-dot"></div>Modèle conceptuel de données (MCD)</div>
+              <div class="topic-item"><div class="topic-dot"></div>Modèle logique et physique</div>
+              <div class="topic-item"><div class="topic-dot"></div>Requêtes SQL (SELECT, JOIN, GROUP BY)</div>
+              <div class="topic-item"><div class="topic-dot"></div>Normalisation des données</div>
+              <div class="topic-item"><div class="topic-dot"></div>Transactions et intégrité</div>
+              <div class="topic-item"><div class="topic-dot"></div>Administration basique MySQL</div>
+            </div>
+            <div class="module-duration">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              20 heures · Projet final de modélisation
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-item" id="m4">
+        <button class="module-toggle" onclick="toggleModule('m4')">
+          <span class="module-num">04</span>
+          <div class="module-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <div class="module-toggle-text">
+            <div class="module-title">Développement web</div>
+            <div class="module-meta">HTML · CSS · JavaScript · Logique de programmation</div>
+          </div>
+          <svg class="module-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="module-body">
+          <div class="module-content">
+            <p class="module-desc-full">Introduction progressive au développement web en partant des fondamentaux. Ce module vise à donner une compréhension solide du fonctionnement du Web et des bases pour créer des pages web simples et fonctionnelles.</p>
+            <div class="module-topics">
+              <div class="topic-item"><div class="topic-dot"></div>Structure HTML5 sémantique</div>
+              <div class="topic-item"><div class="topic-dot"></div>Styles CSS et mise en page Flexbox</div>
+              <div class="topic-item"><div class="topic-dot"></div>Introduction à JavaScript</div>
+              <div class="topic-item"><div class="topic-dot"></div>Interaction DOM</div>
+              <div class="topic-item"><div class="topic-dot"></div>Responsive design</div>
+              <div class="topic-item"><div class="topic-dot"></div>Déploiement d'un site simple</div>
+            </div>
+            <div class="module-duration">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              24 heures · Projet : créer sa première page web
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-item" id="m5">
+        <button class="module-toggle" onclick="toggleModule('m5')">
+          <span class="module-num">05</span>
+          <div class="module-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <div class="module-toggle-text">
+            <div class="module-title">Systèmes d'information</div>
+            <div class="module-meta">SI d'entreprise · ERP · Flux de données · Processus métier</div>
+          </div>
+          <svg class="module-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="module-body">
+          <div class="module-content">
+            <p class="module-desc-full">Compréhension des systèmes d'information en entreprise et institutions publiques. Module orienté vers les cadres et gestionnaires qui doivent piloter des projets informatiques sans nécessairement être développeurs.</p>
+            <div class="module-topics">
+              <div class="topic-item"><div class="topic-dot"></div>Définition et rôle d'un SI</div>
+              <div class="topic-item"><div class="topic-dot"></div>Types de SI (ERP, CRM, SCM)</div>
+              <div class="topic-item"><div class="topic-dot"></div>Flux d'information en organisation</div>
+              <div class="topic-item"><div class="topic-dot"></div>Gestion de projet informatique</div>
+              <div class="topic-item"><div class="topic-dot"></div>Audit et évaluation d'un SI</div>
+              <div class="topic-item"><div class="topic-dot"></div>SI dans l'administration fiscale</div>
+            </div>
+            <div class="module-duration">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              14 heures · Études de cas DGI / CADECO
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-item" id="m6">
+        <button class="module-toggle" onclick="toggleModule('m6')">
+          <span class="module-num">06</span>
+          <div class="module-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2z"/></svg>
+          </div>
+          <div class="module-toggle-text">
+            <div class="module-title">Intelligence Artificielle — Introduction</div>
+            <div class="module-meta">IA générative · Outils pratiques · Impacts professionnels</div>
+          </div>
+          <svg class="module-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="module-body">
+          <div class="module-content">
+            <p class="module-desc-full">Introduction accessible à l'intelligence artificielle pour des professionnels non-techniques. Focus sur les outils d'IA pratiques utilisables dans le quotidien professionnel et les impacts sur les métiers de l'administration.</p>
+            <div class="module-topics">
+              <div class="topic-item"><div class="topic-dot"></div>Qu'est-ce que l'IA ? (démystification)</div>
+              <div class="topic-item"><div class="topic-dot"></div>ChatGPT et assistants IA au bureau</div>
+              <div class="topic-item"><div class="topic-dot"></div>Automatisation avec l'IA</div>
+              <div class="topic-item"><div class="topic-dot"></div>IA dans l'administration fiscale</div>
+              <div class="topic-item"><div class="topic-dot"></div>Limites et risques de l'IA</div>
+              <div class="topic-item"><div class="topic-dot"></div>Avenir des métiers et IA</div>
+            </div>
+            <div class="module-duration">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              10 heures · Démonstrations live incluses
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PUBLIC & MÉTHODES -->
+  <div class="audience-section reveal">
+    <div class="audience-left">
+      <h3>Public cible</h3>
+      <p>Mes formations s'adressent à des profils variés au sein des institutions publiques et du secteur privé en RDC.</p>
+      <div class="audience-tags">
+        <span class="aud-tag blue">Agents de la DGI</span>
+        <span class="aud-tag blue">Cadres administratifs</span>
+        <span class="aud-tag green">Étudiants en informatique</span>
+        <span class="aud-tag green">Développeurs débutants</span>
+        <span class="aud-tag orange">Dirigeants d'entreprise</span>
+        <span class="aud-tag orange">Responsables financiers</span>
+        <span class="aud-tag blue">Fonctionnaires</span>
+        <span class="aud-tag green">Professionnels en reconversion</span>
+      </div>
+    </div>
+    <div class="audience-right">
+      <h3>Méthodes pédagogiques</h3>
+      <div class="method-list">
+        <div class="method-item">
+          <div class="method-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <div>
+            <div class="method-name">Apprentissage par la pratique</div>
+            <div class="method-desc">Exercices concrets adaptés aux situations professionnelles réelles des apprenants.</div>
+          </div>
+        </div>
+        <div class="method-item">
+          <div class="method-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          </div>
+          <div>
+            <div class="method-name">Sessions en groupe restreint</div>
+            <div class="method-desc">Maximum 20 apprenants par session pour garantir un suivi personnalisé.</div>
+          </div>
+        </div>
+        <div class="method-item">
+          <div class="method-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <div>
+            <div class="method-name">Supports et ressources inclus</div>
+            <div class="method-desc">Fiches synthèse, exercices corrigés et ressources numériques fournis à chaque apprenant.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TÉMOIGNAGES -->
+  <div class="testimonials-section">
+    <div class="sh reveal">
+      <div class="sh-eyebrow">Retours apprenants</div>
+      <h2 class="sh-title"><em>Témoignages</em></h2>
+    </div>
+    <div class="testi-grid reveal">
+      <div class="testi-card">
+        <p class="testi-quote">La formation sur Excel avancé a complètement transformé ma façon de travailler. J'ai économisé plusieurs heures par semaine sur mes rapports.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">MK</div>
+          <div>
+            <div class="testi-name">M. Kabongo</div>
+            <div class="testi-role">Gestionnaire fiscal · DGI</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <p class="testi-quote">Le module sécurité informatique était très pratique. Dès le lendemain, j'ai pu identifier et signaler une tentative de phishing dans notre service.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">AN</div>
+          <div>
+            <div class="testi-name">A. Ngalula</div>
+            <div class="testi-role">Inspectrice fiscale · DGI</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <p class="testi-quote">Formateur très pédagogue. Il sait adapter le discours technique à des non-informaticiens. Le module sur les SI était particulièrement enrichissant pour notre direction.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">JP</div>
+          <div>
+            <div class="testi-name">J-P. Muamba</div>
+            <div class="testi-role">Chef de service · Administration fiscale</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section reveal">
+    <div class="cta-left">
+      <h3>Besoin d'une formation ?</h3>
+      <p>Je propose des formations sur mesure pour votre institution ou équipe. Contactez-moi pour discuter de vos besoins spécifiques.</p>
+    </div>
+    <div class="cta-btns">
+      <a href="index.html#contact" class="cta-btn-main">
+        Demander une formation
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </a>
+      <a href="projets.html" class="cta-btn-sec">Voir mes projets →</a>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-logo">Junior<span>.</span>dev</div>
+  <p class="footer-copy">© 2026 Junior Ngandu · Kinshasa, RDC</p>
+  <nav class="footer-nav">
+    <a href="competences.html">Compétences</a>
+    <a href="projets.html">Projets</a>
+    <a href="index.html#contact">Contact</a>
+  </nav>
+</footer>
+
+<script>
+// Cursor
+const cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;if(cur){cur.style.left=mx+'px';cur.style.top=my+'px';}},{passive:true});
+(function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;if(ring){ring.style.left=rx+'px';ring.style.top=ry+'px';}requestAnimationFrame(loop);})();
+document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>document.body.classList.add('cur-h'));el.addEventListener('mouseleave',()=>document.body.classList.remove('cur-h'));});
+
+const pb=document.getElementById('scrollProgress');
+window.addEventListener('scroll',()=>{const s=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;if(pb)pb.style.width=s+'%';},{passive:true});
+
+const nav=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{if(nav)nav.classList.toggle('scrolled',window.scrollY>50);},{passive:true});
+
+const hbg=document.getElementById('hamburger'),mmenu=document.getElementById('mobileMenu');
+if(hbg&&mmenu){hbg.addEventListener('click',()=>{hbg.classList.toggle('open');mmenu.classList.toggle('open');});document.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{hbg.classList.remove('open');mmenu.classList.remove('open');}));}
+
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Accordion
+function toggleModule(id) {
+  const item = document.getElementById(id);
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.module-item').forEach(m=>m.classList.remove('open'));
+  if(!isOpen) item.classList.add('open');
+}
+
+// Counters
+function animVal(el,end,dur=1200){
+  const s=performance.now();
+  const raw=el.innerHTML;
+  const suffix=raw.replace(/[\d]/g,'');
+  (function u(n){
+    const p=Math.min((n-s)/dur,1),ease=1-Math.pow(1-p,3);
+    el.innerHTML=Math.floor(end*ease)+suffix;
+    if(p<1)requestAnimationFrame(u);
+  })(performance.now());
+}
+const cobs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.impact-num[data-target]').forEach(el=>{
+        animVal(el,parseInt(el.dataset.target));
+        el.removeAttribute('data-target');
+      });
+      cobs.unobserve(e.target);
+    }
+  });
+},{threshold:.5});
+document.querySelectorAll('.impact-band').forEach(el=>cobs.observe(el));
+</script>
+</body>
+</html>
