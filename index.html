@@ -1,1376 +1,727 @@
 <!DOCTYPE html>
-
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Junior Ngandu — Développeur Full-Stack & Formateur NTIC</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-:root {
-–bg: #f5f4f0;
-–bg2: #eeecea;
-–noir: #0f0f14;
-–bleu: #0a3d6b;
-–bleu-vif: #1560a8;
-–accent: #00c896;
-–accent2: #ff6b35;
-–gris: #6b7280;
-–gris-clair: #d1d5db;
-–blanc: #ffffff;
-–card: #ffffff;
-–mono: ‘JetBrains Mono’, monospace;
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-background: var(–bg);
-color: var(–noir);
-font-family: ‘DM Sans’, sans-serif;
-font-weight: 300;
-overflow-x: hidden;
-cursor: none;
-}
-
-/* ── Curseur ── */
-.cursor {
-position: fixed;
-width: 10px; height: 10px;
-background: var(–accent);
-border-radius: 50%;
-pointer-events: none;
-z-index: 9999;
-transform: translate(-50%,-50%);
-transition: width .3s, height .3s, background .3s;
-}
-.cursor-trail {
-position: fixed;
-width: 30px; height: 30px;
-border: 1.5px solid var(–bleu);
-border-radius: 50%;
-pointer-events: none;
-z-index: 9998;
-transform: translate(-50%,-50%);
-transition: transform .15s ease;
-opacity: .5;
-}
-
-/* ── Navigation ── */
-nav {
-position: fixed;
-top: 0; left: 0; right: 0;
-z-index: 500;
-display: flex;
-justify-content: space-between;
-align-items: center;
-padding: 1.4rem 5%;
-background: rgba(245,244,240,.92);
-backdrop-filter: blur(12px);
-border-bottom: 1px solid rgba(10,61,107,.08);
-}
-
-.nav-logo {
-font-family: ‘Syne’, sans-serif;
-font-weight: 800;
-font-size: 1.1rem;
-color: var(–bleu);
-text-decoration: none;
-letter-spacing: -.02em;
-}
-.nav-logo span { color: var(–accent); }
-
-.nav-links {
-display: flex;
-gap: 2.5rem;
-list-style: none;
-}
-.nav-links a {
-font-size: .78rem;
-font-weight: 400;
-letter-spacing: .06em;
-text-transform: uppercase;
-color: var(–gris);
-text-decoration: none;
-transition: color .25s;
-}
-.nav-links a:hover { color: var(–bleu); }
-
-.nav-btn {
-font-family: ‘DM Sans’, sans-serif;
-font-size: .75rem;
-font-weight: 500;
-letter-spacing: .08em;
-text-transform: uppercase;
-background: var(–bleu);
-color: #fff;
-border: none;
-padding: .7rem 1.6rem;
-text-decoration: none;
-transition: background .25s, transform .2s;
-cursor: none;
-}
-.nav-btn:hover { background: var(–bleu-vif); transform: translateY(-1px); }
-
-/* ── Hero ── */
-.hero {
-min-height: 100vh;
-display: grid;
-grid-template-columns: 1fr 1fr;
-align-items: center;
-padding: 8rem 5% 5rem;
-position: relative;
-overflow: hidden;
-gap: 4rem;
-}
-
-.hero-bg-grid {
-position: absolute;
-inset: 0;
-background-image:
-linear-gradient(rgba(10,61,107,.04) 1px, transparent 1px),
-linear-gradient(90deg, rgba(10,61,107,.04) 1px, transparent 1px);
-background-size: 48px 48px;
-pointer-events: none;
-}
-
-.hero-bg-blob {
-position: absolute;
-top: -10%; right: -5%;
-width: 600px; height: 600px;
-background: radial-gradient(ellipse, rgba(0,200,150,.08) 0%, transparent 65%);
-pointer-events: none;
-}
-.hero-bg-blob2 {
-position: absolute;
-bottom: -10%; left: 10%;
-width: 400px; height: 400px;
-background: radial-gradient(ellipse, rgba(10,61,107,.06) 0%, transparent 65%);
-pointer-events: none;
-}
-
-.hero-left { position: relative; }
-
-.hero-badge {
-display: inline-flex;
-align-items: center;
-gap: .5rem;
-background: rgba(0,200,150,.1);
-border: 1px solid rgba(0,200,150,.3);
-padding: .45rem 1rem;
-border-radius: 100px;
-font-family: var(–mono);
-font-size: .7rem;
-color: var(–accent);
-margin-bottom: 2rem;
-animation: fadeUp .8s ease both;
-}
-.hero-badge::before { content: ‘’; width: 7px; height: 7px; background: var(–accent); border-radius: 50%; animation: pulse 2s infinite; }
-
-@keyframes pulse {
-0%, 100% { opacity: 1; transform: scale(1); }
-50% { opacity: .5; transform: scale(.7); }
-}
-
-.hero-name {
-font-family: ‘Syne’, sans-serif;
-font-size: clamp(3rem, 6vw, 5.5rem);
-font-weight: 800;
-line-height: 1;
-letter-spacing: -.03em;
-color: var(–noir);
-animation: fadeUp .8s .1s ease both;
-}
-.hero-name .highlight { color: var(–bleu); }
-
-.hero-role {
-display: flex;
-align-items: center;
-gap: 1rem;
-margin: 1.5rem 0 2rem;
-animation: fadeUp .8s .2s ease both;
-}
-.hero-role-tag {
-font-family: var(–mono);
-font-size: .8rem;
-padding: .4rem .9rem;
-border-radius: 4px;
-}
-.tag-dev { background: rgba(10,61,107,.08); color: var(–bleu); }
-.tag-form { background: rgba(255,107,53,.1); color: var(–accent2); }
-.role-sep { color: var(–gris-clair); font-size: 1.2rem; }
-
-.hero-desc {
-font-size: 1rem;
-line-height: 1.85;
-color: var(–gris);
-max-width: 480px;
-margin-bottom: 2.5rem;
-animation: fadeUp .8s .3s ease both;
-}
-
-.hero-actions {
-display: flex;
-gap: 1rem;
-animation: fadeUp .8s .4s ease both;
-}
-
-.btn-primary {
-display: inline-flex;
-align-items: center;
-gap: .5rem;
-background: var(–bleu);
-color: #fff;
-padding: .9rem 2rem;
-font-size: .8rem;
-font-weight: 500;
-letter-spacing: .06em;
-text-transform: uppercase;
-text-decoration: none;
-border-radius: 4px;
-transition: background .25s, transform .2s, box-shadow .25s;
-}
-.btn-primary:hover { background: var(–bleu-vif); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(10,61,107,.2); }
-
-.btn-secondary {
-display: inline-flex;
-align-items: center;
-gap: .5rem;
-background: transparent;
-color: var(–bleu);
-border: 1.5px solid var(–bleu);
-padding: .9rem 2rem;
-font-size: .8rem;
-font-weight: 500;
-letter-spacing: .06em;
-text-transform: uppercase;
-text-decoration: none;
-border-radius: 4px;
-transition: background .25s, color .25s;
-}
-.btn-secondary:hover { background: var(–bleu); color: #fff; }
-
-/* Terminal hero */
-.hero-terminal {
-background: var(–noir);
-border-radius: 12px;
-overflow: hidden;
-box-shadow: 0 32px 64px rgba(15,15,20,.2), 0 0 0 1px rgba(255,255,255,.05);
-animation: fadeLeft .9s .3s ease both;
-position: relative;
-}
-
-@keyframes fadeLeft {
-from { opacity: 0; transform: translateX(40px); }
-to { opacity: 1; transform: translateX(0); }
-}
-
-.terminal-bar {
-background: #1e1e2a;
-padding: .9rem 1.2rem;
-display: flex;
-align-items: center;
-gap: .7rem;
-}
-.t-dot { width: 12px; height: 12px; border-radius: 50%; }
-.t-dot.r { background: #ff5f56; }
-.t-dot.y { background: #ffbd2e; }
-.t-dot.g { background: #27c93f; }
-.terminal-title { font-family: var(–mono); font-size: .7rem; color: #666; margin-left: auto; }
-
-.terminal-body {
-padding: 1.8rem;
-font-family: var(–mono);
-font-size: .82rem;
-line-height: 2;
-}
-
-.t-line { display: flex; align-items: flex-start; gap: .7rem; }
-.t-prompt { color: var(–accent); flex-shrink: 0; }
-.t-cmd { color: #e2e8f0; }
-.t-comment { color: #4a5568; font-style: italic; }
-.t-key { color: #7dd3fc; }
-.t-val { color: #fbbf24; }
-.t-str { color: #86efac; }
-.t-num { color: #f9a8d4; }
-.t-gap { height: .5rem; }
-
-.terminal-cursor {
-display: inline-block;
-width: 9px; height: 17px;
-background: var(–accent);
-vertical-align: middle;
-animation: blink 1.2s step-end infinite;
-margin-left: 2px;
-}
-@keyframes blink { 50% { opacity: 0; } }
-
-/* Stats hero */
-.hero-stats {
-display: flex;
-gap: 2.5rem;
-margin-top: 2.5rem;
-padding-top: 2rem;
-border-top: 1px solid var(–gris-clair);
-animation: fadeUp .8s .5s ease both;
-}
-.stat-val {
-font-family: ‘Syne’, sans-serif;
-font-weight: 800;
-font-size: 2rem;
-color: var(–bleu);
-line-height: 1;
-}
-.stat-val span { color: var(–accent); }
-.stat-label {
-font-size: .75rem;
-color: var(–gris);
-margin-top: .3rem;
-letter-spacing: .03em;
-}
-
-/* ── Section commons ── */
-section { padding: 7rem 5%; }
-
-.section-tag {
-font-family: var(–mono);
-font-size: .7rem;
-color: var(–accent);
-letter-spacing: .1em;
-text-transform: uppercase;
-margin-bottom: 1rem;
-display: flex;
-align-items: center;
-gap: .8rem;
-}
-.section-tag::before { content: ‘//’; color: var(–gris-clair); }
-
-.section-title {
-font-family: ‘Syne’, sans-serif;
-font-size: clamp(2rem, 4vw, 3.2rem);
-font-weight: 800;
-letter-spacing: -.02em;
-color: var(–noir);
-line-height: 1.1;
-margin-bottom: 1rem;
-}
-.section-title em { font-style: normal; color: var(–bleu); }
-
-.section-sub {
-font-size: .95rem;
-color: var(–gris);
-line-height: 1.8;
-max-width: 560px;
-}
-
-/* ── Compétences ── */
-.skills { background: var(–blanc); }
-
-.skills-inner {
-display: grid;
-grid-template-columns: 1fr 2fr;
-gap: 6rem;
-align-items: start;
-margin-top: 4rem;
-}
-
-.skills-categories { display: flex; flex-direction: column; gap: 1rem; }
-.skill-cat-btn {
-display: flex;
-align-items: center;
-gap: 1rem;
-padding: 1rem 1.2rem;
-background: none;
-border: 1.5px solid var(–gris-clair);
-border-radius: 8px;
-cursor: none;
-text-align: left;
-transition: all .25s;
-font-family: ‘DM Sans’, sans-serif;
-}
-.skill-cat-btn:hover, .skill-cat-btn.active {
-border-color: var(–bleu);
-background: rgba(10,61,107,.04);
-}
-.skill-cat-btn.active { border-color: var(–accent); background: rgba(0,200,150,.05); }
-.skill-cat-icon { font-size: 1.4rem; }
-.skill-cat-name { font-weight: 500; font-size: .9rem; color: var(–noir); }
-.skill-cat-count { font-family: var(–mono); font-size: .7rem; color: var(–gris); margin-left: auto; }
-
-.skills-grid {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 1rem;
-}
-
-.skill-card {
-background: var(–bg);
-border: 1.5px solid transparent;
-border-radius: 10px;
-padding: 1.2rem;
-transition: all .25s;
-cursor: none;
-}
-.skill-card:hover {
-border-color: var(–bleu);
-background: #fff;
-transform: translateY(-3px);
-box-shadow: 0 8px 24px rgba(10,61,107,.08);
-}
-.skill-icon { font-size: 1.6rem; margin-bottom: .7rem; }
-.skill-name { font-weight: 500; font-size: .85rem; color: var(–noir); margin-bottom: .3rem; }
-.skill-lvl {
-font-family: var(–mono);
-font-size: .65rem;
-color: var(–accent);
-background: rgba(0,200,150,.1);
-padding: .15rem .5rem;
-border-radius: 3px;
-display: inline-block;
-}
-
-/* ── Expérience ── */
-.experience { background: var(–bg2); }
-.exp-inner { margin-top: 4rem; }
-
-.timeline { position: relative; padding-left: 3rem; }
-.timeline::before {
-content: ‘’;
-position: absolute;
-left: 0; top: 0; bottom: 0;
-width: 2px;
-background: linear-gradient(to bottom, var(–bleu), var(–accent), transparent);
-}
-
-.timeline-item {
-position: relative;
-margin-bottom: 3rem;
-animation: fadeLeft .6s ease both;
-}
-.timeline-item::before {
-content: ‘’;
-position: absolute;
-left: -3.4rem; top: .4rem;
-width: 14px; height: 14px;
-background: var(–blanc);
-border: 2.5px solid var(–bleu);
-border-radius: 50%;
-transition: background .3s;
-}
-.timeline-item:hover::before { background: var(–accent); border-color: var(–accent); }
-
-.exp-card {
-background: var(–blanc);
-border-radius: 12px;
-padding: 2rem;
-border: 1.5px solid rgba(10,61,107,.06);
-transition: box-shadow .25s, transform .25s;
-}
-.exp-card:hover {
-box-shadow: 0 12px 32px rgba(10,61,107,.1);
-transform: translateX(4px);
-}
-
-.exp-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
-.exp-org {
-font-family: ‘Syne’, sans-serif;
-font-weight: 700;
-font-size: 1.1rem;
-color: var(–noir);
-}
-.exp-type {
-font-family: var(–mono);
-font-size: .65rem;
-padding: .3rem .8rem;
-border-radius: 100px;
-flex-shrink: 0;
-}
-.type-formateur { background: rgba(255,107,53,.12); color: var(–accent2); }
-.type-stage { background: rgba(10,61,107,.1); color: var(–bleu); }
-
-.exp-role {
-font-size: .85rem;
-font-weight: 500;
-color: var(–bleu);
-margin-bottom: .8rem;
-}
-.exp-desc {
-font-size: .88rem;
-color: var(–gris);
-line-height: 1.8;
-}
-.exp-highlight {
-display: inline-flex;
-align-items: center;
-gap: .4rem;
-margin-top: .8rem;
-background: rgba(0,200,150,.08);
-border: 1px solid rgba(0,200,150,.2);
-padding: .4rem .9rem;
-border-radius: 6px;
-font-size: .78rem;
-color: var(–accent);
-font-weight: 500;
-}
-.exp-highlight::before { content: ‘★’; font-size: .7rem; }
-
-/* ── Formation ── */
-.formation { background: var(–blanc); }
-.edu-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-gap: 1.5rem;
-margin-top: 4rem;
-}
-
-.edu-card {
-background: var(–bg);
-border-radius: 12px;
-padding: 2rem;
-border-left: 4px solid var(–bleu);
-transition: all .25s;
-position: relative;
-overflow: hidden;
-}
-.edu-card::after {
-content: ‘’;
-position: absolute;
-top: -20px; right: -20px;
-width: 80px; height: 80px;
-background: radial-gradient(circle, rgba(10,61,107,.06), transparent);
-border-radius: 50%;
-}
-.edu-card:hover {
-transform: translateY(-4px);
-box-shadow: 0 16px 32px rgba(10,61,107,.1);
-border-left-color: var(–accent);
-}
-
-.edu-icon { font-size: 2rem; margin-bottom: 1rem; }
-.edu-degree {
-font-family: ‘Syne’, sans-serif;
-font-weight: 700;
-font-size: 1rem;
-color: var(–noir);
-margin-bottom: .5rem;
-line-height: 1.3;
-}
-.edu-school {
-font-size: .82rem;
-color: var(–gris);
-line-height: 1.6;
-}
-.edu-badge {
-display: inline-block;
-margin-top: 1rem;
-font-family: var(–mono);
-font-size: .65rem;
-background: rgba(10,61,107,.08);
-color: var(–bleu);
-padding: .3rem .7rem;
-border-radius: 4px;
-}
-
-/* ── Projets ── */
-.projets { background: var(–bg2); }
-.projets-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-gap: 2rem;
-margin-top: 4rem;
-}
-
-.projet-card {
-background: var(–blanc);
-border-radius: 14px;
-overflow: hidden;
-border: 1.5px solid rgba(10,61,107,.07);
-transition: all .3s;
-}
-.projet-card:hover {
-transform: translateY(-6px);
-box-shadow: 0 24px 48px rgba(10,61,107,.12);
-border-color: var(–bleu);
-}
-
-.projet-top {
-padding: 2rem 2rem 1.5rem;
-border-bottom: 1px solid var(–bg);
-}
-.projet-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1rem; }
-.projet-icon { font-size: 2.2rem; }
-.projet-status {
-font-family: var(–mono);
-font-size: .62rem;
-padding: .25rem .7rem;
-border-radius: 100px;
-background: rgba(0,200,150,.1);
-color: var(–accent);
-}
-.projet-name {
-font-family: ‘Syne’, sans-serif;
-font-weight: 700;
-font-size: 1.15rem;
-color: var(–noir);
-margin-bottom: .5rem;
-}
-.projet-desc { font-size: .85rem; color: var(–gris); line-height: 1.7; }
-
-.projet-bottom { padding: 1.2rem 2rem; display: flex; flex-direction: column; gap: .8rem; }
-.tech-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
-.tech-tag {
-font-family: var(–mono);
-font-size: .65rem;
-padding: .25rem .6rem;
-border-radius: 4px;
-background: var(–bg2);
-color: var(–bleu-vif);
-font-weight: 500;
-}
-.projet-links { display: flex; gap: .8rem; }
-.projet-link {
-font-size: .75rem;
-font-weight: 500;
-color: var(–bleu);
-text-decoration: none;
-display: flex;
-align-items: center;
-gap: .3rem;
-transition: color .2s;
-}
-.projet-link:hover { color: var(–accent); }
-
-/* ── Formation enseignée ── */
-.enseignement { background: var(–bleu); color: #fff; }
-.enseignement .section-tag::before { color: rgba(255,255,255,.2); }
-.enseignement .section-tag { color: var(–accent); }
-.enseignement .section-title { color: #fff; }
-.enseignement .section-title em { color: var(–accent); }
-.enseignement .section-sub { color: rgba(255,255,255,.65); }
-
-.modules-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-gap: 1.2rem;
-margin-top: 4rem;
-}
-
-.module-card {
-background: rgba(255,255,255,.06);
-border: 1px solid rgba(255,255,255,.1);
-border-radius: 12px;
-padding: 1.8rem;
-transition: all .25s;
-}
-.module-card:hover {
-background: rgba(255,255,255,.1);
-border-color: var(–accent);
-transform: translateY(-3px);
-}
-.module-icon { font-size: 2rem; margin-bottom: 1rem; }
-.module-name {
-font-family: ‘Syne’, sans-serif;
-font-weight: 700;
-font-size: .95rem;
-margin-bottom: .5rem;
-}
-.module-desc { font-size: .8rem; color: rgba(255,255,255,.6); line-height: 1.7; }
-
-.enseignement-impact {
-margin-top: 4rem;
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 2rem;
-border-top: 1px solid rgba(255,255,255,.1);
-padding-top: 4rem;
-}
-.impact-item { text-align: center; }
-.impact-val {
-font-family: ‘Syne’, sans-serif;
-font-weight: 800;
-font-size: 3rem;
-color: var(–accent);
-line-height: 1;
-margin-bottom: .5rem;
-}
-.impact-label { font-size: .8rem; color: rgba(255,255,255,.5); letter-spacing: .05em; }
-
-/* ── Contact ── */
-.contact { background: var(–bg); }
-.contact-inner {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 6rem;
-align-items: start;
-margin-top: 4rem;
-}
-
-.contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
-.contact-item {
-display: flex;
-align-items: center;
-gap: 1.2rem;
-padding: 1.2rem 1.5rem;
-background: var(–blanc);
-border-radius: 10px;
-border: 1.5px solid rgba(10,61,107,.06);
-transition: border-color .25s;
-}
-.contact-item:hover { border-color: var(–bleu); }
-.contact-item-icon {
-width: 44px; height: 44px;
-background: rgba(10,61,107,.07);
-border-radius: 8px;
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 1.2rem;
-flex-shrink: 0;
-}
-.contact-item-label { font-size: .7rem; color: var(–gris); letter-spacing: .05em; text-transform: uppercase; margin-bottom: .2rem; }
-.contact-item-val { font-size: .9rem; font-weight: 500; color: var(–noir); }
-
-.contact-form { display: flex; flex-direction: column; gap: 1rem; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-.form-field { display: flex; flex-direction: column; gap: .4rem; }
-.form-label { font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(–gris); font-weight: 500; }
-.form-input, .form-textarea {
-background: var(–blanc);
-border: 1.5px solid var(–gris-clair);
-border-radius: 8px;
-padding: .9rem 1.1rem;
-font-family: ‘DM Sans’, sans-serif;
-font-size: .9rem;
-color: var(–noir);
-outline: none;
-transition: border-color .25s;
-cursor: none;
-}
-.form-input:focus, .form-textarea:focus { border-color: var(–bleu); }
-.form-textarea { min-height: 130px; resize: vertical; }
-.form-submit {
-background: var(–bleu);
-color: #fff;
-border: none;
-padding: 1.1rem 2.5rem;
-font-family: ‘DM Sans’, sans-serif;
-font-size: .82rem;
-font-weight: 500;
-letter-spacing: .08em;
-text-transform: uppercase;
-border-radius: 8px;
-cursor: none;
-transition: all .25s;
-align-self: flex-start;
-}
-.form-submit:hover { background: var(–bleu-vif); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(10,61,107,.2); }
-
-/* ── Footer ── */
-footer {
-background: var(–noir);
-color: rgba(255,255,255,.5);
-padding: 3rem 5%;
-display: flex;
-justify-content: space-between;
-align-items: center;
-}
-.footer-logo {
-font-family: ‘Syne’, sans-serif;
-font-weight: 800;
-color: #fff;
-font-size: 1rem;
-}
-.footer-logo span { color: var(–accent); }
-.footer-copy { font-family: var(–mono); font-size: .72rem; }
-.footer-links { display: flex; gap: 1.5rem; }
-.footer-links a {
-font-size: .78rem;
-color: rgba(255,255,255,.4);
-text-decoration: none;
-transition: color .2s;
-}
-.footer-links a:hover { color: var(–accent); }
-
-/* ── Reveal ── */
-.reveal {
-opacity: 0;
-transform: translateY(28px);
-transition: opacity .8s ease, transform .8s ease;
-}
-.reveal.visible { opacity: 1; transform: translateY(0); }
-
-/* ── Animations ── */
-@keyframes fadeUp {
-from { opacity: 0; transform: translateY(20px); }
-to { opacity: 1; transform: translateY(0); }
-}
-
-/* ── Mobile ── */
-@media (max-width: 900px) {
-.hero { grid-template-columns: 1fr; padding-top: 7rem; }
-.hero-terminal { display: none; }
-.skills-inner { grid-template-columns: 1fr; gap: 3rem; }
-.contact-inner { grid-template-columns: 1fr; gap: 3rem; }
-.enseignement-impact { grid-template-columns: 1fr; gap: 1.5rem; }
-.nav-links { display: none; }
-}
-</style>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Junior Ngandu — Développeur Full-Stack & Formateur NTIC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Cabinet+Grotesk:wght@300;400;500;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="cursor" id="cursor"></div>
-<div class="cursor-trail" id="trail"></div>
+  <!-- Scroll Progress -->
+  <div class="scroll-progress" id="scrollProgress"></div>
 
-<!-- ── NAV ── -->
-
-<nav>
-  <a href="#" class="nav-logo">Junior<span>.</span>dev</a>
-  <ul class="nav-links">
-    <li><a href="#competences">Compétences</a></li>
-    <li><a href="#experience">Expérience</a></li>
-    <li><a href="#projets">Projets</a></li>
-    <li><a href="#enseignement">Formation</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <a href="#contact" class="nav-btn">Me contacter</a>
-</nav>
-
-<!-- ── HERO ── -->
-
-<section class="hero">
-  <div class="hero-bg-grid"></div>
-  <div class="hero-bg-blob"></div>
-  <div class="hero-bg-blob2"></div>
-
-  <div class="hero-left">
-    <div class="hero-badge">Disponible pour projets &amp; collaborations</div>
-
-```
-<h1 class="hero-name">
-  Junior<br>
-  <span class="highlight">Ngandu</span>
-</h1>
-
-<div class="hero-role">
-  <span class="hero-role-tag tag-dev">Développeur Full-Stack</span>
-  <span class="role-sep">·</span>
-  <span class="hero-role-tag tag-form">Formateur NTIC</span>
-</div>
-
-<p class="hero-desc">
-  Développeur passionné et formateur engagé basé à Kinshasa, RDC. Je conçois des applications web & mobiles robustes et je transmets les savoirs numériques aux professionnels et institutions publiques.
-</p>
-
-<div class="hero-actions">
-  <a href="#projets" class="btn-primary">↓ Voir mes projets</a>
-  <a href="#contact" class="btn-secondary">Collaborer</a>
-</div>
-
-<div class="hero-stats">
-  <div>
-    <div class="stat-val">100<span>+</span></div>
-    <div class="stat-label">Agents formés DGI</div>
+  <div class="cursor" id="cursor">
+    <div class="cursor-dot"></div>
   </div>
-  <div>
-    <div class="stat-val">5<span>+</span></div>
-    <div class="stat-label">Années d'expérience</div>
-  </div>
-  <div>
-    <div class="stat-val">Bac<span>+5</span></div>
-    <div class="stat-label">Informatique de gestion</div>
-  </div>
-</div>
-```
+  <div class="cursor-ring" id="cursorRing"></div>
 
-  </div>
-
-  <!-- Terminal -->
-
-  <div class="hero-terminal">
-    <div class="terminal-bar">
-      <div class="t-dot r"></div>
-      <div class="t-dot y"></div>
-      <div class="t-dot g"></div>
-      <div class="terminal-title">junior@portfolio ~ profile.json</div>
-    </div>
-    <div class="terminal-body">
-      <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">cat profile.json</span></div>
-      <div class="t-gap"></div>
-      <div class="t-line"><span class="t-cmd">{</span></div>
-      <div class="t-line" style="padding-left:1.2rem"><span class="t-key">"nom"</span><span class="t-cmd">: </span><span class="t-str">"Junior Ngandu"</span><span class="t-cmd">,</span></div>
-      <div class="t-line" style="padding-left:1.2rem"><span class="t-key">"base"</span><span class="t-cmd">: </span><span class="t-str">"Kinshasa, RDC"</span><span class="t-cmd">,</span></div>
-      <div class="t-line" style="padding-left:1.2rem"><span class="t-key">"roles"</span><span class="t-cmd">: [</span></div>
-      <div class="t-line" style="padding-left:2.4rem"><span class="t-str">"Développeur Full-Stack"</span><span class="t-cmd">,</span></div>
-      <div class="t-line" style="padding-left:2.4rem"><span class="t-str">"Formateur NTIC"</span></div>
-      <div class="t-line" style="padding-left:1.2rem"><span class="t-cmd">],</span></div>
-      <div class="t-line" style="padding-left:1.2rem"><span class="t-key">"stack"</span><span class="t-cmd">: [</span><span class="t-str">"Laravel"</span><span class="t-cmd">, </span><span class="t-str">"React"</span><span class="t-cmd">, </span><span class="t-str">"PHP"</span><span class="t-cmd">],</span></div>
-      <div class="t-line" style="padding-left:1.2rem"><span class="t-key">"diplome"</span><span class="t-cmd">: </span><span class="t-str">"Licence Informatique"</span><span class="t-cmd">,</span></div>
-      <div class="t-line" style="padding-left:1.2rem"><span class="t-key">"formé"</span><span class="t-cmd">: </span><span class="t-num">100</span><span class="t-cmd">,</span></div>
-      <div class="t-line" style="padding-left:1.2rem"><span class="t-key">"open_to_work"</span><span class="t-cmd">: </span><span class="t-val">true</span></div>
-      <div class="t-line"><span class="t-cmd">}</span></div>
-      <div class="t-gap"></div>
-      <div class="t-line">
-        <span class="t-prompt">$</span>
-        <span class="t-cmd"> </span>
-        <span class="terminal-cursor"></span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── COMPÉTENCES ── -->
-
-<section class="skills" id="competences">
-  <div class="reveal">
-    <div class="section-tag">Stack technique</div>
-    <h2 class="section-title">Mes <em>compétences</em></h2>
-    <p class="section-sub">Un arsenal technologique couvrant le développement fullstack, les bases de données et les outils pédagogiques numériques.</p>
-  </div>
-  <div class="skills-inner reveal">
-    <div class="skills-categories">
-      <button class="skill-cat-btn active">
-        <span class="skill-cat-icon">💻</span>
-        <span class="skill-cat-name">Backend</span>
-        <span class="skill-cat-count">4 techs</span>
-      </button>
-      <button class="skill-cat-btn">
-        <span class="skill-cat-icon">🎨</span>
-        <span class="skill-cat-name">Frontend</span>
-        <span class="skill-cat-count">4 techs</span>
-      </button>
-      <button class="skill-cat-btn">
-        <span class="skill-cat-icon">🗄️</span>
-        <span class="skill-cat-name">Base de données</span>
-        <span class="skill-cat-count">3 techs</span>
-      </button>
-      <button class="skill-cat-btn">
-        <span class="skill-cat-icon">🛠️</span>
-        <span class="skill-cat-name">Outils</span>
-        <span class="skill-cat-count">4 techs</span>
+  <!-- ── NAV ── -->
+  <nav id="navbar">
+    <a href="#" class="nav-logo">Junior<span class="logo-dot">.</span>dev</a>
+    <ul class="nav-links">
+      <li><a href="#competences">Stack</a></li>
+      <li><a href="#experience">Parcours</a></li>
+      <li><a href="#projets">Projets</a></li>
+      <li><a href="#enseignement">Formation</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <span class="nav-status"><span class="status-dot"></span>Disponible</span>
+      <a href="#contact" class="nav-btn">Me contacter →</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
       </button>
     </div>
-    <div class="skills-grid">
-      <div class="skill-card">
-        <div class="skill-icon">🔷</div>
-        <div class="skill-name">Laravel</div>
-        <div class="skill-lvl">Expert</div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">🐘</div>
-        <div class="skill-name">PHP</div>
-        <div class="skill-lvl">Expert</div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">⚛️</div>
-        <div class="skill-name">React.js</div>
-        <div class="skill-lvl">Avancé</div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">🗃️</div>
-        <div class="skill-name">MySQL</div>
-        <div class="skill-lvl">Avancé</div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">🎯</div>
-        <div class="skill-name">JavaScript</div>
-        <div class="skill-lvl">Avancé</div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">📱</div>
-        <div class="skill-name">Capacitor</div>
-        <div class="skill-lvl">Intermédiaire</div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">🖥️</div>
-        <div class="skill-name">Tauri</div>
-        <div class="skill-lvl">Intermédiaire</div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">🔧</div>
-        <div class="skill-name">Git / GitHub</div>
-        <div class="skill-lvl">Avancé</div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">🎨</div>
-        <div class="skill-name">Tailwind CSS</div>
-        <div class="skill-lvl">Avancé</div>
-      </div>
-    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="#competences" class="mobile-link">Stack</a></li>
+      <li><a href="#experience" class="mobile-link">Parcours</a></li>
+      <li><a href="#projets" class="mobile-link">Projets</a></li>
+      <li><a href="#enseignement" class="mobile-link">Formation</a></li>
+      <li><a href="#contact" class="mobile-link">Contact</a></li>
+    </ul>
   </div>
-</section>
 
-<!-- ── EXPÉRIENCE ── -->
+  <!-- ── HERO ── -->
+  <section class="hero" id="hero">
+    <div class="hero-noise"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
 
-<section class="experience" id="experience">
-  <div class="reveal">
-    <div class="section-tag">Parcours professionnel</div>
-    <h2 class="section-title">Mon <em>expérience</em></h2>
-    <p class="section-sub">Formateur certifié et stagiaire dans des institutions financières et pédagogiques de référence en RDC.</p>
-  </div>
-  <div class="exp-inner reveal">
-    <div class="timeline">
-
-```
-  <div class="timeline-item">
-    <div class="exp-card">
-      <div class="exp-top">
-        <div>
-          <div class="exp-org">École Nationale des Finances (ENF)</div>
-          <div class="exp-role">Formateur en NTIC · Direction Générale des Impôts</div>
+    <div class="hero-content">
+      <div class="hero-left">
+        <div class="hero-badge">
+          <span class="badge-pulse"></span>
+          Disponible pour projets &amp; collaborations
         </div>
-        <span class="exp-type type-formateur">Formateur</span>
-      </div>
-      <p class="exp-desc">Formation intensive en outils numériques, bureautique avancée et systèmes d'information à destination des agents et cadres de la DGI. Conception de modules pédagogiques adaptés aux besoins fiscaux de l'administration congolaise.</p>
-      <div class="exp-highlight">Plus de 100 agents & cadres de la DGI formés</div>
-    </div>
-  </div>
 
-  <div class="timeline-item">
-    <div class="exp-card">
-      <div class="exp-top">
-        <div>
-          <div class="exp-org">EDAP</div>
-          <div class="exp-role">Stage Pédagogique</div>
+        <h1 class="hero-name">
+          <span class="name-line name-line-1">Junior</span>
+          <span class="name-line name-line-2"><em>Ngandu</em></span>
+        </h1>
+
+        <div class="hero-roles">
+          <div class="role-pill role-dev">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            Développeur Full-Stack
+          </div>
+          <div class="role-sep">×</div>
+          <div class="role-pill role-form">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            Formateur NTIC
+          </div>
         </div>
-        <span class="exp-type type-stage">Stage pédagogique</span>
-      </div>
-      <p class="exp-desc">Immersion dans l'environnement pédagogique d'un établissement d'enseignement. Observation, conception de séquences didactiques et animation de cours en informatique. Développement des compétences en transmission et vulgarisation des savoirs techniques.</p>
-    </div>
-  </div>
 
-  <div class="timeline-item">
-    <div class="exp-card">
-      <div class="exp-top">
-        <div>
-          <div class="exp-org">FIRSTBANK</div>
-          <div class="exp-role">Stage Professionnel · Systèmes d'Information Bancaire</div>
+        <p class="hero-desc">
+          Développeur passionné et formateur engagé basé à Kinshasa, RDC.<br>
+          Je conçois des applications web &amp; mobiles robustes et transmets<br>
+          les savoirs numériques aux institutions publiques.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#projets" class="btn-primary">
+            Voir mes projets
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+          <a href="#contact" class="btn-ghost">Collaborer</a>
         </div>
-        <span class="exp-type type-stage">Stage pro</span>
-      </div>
-      <p class="exp-desc">Stage au sein du département informatique d'une institution bancaire. Découverte des systèmes de gestion bancaire, des processus de sécurité des données et des architectures logicielles du secteur financier.</p>
-    </div>
-  </div>
 
-  <div class="timeline-item">
-    <div class="exp-card">
-      <div class="exp-top">
-        <div>
-          <div class="exp-org">CADECO</div>
-          <div class="exp-role">Stage Professionnel · Systèmes d'Information</div>
-        </div>
-        <span class="exp-type type-stage">Stage pro</span>
-      </div>
-      <p class="exp-desc">Stage en informatique au sein de la Caisse d'Épargne du Congo. Participation à la gestion des systèmes d'information, des bases de données clients et des processus de traitement numérique des opérations financières.</p>
-    </div>
-  </div>
-
-</div>
-```
-
-  </div>
-</section>
-
-<!-- ── FORMATION ── -->
-
-<section class="formation" id="formation">
-  <div class="reveal">
-    <div class="section-tag">Diplômes & études</div>
-    <h2 class="section-title">Mon <em>parcours académique</em></h2>
-    <p class="section-sub">Une formation pluridisciplinaire alliant informatique de gestion et sciences agronomiques à l'ISP de la Gombe, Kinshasa.</p>
-  </div>
-  <div class="edu-grid reveal">
-    <div class="edu-card">
-      <div class="edu-icon">🎓</div>
-      <div class="edu-degree">Licence en Informatique de Gestion</div>
-      <div class="edu-school">Institut Supérieur Pédagogique de la Gombe (ISPG)<br>Kinshasa, RDC</div>
-      <span class="edu-badge">Bac+5 · Niveau Master</span>
-    </div>
-    <div class="edu-card">
-      <div class="edu-icon">📚</div>
-      <div class="edu-degree">Graduat en Informatique de Gestion</div>
-      <div class="edu-school">Institut Supérieur Pédagogique de la Gombe (ISPG)<br>Kinshasa, RDC</div>
-      <span class="edu-badge">Bac+3 · Licence</span>
-    </div>
-    <div class="edu-card" style="border-left-color: var(--accent2);">
-      <div class="edu-icon">🌱</div>
-      <div class="edu-degree">Baccalauréat en Agriculture Générale</div>
-      <div class="edu-school">Institut Technique Agricole de Mombele (ITA)<br>Kinshasa, RDC</div>
-      <span class="edu-badge" style="background:rgba(255,107,53,.1);color:var(--accent2);">Formation secondaire</span>
-    </div>
-  </div>
-</section>
-
-<!-- ── PROJETS ── -->
-
-<section class="projets" id="projets">
-  <div class="reveal">
-    <div class="section-tag">Réalisations</div>
-    <h2 class="section-title">Mes <em>projets</em></h2>
-    <p class="section-sub">Applications concrètes développées pour des institutions publiques et privées en RDC.</p>
-  </div>
-  <div class="projets-grid reveal">
-
-```
-<div class="projet-card">
-  <div class="projet-top">
-    <div class="projet-header">
-      <div class="projet-icon">🏛️</div>
-      <span class="projet-status">En production</span>
-    </div>
-    <div class="projet-name">RedressApp</div>
-    <p class="projet-desc">Application enterprise de gestion des audits fiscaux et redressements pour la Direction Générale des Impôts (DGI). Système de rôles avancé, 2FA, tableaux de bord analytiques et calcul automatique des taxes (TVA, IBP, IPR...).</p>
-  </div>
-  <div class="projet-bottom">
-    <div class="tech-tags">
-      <span class="tech-tag">Laravel</span>
-      <span class="tech-tag">React</span>
-      <span class="tech-tag">MySQL</span>
-      <span class="tech-tag">2FA / TOTP</span>
-      <span class="tech-tag">RBAC</span>
-    </div>
-    <div class="projet-links">
-      <span class="projet-link">📋 Projet confidentiel DGI</span>
-    </div>
-  </div>
-</div>
-
-<div class="projet-card">
-  <div class="projet-top">
-    <div class="projet-header">
-      <div class="projet-icon">🚗</div>
-      <span class="projet-status">En cours</span>
-    </div>
-    <div class="projet-name">Fleet Manager</div>
-    <p class="projet-desc">Application cross-platform de gestion de parc automobile couvrant iOS, Android et Windows. Suivi des véhicules, maintenance, conducteurs et rapports analytiques en temps réel.</p>
-  </div>
-  <div class="projet-bottom">
-    <div class="tech-tags">
-      <span class="tech-tag">Laravel</span>
-      <span class="tech-tag">React</span>
-      <span class="tech-tag">Capacitor</span>
-      <span class="tech-tag">Tauri</span>
-      <span class="tech-tag">MySQL</span>
-    </div>
-    <div class="projet-links">
-      <a href="#" class="projet-link">→ En développement</a>
-    </div>
-  </div>
-</div>
-
-<div class="projet-card">
-  <div class="projet-top">
-    <div class="projet-header">
-      <div class="projet-icon">🍽️</div>
-      <span class="projet-status">Livré</span>
-    </div>
-    <div class="projet-name">Restaurant Luxe — Site Web</div>
-    <p class="projet-desc">Landing page haut de gamme pour un restaurant gastronomique. Design cinématographique, animations fluides, curseur personnalisé, galerie immersive et système de réservation.</p>
-  </div>
-  <div class="projet-bottom">
-    <div class="tech-tags">
-      <span class="tech-tag">HTML/CSS</span>
-      <span class="tech-tag">JavaScript</span>
-      <span class="tech-tag">Animations CSS</span>
-      <span class="tech-tag">Design UX</span>
-    </div>
-    <div class="projet-links">
-      <a href="#" class="projet-link">→ Voir le projet</a>
-    </div>
-  </div>
-</div>
-```
-
-  </div>
-</section>
-
-<!-- ── ENSEIGNEMENT ── -->
-
-<section class="enseignement" id="enseignement">
-  <div class="reveal">
-    <div class="section-tag">Transmission des savoirs</div>
-    <h2 class="section-title">Ce que <em>j'enseigne</em></h2>
-    <p class="section-sub">Des modules pratiques, orientés terrain, pour des professionnels et institutions qui veulent maîtriser le numérique.</p>
-  </div>
-
-  <div class="modules-grid reveal">
-    <div class="module-card">
-      <div class="module-icon">🖥️</div>
-      <div class="module-name">Bureautique avancée</div>
-      <p class="module-desc">Word, Excel, PowerPoint — utilisation professionnelle et productivité pour l'administration.</p>
-    </div>
-    <div class="module-card">
-      <div class="module-icon">🔐</div>
-      <div class="module-name">Sécurité informatique</div>
-      <p class="module-desc">Bonnes pratiques, protection des données, authentification et risques numériques.</p>
-    </div>
-    <div class="module-card">
-      <div class="module-icon">🗄️</div>
-      <div class="module-name">Bases de données</div>
-      <p class="module-desc">Conception de BDD, requêtes SQL, modélisation et gestion de données métier.</p>
-    </div>
-    <div class="module-card">
-      <div class="module-icon">🌐</div>
-      <div class="module-name">Développement web</div>
-      <p class="module-desc">Introduction au HTML/CSS, aux frameworks modernes et à la logique de programmation.</p>
-    </div>
-    <div class="module-card">
-      <div class="module-icon">📊</div>
-      <div class="module-name">Systèmes d'information</div>
-      <p class="module-desc">Comprendre les SI d'entreprise, les ERP et les flux de données institutionnels.</p>
-    </div>
-    <div class="module-card">
-      <div class="module-icon">🤖</div>
-      <div class="module-name">Intelligence Artificielle</div>
-      <p class="module-desc">Introduction à l'IA, outils pratiques et impacts sur les métiers administratifs.</p>
-    </div>
-  </div>
-
-  <div class="enseignement-impact reveal">
-    <div class="impact-item">
-      <div class="impact-val">100+</div>
-      <div class="impact-label">Apprenants formés</div>
-    </div>
-    <div class="impact-item">
-      <div class="impact-val">1</div>
-      <div class="impact-label">Institution nationale (DGI / ENF)</div>
-    </div>
-    <div class="impact-item">
-      <div class="impact-val">6+</div>
-      <div class="impact-label">Modules pédagogiques conçus</div>
-    </div>
-  </div>
-</section>
-
-<!-- ── CONTACT ── -->
-
-<section class="contact" id="contact">
-  <div class="reveal">
-    <div class="section-tag">Travaillons ensemble</div>
-    <h2 class="section-title">Me <em>contacter</em></h2>
-    <p class="section-sub">Disponible pour des projets de développement, des missions de formation ou des collaborations techniques à Kinshasa et à distance.</p>
-  </div>
-
-  <div class="contact-inner reveal">
-    <div class="contact-info">
-      <div class="contact-item">
-        <div class="contact-item-icon">📍</div>
-        <div>
-          <div class="contact-item-label">Localisation</div>
-          <div class="contact-item-val">Kinshasa, République Démocratique du Congo</div>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-num">100<span>+</span></div>
+            <div class="stat-lbl">Agents formés DGI</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <div class="stat-num">3<span>+</span></div>
+            <div class="stat-lbl">Années d'expérience</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <div class="stat-num">Bac<span>+5</span></div>
+            <div class="stat-lbl">Niveau Master</div>
+          </div>
         </div>
       </div>
-      <div class="contact-item">
-        <div class="contact-item-icon">💼</div>
-        <div>
-          <div class="contact-item-label">Disponibilité</div>
-          <div class="contact-item-val">Projets freelance · Formation · Emploi</div>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-item-icon">🎓</div>
-        <div>
-          <div class="contact-item-label">Formation</div>
-          <div class="contact-item-val">Licence Informatique de Gestion · ISP Gombe</div>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-item-icon">🌍</div>
-        <div>
-          <div class="contact-item-label">Langues</div>
-          <div class="contact-item-val">Français · Lingala · Anglais (notions)</div>
+
+      <div class="hero-right">
+        <div class="avatar-wrap">
+          <div class="avatar-glow"></div>
+          <div class="avatar-frame">
+            <img src="images/avatar_1769435676_9nf4XxIm.jpg.jpg" alt="Junior Ngandu" class="avatar-img">
+          </div>
+          <div class="avatar-badge avatar-badge-1">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            Laravel + React
+          </div>
+          <div class="avatar-badge avatar-badge-2">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+            100+ formés
+          </div>
+          <div class="avatar-badge avatar-badge-3">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            Kinshasa, RDC
+          </div>
         </div>
       </div>
     </div>
 
-```
-<div class="contact-form">
-  <div class="form-row">
-    <div class="form-field">
-      <label class="form-label">Nom</label>
-      <input class="form-input" type="text" placeholder="Votre nom">
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
     </div>
-    <div class="form-field">
-      <label class="form-label">Email</label>
-      <input class="form-input" type="email" placeholder="votre@email.com">
+  </section>
+
+  <!-- ── MARQUEE ── -->
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <span>Laravel</span><span class="mx">·</span>
+      <span>React.js</span><span class="mx">·</span>
+      <span>MySQL</span><span class="mx">·</span>
+      <span>PHP</span><span class="mx">·</span>
+      <span>Capacitor</span><span class="mx">·</span>
+      <span>Tauri</span><span class="mx">·</span>
+      <span>JavaScript</span><span class="mx">·</span>
+      <span>Tailwind CSS</span><span class="mx">·</span>
+      <span>Git / GitHub</span><span class="mx">·</span>
+      <span>2FA / TOTP</span><span class="mx">·</span>
+      <span>RBAC</span><span class="mx">·</span>
+      <span>Laravel</span><span class="mx">·</span>
+      <span>React.js</span><span class="mx">·</span>
+      <span>MySQL</span><span class="mx">·</span>
+      <span>PHP</span><span class="mx">·</span>
+      <span>Capacitor</span><span class="mx">·</span>
+      <span>Tauri</span><span class="mx">·</span>
+      <span>JavaScript</span><span class="mx">·</span>
+      <span>Tailwind CSS</span><span class="mx">·</span>
+      <span>Git / GitHub</span><span class="mx">·</span>
+      <span>2FA / TOTP</span><span class="mx">·</span>
+      <span>RBAC</span><span class="mx">·</span>
     </div>
   </div>
-  <div class="form-field">
-    <label class="form-label">Objet</label>
-    <input class="form-input" type="text" placeholder="Projet de développement, formation...">
-  </div>
-  <div class="form-field">
-    <label class="form-label">Message</label>
-    <textarea class="form-textarea" placeholder="Décrivez votre besoin..."></textarea>
-  </div>
-  <button class="form-submit">→ Envoyer le message</button>
-</div>
-```
 
-  </div>
-</section>
+  <!-- ── COMPÉTENCES ── -->
+  <section class="skills" id="competences">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">// Stack technique</div>
+      <h2 class="section-title">Mes <em>compétences</em></h2>
+      <p class="section-sub">Un arsenal technologique couvrant le développement fullstack, les bases de données et les outils pédagogiques numériques.</p>
+    </div>
 
-<!-- ── FOOTER ── -->
+    <div class="skills-layout reveal">
+      <div class="skill-tabs">
+        <button class="skill-tab active" data-cat="backend">
+          <span class="tab-icon">⬡</span> Backend <span class="tab-count">4</span>
+        </button>
+        <button class="skill-tab" data-cat="frontend">
+          <span class="tab-icon">◈</span> Frontend <span class="tab-count">4</span>
+        </button>
+        <button class="skill-tab" data-cat="database">
+          <span class="tab-icon">◉</span> Base de données <span class="tab-count">3</span>
+        </button>
+        <button class="skill-tab" data-cat="tools">
+          <span class="tab-icon">◎</span> Outils <span class="tab-count">4</span>
+        </button>
+      </div>
 
-<footer>
-  <div class="footer-logo">Junior<span>.</span>dev</div>
-  <p class="footer-copy">© 2025 Junior Ngandu · Kinshasa, RDC</p>
-  <div class="footer-links">
-    <a href="#competences">Stack</a>
-    <a href="#projets">Projets</a>
-    <a href="#contact">Contact</a>
-  </div>
-</footer>
+      <div class="skills-grid">
+        <div class="skill-card" data-cat="backend">
+          <div class="skill-card-inner">
+            <img src="images/logo-laravel-icon-1024.png" alt="Laravel" class="skill-img">
+            <div class="skill-info">
+              <div class="skill-name">Laravel</div>
+              <div class="skill-level skill-level-92"><span></span></div>
+            </div>
+            <span class="skill-badge">Avancé</span>
+          </div>
+        </div>
+        <div class="skill-card" data-cat="backend">
+          <div class="skill-card-inner">
+            <img src="images/logo-php-256.png" alt="PHP" class="skill-img">
+            <div class="skill-info">
+              <div class="skill-name">PHP</div>
+              <div class="skill-level skill-level-88"><span></span></div>
+            </div>
+            <span class="skill-badge">Avancé</span>
+          </div>
+        </div>
+        <div class="skill-card" data-cat="frontend">
+          <div class="skill-card-inner">
+            <img src="images/logo-react-256.png" alt="React" class="skill-img">
+            <div class="skill-info">
+              <div class="skill-name">React.js</div>
+              <div class="skill-level skill-level-90"><span></span></div>
+            </div>
+            <span class="skill-badge">Avancé</span>
+          </div>
+        </div>
+        <div class="skill-card" data-cat="database">
+          <div class="skill-card-inner">
+            <img src="images/png-clipart-mysql-mysql.png" alt="MySQL" class="skill-img">
+            <div class="skill-info">
+              <div class="skill-name">MySQL</div>
+              <div class="skill-level skill-level-85"><span></span></div>
+            </div>
+            <span class="skill-badge">Avancé</span>
+          </div>
+        </div>
+        <div class="skill-card" data-cat="frontend">
+          <div class="skill-card-inner">
+            <img src="images/JavaScript-logo.png" alt="JS" class="skill-img">
+            <div class="skill-info">
+              <div class="skill-name">JavaScript</div>
+              <div class="skill-level skill-level-88"><span></span></div>
+            </div>
+            <span class="skill-badge">Avancé</span>
+          </div>
+        </div>
+        <div class="skill-card" data-cat="frontend">
+          <div class="skill-card-inner">
+            <img src="images/tailwind-css-256.png" alt="Tailwind" class="skill-img">
+            <div class="skill-info">
+              <div class="skill-name">Tailwind CSS</div>
+              <div class="skill-level skill-level-87"><span></span></div>
+            </div>
+            <span class="skill-badge">Avancé</span>
+          </div>
+        </div>
+        <div class="skill-card" data-cat="tools">
+          <div class="skill-card-inner">
+            <div class="skill-svg-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg>
+            </div>
+            <div class="skill-info">
+              <div class="skill-name">Git / GitHub</div>
+              <div class="skill-level skill-level-86"><span></span></div>
+            </div>
+            <span class="skill-badge">Avancé</span>
+          </div>
+        </div>
+        <div class="skill-card" data-cat="tools">
+          <div class="skill-card-inner">
+            <div class="skill-svg-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            </div>
+            <div class="skill-info">
+              <div class="skill-name">Capacitor</div>
+              <div class="skill-level skill-level-72"><span></span></div>
+            </div>
+            <span class="skill-badge skill-badge-mid">Intermédiaire</span>
+          </div>
+        </div>
+        <div class="skill-card" data-cat="tools">
+          <div class="skill-card-inner">
+            <div class="skill-svg-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <div class="skill-info">
+              <div class="skill-name">Tauri</div>
+              <div class="skill-level skill-level-68"><span></span></div>
+            </div>
+            <span class="skill-badge skill-badge-mid">Intermédiaire</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<script>
-// Curseur
-const cur = document.getElementById('cursor');
-const trail = document.getElementById('trail');
-let mx = 0, my = 0, tx = 0, ty = 0;
+  <!-- ── EXPÉRIENCE ── -->
+  <section class="experience" id="experience">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">// Parcours professionnel</div>
+      <h2 class="section-title">Mon <em>expérience</em></h2>
+      <p class="section-sub">Formateur certifié et stagiaire dans des institutions financières et pédagogiques de référence en RDC.</p>
+    </div>
 
-document.addEventListener('mousemove', e => {
-  mx = e.clientX; my = e.clientY;
-  cur.style.left = mx + 'px';
-  cur.style.top = my + 'px';
-});
+    <div class="timeline reveal">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-line-seg"></div>
+        <div class="exp-card">
+          <div class="exp-card-accent"></div>
+          <div class="exp-header">
+            <div>
+              <div class="exp-org">École Nationale des Finances (ENF)</div>
+              <div class="exp-role">Formateur en NTIC</div>
+            </div>
+            <span class="exp-type type-formateur">Formateur</span>
+          </div>
+          <p class="exp-desc">Formation intensive en outils numériques, bureautique avancée et systèmes d'information à destination des agents et cadres de la DGI. Conception de modules pédagogiques adaptés aux besoins fiscaux de l'administration congolaise.</p>
+          <div class="exp-highlight">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Plus de 100 agents &amp; cadres de la DGI formés
+          </div>
+        </div>
+      </div>
 
-(function loop() {
-  tx += (mx - tx) * .14;
-  ty += (my - ty) * .14;
-  trail.style.left = tx + 'px';
-  trail.style.top = ty + 'px';
-  requestAnimationFrame(loop);
-})();
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-line-seg"></div>
+        <div class="exp-card">
+          <div class="exp-card-accent exp-accent-accent2"></div>
+          <div class="exp-header">
+            <div>
+              <div class="exp-org">École d'Application ISP/GOMBE</div>
+              <div class="exp-role">Stage Pédagogique</div>
+            </div>
+            <span class="exp-type type-stage">Stage pédago.</span>
+          </div>
+          <p class="exp-desc">Immersion dans l'environnement pédagogique d'un établissement d'enseignement. Observation, conception de séquences didactiques et animation de cours en informatique.</p>
+        </div>
+      </div>
 
-document.querySelectorAll('a, button, input, textarea').forEach(el => {
-  el.addEventListener('mouseenter', () => {
-    cur.style.width = '18px';
-    cur.style.height = '18px';
-    trail.style.opacity = '0';
-  });
-  el.addEventListener('mouseleave', () => {
-    cur.style.width = '10px';
-    cur.style.height = '10px';
-    trail.style.opacity = '.5';
-  });
-});
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-line-seg"></div>
+        <div class="exp-card">
+          <div class="exp-card-accent exp-accent-violet"></div>
+          <div class="exp-header">
+            <div>
+              <div class="exp-org">FIRSTBANK DRC S.A</div>
+              <div class="exp-role">Stage · Systèmes d'Information Bancaire</div>
+            </div>
+            <span class="exp-type type-stage">Stage ent.</span>
+          </div>
+          <p class="exp-desc">Stage au sein du département informatique d'une institution bancaire. Découverte des systèmes de gestion bancaire, processus de sécurité des données et architectures logicielles du secteur financier.</p>
+        </div>
+      </div>
 
-// Scroll reveal
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="exp-card">
+          <div class="exp-card-accent exp-accent-bleu-clair"></div>
+          <div class="exp-header">
+            <div>
+              <div class="exp-org">CADECO</div>
+              <div class="exp-role">Stage · Systèmes d'Information</div>
+            </div>
+            <span class="exp-type type-stage">Stage ent.</span>
+          </div>
+          <p class="exp-desc">Stage en informatique au sein de la Caisse d'Épargne du Congo. Participation à la gestion des systèmes d'information, des bases de données clients et des processus de traitement numérique.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-// Tabs compétences
-document.querySelectorAll('.skill-cat-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.skill-cat-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-  });
-});
-</script>
+  <!-- ── FORMATION ACADÉMIQUE ── -->
+  <section class="formation" id="formation">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">// Diplômes & études</div>
+      <h2 class="section-title">Mon <em>parcours académique</em></h2>
+      <p class="section-sub">Une formation pluridisciplinaire alliant informatique de gestion et sciences agronomiques à l'ISP de la Gombe, Kinshasa.</p>
+    </div>
 
+    <div class="edu-grid reveal">
+      <div class="edu-card edu-main">
+        <div class="edu-card-num">01</div>
+        <div class="edu-icon-wrap">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </div>
+        <div class="edu-degree">Licence en Informatique de Gestion</div>
+        <div class="edu-school">Institut Supérieur Pédagogique de la Gombe (ISP-GOMBE) · Kinshasa, RDC</div>
+        <p class="edu-desc">Cursus complet en informatique de gestion couvrant la conception de SI, les bases de données, la gestion de projets et le développement d'applications professionnelles.</p>
+        <span class="edu-badge">Bac+5 · Niveau Master</span>
+      </div>
+
+      <div class="edu-card">
+        <div class="edu-card-num">02</div>
+        <div class="edu-icon-wrap">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        </div>
+        <div class="edu-degree">Graduat en Informatique de Gestion</div>
+        <div class="edu-school">ISP-GOMBE · Kinshasa, RDC</div>
+        <p class="edu-desc">Formation de trois ans axée sur les fondamentaux de l'informatique, la programmation, les bases de données et la gestion des systèmes d'information.</p>
+        <span class="edu-badge">Bac+3</span>
+      </div>
+
+      <div class="edu-card edu-card-alt">
+        <div class="edu-card-num">03</div>
+        <div class="edu-icon-wrap">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="edu-degree">Baccalauréat en Agriculture Générale</div>
+        <div class="edu-school">ITA Mombele · Kinshasa, RDC</div>
+        <p class="edu-desc">Formation généraliste en sciences agronomiques couvrant la protection des cultures, l'élevage et les méthodes de production durable.</p>
+        <span class="edu-badge edu-badge-alt">Formation secondaire</span>
+      </div>
+    </div>
+
+    <!-- Téléchargement diplômes -->
+    <div class="diplomas-section reveal">
+      <h3 class="diplomas-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Télécharger mes diplômes
+      </h3>
+      <div class="diplomas-list">
+        <div class="diploma-item">
+          <div class="diploma-left">
+            <div class="diploma-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <div>
+              <div class="diploma-name">Licence en Informatique de Gestion</div>
+              <div class="diploma-meta">ISP-GOMBE · Bac+5 · Kinshasa</div>
+            </div>
+          </div>
+          <a href="#" class="diploma-dl-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            PDF
+          </a>
+        </div>
+        <div class="diploma-item">
+          <div class="diploma-left">
+            <div class="diploma-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <div>
+              <div class="diploma-name">Graduat en Informatique de Gestion</div>
+              <div class="diploma-meta">ISP-GOMBE · Bac+3 · Kinshasa</div>
+            </div>
+          </div>
+          <a href="#" class="diploma-dl-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            PDF
+          </a>
+        </div>
+        <div class="diploma-item">
+          <div class="diploma-left">
+            <div class="diploma-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <div>
+              <div class="diploma-name">Baccalauréat en Agriculture Générale</div>
+              <div class="diploma-meta">ITA Mombele · Secondaire</div>
+            </div>
+          </div>
+          <a href="#" class="diploma-dl-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            PDF
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROJETS ── -->
+  <section class="projets" id="projets">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">// Réalisations</div>
+      <h2 class="section-title">Mes <em>projets</em></h2>
+      <p class="section-sub">Applications concrètes développées pour des institutions publiques et privées en RDC.</p>
+    </div>
+
+    <div class="projets-grid reveal">
+      <!-- Projet 1: Feature -->
+      <div class="projet-card projet-featured">
+        <div class="projet-card-bg"></div>
+        <div class="projet-card-content">
+          <div class="projet-top-row">
+            <div class="projet-icon-wrap">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            </div>
+            <span class="projet-status status-live">
+              <span class="live-dot"></span> En production
+            </span>
+          </div>
+          <h3 class="projet-name">RedressApp</h3>
+          <p class="projet-desc">Application enterprise de gestion des audits fiscaux et redressements pour la DGI. Système de rôles avancé (7 rôles), 2FA multi-méthodes (Email + TOTP), tableaux de bord analytiques et calcul automatique des taxes.</p>
+          <div class="projet-techs">
+            <span>Laravel</span><span>React</span><span>MySQL</span><span>2FA/TOTP</span><span>RBAC</span>
+          </div>
+          <div class="projet-footer">
+            <span class="projet-confidential">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              Projet confidentiel DGI
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projet 2 -->
+      <div class="projet-card">
+        <div class="projet-card-content">
+          <div class="projet-top-row">
+            <div class="projet-icon-wrap">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            </div>
+            <span class="projet-status status-wip">En cours</span>
+          </div>
+          <h3 class="projet-name">Fleet Manager</h3>
+          <p class="projet-desc">Application cross-platform de gestion de parc automobile couvrant iOS, Android et Windows. Suivi véhicules, maintenance, conducteurs et rapports analytiques temps réel.</p>
+          <div class="projet-techs">
+            <span>Laravel</span><span>React</span><span>Capacitor</span><span>Tauri</span><span>MySQL</span>
+          </div>
+          <div class="projet-footer">
+            <a href="#" class="projet-link">En développement →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projet 3 -->
+      <div class="projet-card">
+        <div class="projet-card-content">
+          <div class="projet-top-row">
+            <div class="projet-icon-wrap">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 2l1.5 1.5"/><path d="M19 2l-1.5 1.5"/><path d="M12 2v2"/><path d="M12 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/><path d="M12 15v7"/><path d="M9 18h6"/></svg>
+            </div>
+            <span class="projet-status status-done">Livré</span>
+          </div>
+          <h3 class="projet-name">Restaurant Luxe</h3>
+          <p class="projet-desc">Landing page haut de gamme pour restaurant gastronomique. Design cinématographique, animations fluides, curseur personnalisé, galerie immersive et système de réservation.</p>
+          <div class="projet-techs">
+            <span>HTML/CSS</span><span>JavaScript</span><span>CSS Animations</span><span>UX Design</span>
+          </div>
+          <div class="projet-footer">
+            <a href="#" class="projet-link">Voir le projet →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ENSEIGNEMENT ── -->
+  <section class="enseignement" id="enseignement">
+    <div class="enseignement-inner">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">// Transmission des savoirs</div>
+        <h2 class="section-title light">Ce que <em>j'enseigne</em></h2>
+        <p class="section-sub light">Des modules pratiques, orientés terrain, pour les professionnels et institutions qui veulent maîtriser le numérique.</p>
+      </div>
+
+      <div class="modules-grid reveal">
+        <div class="module-card">
+          <div class="module-num">01</div>
+          <svg class="module-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <div class="module-name">Bureautique avancée</div>
+          <p class="module-desc">Word, Excel, PowerPoint — utilisation professionnelle et productivité pour l'administration.</p>
+        </div>
+        <div class="module-card">
+          <div class="module-num">02</div>
+          <svg class="module-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <div class="module-name">Sécurité informatique</div>
+          <p class="module-desc">Bonnes pratiques, protection des données, authentification et risques numériques.</p>
+        </div>
+        <div class="module-card">
+          <div class="module-num">03</div>
+          <svg class="module-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          <div class="module-name">Bases de données</div>
+          <p class="module-desc">Conception de BDD, requêtes SQL, modélisation et gestion de données métier.</p>
+        </div>
+        <div class="module-card">
+          <div class="module-num">04</div>
+          <svg class="module-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <div class="module-name">Développement web</div>
+          <p class="module-desc">Introduction au HTML/CSS, aux frameworks modernes et à la logique de programmation.</p>
+        </div>
+        <div class="module-card">
+          <div class="module-num">05</div>
+          <svg class="module-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <div class="module-name">Systèmes d'information</div>
+          <p class="module-desc">Comprendre les SI d'entreprise, les ERP et les flux de données institutionnels.</p>
+        </div>
+        <div class="module-card module-card-accent">
+          <div class="module-num">06</div>
+          <svg class="module-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2z"/></svg>
+          <div class="module-name">Intelligence Artificielle</div>
+          <p class="module-desc">Introduction à l'IA, outils pratiques et impacts sur les métiers administratifs.</p>
+        </div>
+      </div>
+
+      <div class="impact-row reveal">
+        <div class="impact-card">
+          <div class="impact-num">100+</div>
+          <div class="impact-lbl">Apprenants formés</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-num">2+</div>
+          <div class="impact-lbl">Institutions nationales</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-num">6</div>
+          <div class="impact-lbl">Modules pédagogiques</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-num">3+</div>
+          <div class="impact-lbl">Années d'enseignement</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section class="contact" id="contact">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">// Travaillons ensemble</div>
+      <h2 class="section-title">Me <em>contacter</em></h2>
+      <p class="section-sub">Disponible pour des projets de développement, des missions de formation ou des collaborations techniques à Kinshasa et à distance.</p>
+    </div>
+
+    <div class="contact-layout reveal">
+      <div class="contact-left">
+        <div class="contact-card">
+          <div class="contact-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="contact-card-label">Localisation</div>
+            <div class="contact-card-val">Kinshasa, RDC</div>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+          <div>
+            <div class="contact-card-label">Disponibilité</div>
+            <div class="contact-card-val">Freelance · Formation · Emploi</div>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/></svg>
+          </div>
+          <div>
+            <div class="contact-card-label">Formation</div>
+            <div class="contact-card-val">Licence Informatique · ISP Gombe</div>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <div>
+            <div class="contact-card-label">Langues</div>
+            <div class="contact-card-val">Français · Lingala · Anglais</div>
+          </div>
+        </div>
+
+        <div class="contact-cta-block">
+          <p class="contact-cta-text">Prêt à démarrer un projet ? Discutons de vos besoins.</p>
+          <a href="mailto:juniorngandu18@gmail.com" class="contact-email-btn">
+            juniorngandu18@gmail.com
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+          <a href="tel:+243818618735" class="contact-email-btn">
+            +243 818 618 735
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-form-wrap">
+        <div id="contactForm">
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-lbl">Nom</label>
+              <input id="userName" type="text" class="form-inp" placeholder="Votre nom" required>
+            </div>
+            <div class="form-group">
+              <label class="form-lbl">Email</label>
+              <input id="userEmail" type="email" class="form-inp" placeholder="votre@email.com" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-lbl">Objet</label>
+            <input id="userSubject" type="text" class="form-inp" placeholder="Projet de développement, formation..." required>
+          </div>
+          <div class="form-group">
+            <label class="form-lbl">Message</label>
+            <textarea id="userMessage" class="form-txt" placeholder="Décrivez votre besoin..." required></textarea>
+          </div>
+          <button type="button" id="sendBtn" class="form-btn">
+            <span id="btnText">Envoyer le message →</span>
+            <div class="btn-shimmer"></div>
+          </button>
+          <div id="formMessage" class="form-msg"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-logo">Junior<span>.</span>dev</div>
+      <p class="footer-tagline">Développeur Full-Stack · Formateur NTIC · Kinshasa, RDC</p>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Junior Ngandu. Tous droits réservés.</p>
+      <nav class="footer-nav">
+        <a href="#competences">Stack</a>
+        <a href="#projets">Projets</a>
+        <a href="#enseignement">Formation</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
