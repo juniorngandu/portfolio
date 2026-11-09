@@ -1,236 +1,604 @@
-/* ──────────────────────────────────────────────
+
+'use strict';
+
+/* =====================================================
+   CONFIGURATION ET UTILITAIRES
+===================================================== */
+
+const $ = (selector, parent = document) => parent.querySelector(selector);
+const $$ = (selector, parent = document) => [...parent.querySelectorAll(selector)];
+
+const prefersReducedMotion = window.matchMedia(
+  '(prefers-reduced-motion: reduce)'
+).matches;
+
+const isMobile = window.matchMedia('(pointer: coarse)').matches;
+
+
+/* =====================================================
    SCROLL PROGRESS BAR
-───────────────────────────────────────────── */
-const progressBar = document.getElementById('scrollProgress');
-window.addEventListener('scroll', () => {
-  const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-  if (progressBar) progressBar.style.width = scrolled + '%';
-}, { passive: true });
+===================================================== */
 
-/* ──────────────────────────────────────────────
-   CUSTOM CURSOR
-───────────────────────────────────────────── */
-const cursor = document.getElementById('cursor');
-const cursorRing = document.getElementById('cursorRing');
-let mouseX = 0, mouseY = 0;
-let ringX = 0, ringY = 0;
+const progressBar = $('#scrollProgress');
 
-document.addEventListener('mousemove', e => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-  if (cursor) {
-    cursor.style.left = mouseX + 'px';
-    cursor.style.top = mouseY + 'px';
-  }
-}, { passive: true });
+function updateScrollProgress() {
+  if (!progressBar) return;
 
-// Smooth ring follow
-function animateRing() {
-  ringX += (mouseX - ringX) * 0.12;
-  ringY += (mouseY - ringY) * 0.12;
-  if (cursorRing) {
-    cursorRing.style.left = ringX + 'px';
-    cursorRing.style.top = ringY + 'px';
-  }
-  requestAnimationFrame(animateRing);
+  const scrollableHeight =
+    document.documentElement.scrollHeight - window.innerHeight;
+
+  const progress = scrollableHeight > 0
+    ? (window.scrollY / scrollableHeight) * 100
+    : 0;
+
+  progressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
 }
-animateRing();
 
-// Hover effects
-document.querySelectorAll('a, button, input, textarea, .skill-card, .exp-card, .projet-card, .module-card').forEach(el => {
-  el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-  el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+window.addEventListener('scroll', updateScrollProgress, {
+  passive: true
 });
 
-/* ──────────────────────────────────────────────
-   NAVBAR SCROLL BEHAVIOR
-───────────────────────────────────────────── */
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  if (navbar) {
-    navbar.classList.toggle('scrolled', window.scrollY > 50);
-  }
-}, { passive: true });
+window.addEventListener('resize', updateScrollProgress, {
+  passive: true
+});
 
-/* ──────────────────────────────────────────────
+updateScrollProgress();
+
+
+/* =====================================================
+   CUSTOM CURSOR
+===================================================== */
+
+const cursor = $('#cursor');
+const cursorRing = $('#cursorRing');
+
+if (cursor && cursorRing && !isMobile && !prefersReducedMotion) {
+
+  let mouseX = 0;
+  let mouseY = 0;
+  let ringX = 0;
+  let ringY = 0;
+
+  let animationFrame = null;
+
+  document.addEventListener('mousemove', event => {
+    mouseX = event.clientX;
+    mouseY = event.clientY;
+
+    cursor.style.left = `${mouseX}px`;
+    cursor.style.top = `${mouseY}px`;
+
+    if (!animationFrame) {
+      animationFrame = requestAnimationFrame(animateRing);
+    }
+  }, { passive: true });
+
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.12;
+    ringY += (mouseY - ringY) * 0.12;
+
+    cursorRing.style.left = `${ringX}px`;
+    cursorRing.style.top = `${ringY}px`;
+
+    const distance = Math.hypot(mouseX - ringX, mouseY - ringY);
+
+    if (distance > 0.5) {
+      animationFrame = requestAnimationFrame(animateRing);
+    } else {
+      ringX = mouseX;
+      ringY = mouseY;
+
+      cursorRing.style.left = `${ringX}px`;
+      cursorRing.style.top = `${ringY}px`;
+
+      animationFrame = null;
+    }
+  }
+
+  // Effet au survol des éléments interactifs
+  const interactiveElements = [
+    'a',
+    'button',
+    'input',
+    'textarea',
+    'select',
+    '[role="button"]',
+    '.skill-card',
+    '.exp-card',
+    '.projet-card',
+    '.module-card'
+  ].join(', ');
+
+  document.addEventListener('mouseover', event => {
+    if (event.target.closest(interactiveElements)) {
+      document.body.classList.add('cursor-hover');
+    }
+  });
+
+  document.addEventListener('mouseout', event => {
+    if (
+      event.target.closest(interactiveElements) &&
+      !event.relatedTarget?.closest(interactiveElements)
+    ) {
+      document.body.classList.remove('cursor-hover');
+    }
+  });
+
+}
+
+
+/* =====================================================
+   NAVBAR SCROLL BEHAVIOR
+===================================================== */
+
+const navbar = $('#navbar');
+
+function updateNavbar() {
+  if (!navbar) return;
+
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+}
+
+window.addEventListener('scroll', updateNavbar, {
+  passive: true
+});
+
+updateNavbar();
+
+
+/* =====================================================
    HAMBURGER MENU
-───────────────────────────────────────────── */
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobileMenu');
+===================================================== */
+
+const hamburger = $('#hamburger');
+const mobileMenu = $('#mobileMenu');
 
 if (hamburger && mobileMenu) {
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('open');
-    mobileMenu.classList.toggle('open');
+
+  function closeMobileMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.setAttribute('aria-label', 'Ouvrir le menu');
+  }
+
+  function toggleMobileMenu() {
+    const isOpen = mobileMenu.classList.toggle('open');
+
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', String(isOpen));
+    hamburger.setAttribute(
+      'aria-label',
+      isOpen ? 'Fermer le menu' : 'Ouvrir le menu'
+    );
+  }
+
+  hamburger.addEventListener('click', toggleMobileMenu);
+
+  // Fermeture après clic sur un lien
+  $$('.mobile-link', mobileMenu).forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
   });
 
-  // Close on link click
-  document.querySelectorAll('.mobile-link').forEach(link => {
-    link.addEventListener('click', () => {
-      hamburger.classList.remove('open');
-      mobileMenu.classList.remove('open');
-    });
+  // Fermeture avec la touche Échap
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      closeMobileMenu();
+    }
   });
+
+  // Fermeture lors d'un clic extérieur
+  document.addEventListener('click', event => {
+    if (
+      mobileMenu.classList.contains('open') &&
+      !mobileMenu.contains(event.target) &&
+      !hamburger.contains(event.target)
+    ) {
+      closeMobileMenu();
+    }
+  });
+
+  // Fermeture lorsque l'écran passe en mode desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) {
+      closeMobileMenu();
+    }
+  });
+
 }
 
-/* ──────────────────────────────────────────────
+
+/* =====================================================
    SCROLL REVEAL
-───────────────────────────────────────────── */
-const revealObserver = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      revealObserver.unobserve(e.target);
-    }
+===================================================== */
+
+const revealElements = $$('.reveal');
+
+if ('IntersectionObserver' in window && !prefersReducedMotion) {
+
+  const revealObserver = new IntersectionObserver(entries => {
+
+    entries.forEach(entry => {
+
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+
+    });
+
+  }, {
+    threshold: 0.08,
+    rootMargin: '0px 0px -40px 0px'
   });
-}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-/* ──────────────────────────────────────────────
-   ACTIVE NAV LINK (HIGHLIGHT CURRENT SECTION)
-───────────────────────────────────────────── */
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-links a');
-
-const sectionObserver = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      navLinks.forEach(a => a.classList.remove('active'));
-      const active = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
-      if (active) active.classList.add('active');
-    }
+  revealElements.forEach(element => {
+    revealObserver.observe(element);
   });
-}, { threshold: 0.4 });
 
-sections.forEach(s => sectionObserver.observe(s));
+} else {
 
-/* ──────────────────────────────────────────────
+  revealElements.forEach(element => {
+    element.classList.add('visible');
+  });
+
+}
+
+
+/* =====================================================
+   ACTIVE NAV LINK
+===================================================== */
+
+const sections = $$('section[id]');
+const navLinks = $$('.nav-links a');
+
+if ('IntersectionObserver' in window) {
+
+  const sectionObserver = new IntersectionObserver(entries => {
+
+    entries.forEach(entry => {
+
+      if (!entry.isIntersecting) return;
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+      });
+
+      const activeLink = $(
+        `.nav-links a[href="#${CSS.escape(entry.target.id)}"]`
+      );
+
+      if (activeLink) {
+        activeLink.classList.add('active');
+      }
+
+    });
+
+  }, {
+    threshold: 0.3,
+    rootMargin: '-10% 0px -40% 0px'
+  });
+
+  sections.forEach(section => {
+    sectionObserver.observe(section);
+  });
+
+}
+
+
+/* =====================================================
    SKILL TABS
-───────────────────────────────────────────── */
-const skillTabs = document.querySelectorAll('.skill-tab');
-const skillCards = document.querySelectorAll('.skill-card');
+===================================================== */
+
+const skillTabs = $$('.skill-tab');
+const skillCards = $$('.skill-card');
 
 skillTabs.forEach(tab => {
+
   tab.addEventListener('click', () => {
-    skillTabs.forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
 
-    const cat = tab.dataset.cat;
-
-    skillCards.forEach((card, i) => {
-      const matches = cat === 'all' || card.dataset.cat === cat;
-      if (matches) {
-        card.style.display = '';
-        card.style.animationDelay = (i * 0.05) + 's';
-      } else {
-        card.style.display = 'none';
-      }
+    // Désactivation des autres onglets
+    skillTabs.forEach(item => {
+      item.classList.remove('active');
+      item.setAttribute('aria-selected', 'false');
     });
+
+    // Activation de l'onglet sélectionné
+    tab.classList.add('active');
+    tab.setAttribute('aria-selected', 'true');
+
+    const category = tab.dataset.cat;
+
+    skillCards.forEach((card, index) => {
+
+      const matches =
+        category === 'all' ||
+        card.dataset.cat === category;
+
+      card.style.display = matches ? '' : 'none';
+
+      if (matches && !prefersReducedMotion) {
+        card.style.animationDelay = `${index * 0.05}s`;
+      } else {
+        card.style.animationDelay = '';
+      }
+
+    });
+
   });
+
 });
 
-/* ──────────────────────────────────────────────
+
+/* =====================================================
    CONTACT FORM
-───────────────────────────────────────────── */
+===================================================== */
+
 document.addEventListener('DOMContentLoaded', () => {
-  const sendBtn = document.getElementById('sendBtn');
-  const formMessage = document.getElementById('formMessage');
-  const btnText = document.getElementById('btnText');
+
+  const sendBtn = $('#sendBtn');
+  const formMessage = $('#formMessage');
+  const btnText = $('#btnText');
+
+  const nameInput = $('#userName');
+  const emailInput = $('#userEmail');
+  const subjectInput = $('#userSubject');
+  const messageInput = $('#userMessage');
 
   if (!sendBtn) return;
 
-  sendBtn.addEventListener('click', async () => {
-    const name    = document.getElementById('userName')?.value.trim();
-    const email   = document.getElementById('userEmail')?.value.trim();
-    const subject = document.getElementById('userSubject')?.value.trim();
-    const message = document.getElementById('userMessage')?.value.trim();
+  const originalButtonText = btnText
+    ? btnText.textContent
+    : 'Envoyer le message →';
 
+  let isSending = false;
+
+  function showMsg(message, type) {
+
+    if (!formMessage) return;
+
+    formMessage.textContent = message;
+    formMessage.className = `form-msg ${type}`;
+
+    formMessage.setAttribute('role', 'status');
+    formMessage.setAttribute('aria-live', 'polite');
+
+  }
+
+  function validateEmail(email) {
+
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+  }
+
+  function setLoading(loading) {
+
+    sendBtn.disabled = loading;
+    sendBtn.setAttribute('aria-busy', String(loading));
+
+    if (btnText) {
+      btnText.textContent = loading
+        ? 'Envoi en cours...'
+        : originalButtonText;
+    }
+
+  }
+
+  sendBtn.addEventListener('click', async () => {
+
+    if (isSending) return;
+
+    const name = nameInput?.value.trim() || '';
+    const email = emailInput?.value.trim() || '';
+    const subject = subjectInput?.value.trim() || '';
+    const message = messageInput?.value.trim() || '';
+
+    // Vérification des champs
     if (!name || !email || !subject || !message) {
       showMsg('Veuillez remplir tous les champs.', 'error');
       return;
     }
 
-    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    if (!emailOk) {
-      showMsg('Veuillez entrer un email valide.', 'error');
+    // Vérification de l'adresse e-mail
+    if (!validateEmail(email)) {
+      showMsg('Veuillez entrer une adresse e-mail valide.', 'error');
+      emailInput?.focus();
       return;
     }
 
-    sendBtn.disabled = true;
-    if (btnText) btnText.textContent = '⏳ Envoi en cours...';
+    // Protection contre les messages trop longs
+    if (name.length > 100 || subject.length > 200 || message.length > 5000) {
+      showMsg('Certains champs dépassent la longueur autorisée.', 'error');
+      return;
+    }
+
+    isSending = true;
+    setLoading(true);
 
     try {
-      const res = await fetch('https://formsubmit.co/ajax/juniorngandu18@gmail.com', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          name, email, subject, message,
-          _captcha: false,
-          _template: 'table'
-        })
-      });
 
-      if (res.ok) {
-        showMsg('✓ Message envoyé avec succès ! Je vous répondrai très bientôt.', 'success');
-        document.getElementById('userName').value = '';
-        document.getElementById('userEmail').value = '';
-        document.getElementById('userSubject').value = '';
-        document.getElementById('userMessage').value = '';
-      } else {
-        showMsg('Erreur lors de l\'envoi. Veuillez réessayer.', 'error');
+      const response = await fetch(
+        'https://formsubmit.co/ajax/juniorngandu18@gmail.com',
+        {
+          method: 'POST',
+
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+
+          body: JSON.stringify({
+            name,
+            email,
+            subject,
+            message,
+            _captcha: false,
+            _template: 'table'
+          })
+
+        }
+      );
+
+      let result;
+
+      try {
+        result = await response.json();
+      } catch {
+        throw new Error('Réponse invalide du serveur.');
       }
-    } catch {
-      showMsg('Erreur de connexion. Veuillez réessayer.', 'error');
+
+      if (!response.ok || result.success === 'false' || result.success === false) {
+        throw new Error(result.message || 'Échec de l’envoi.');
+      }
+
+      showMsg(
+        'Message envoyé avec succès ! Je vous répondrai très bientôt.',
+        'success'
+      );
+
+      // Réinitialisation du formulaire
+      if (nameInput) nameInput.value = '';
+      if (emailInput) emailInput.value = '';
+      if (subjectInput) subjectInput.value = '';
+      if (messageInput) messageInput.value = '';
+
+    } catch (error) {
+
+      console.error('Erreur formulaire :', error);
+
+      showMsg(
+        'Impossible d’envoyer votre message. Vérifiez votre connexion ou réessayez plus tard.',
+        'error'
+      );
+
     } finally {
-      sendBtn.disabled = false;
-      if (btnText) btnText.textContent = 'Envoyer le message →';
+
+      isSending = false;
+      setLoading(false);
+
     }
+
   });
 
-  function showMsg(text, type) {
-    if (!formMessage) return;
-    formMessage.textContent = text;
-    formMessage.className = 'form-msg ' + type;
-    if (type === 'success') {
-      setTimeout(() => { formMessage.className = 'form-msg'; }, 6000);
-    }
-  }
 });
 
-/* ──────────────────────────────────────────────
-   SMOOTH NUMBER COUNTER ON REVEAL
-───────────────────────────────────────────── */
-function animateValue(el, end, duration = 1200) {
-  const raw = el.textContent;
-  const suffix = raw.replace(/[\d]/g, '');
-  const start = 0;
+
+/* =====================================================
+   SMOOTH NUMBER COUNTER
+===================================================== */
+
+function animateValue(element, endValue, duration = 1200) {
+
+  if (!element || element.dataset.animated === 'true') return;
+
+  element.dataset.animated = 'true';
+
+  const originalText = element.textContent.trim();
+
+  const prefix = originalText.match(/^\D*/)?.[0] || '';
+  const suffix = originalText.match(/\D*$/)?.[0] || '';
+
   const startTime = performance.now();
 
-  function update(now) {
-    const elapsed = now - startTime;
+  function update(currentTime) {
+
+    const elapsed = currentTime - startTime;
+
     const progress = Math.min(elapsed / duration, 1);
+
+    // Fonction d'accélération/décélération
     const eased = 1 - Math.pow(1 - progress, 3);
-    const current = Math.floor(start + (end - start) * eased);
-    el.textContent = current + suffix;
-    if (progress < 1) requestAnimationFrame(update);
+
+    const currentValue = Math.floor(endValue * eased);
+
+    element.textContent = prefix + currentValue + suffix;
+
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    } else {
+      element.textContent = originalText;
+      element.textContent = prefix + endValue + suffix;
+    }
+
   }
+
+  if (prefersReducedMotion) {
+    element.textContent = prefix + endValue + suffix;
+    return;
+  }
+
   requestAnimationFrame(update);
+
 }
 
-const counterObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    const nums = entry.target.querySelectorAll('.impact-num, .stat-num');
-    nums.forEach(el => {
-      const numMatch = el.textContent.match(/\d+/);
-      if (numMatch) {
-        const value = parseInt(numMatch[0]);
-        if (value > 0) animateValue(el, value);
-      }
-    });
-    counterObserver.unobserve(entry.target);
-  });
-}, { threshold: 0.5 });
 
-document.querySelectorAll('.impact-row, .hero-stats').forEach(el => counterObserver.observe(el));
+/* =====================================================
+   COUNTER OBSERVER
+===================================================== */
+
+const counterElements = $$('.impact-row, .hero-stats');
+
+if ('IntersectionObserver' in window) {
+
+  const counterObserver = new IntersectionObserver(entries => {
+
+    entries.forEach(entry => {
+
+      if (!entry.isIntersecting) return;
+
+      const numbers = $$('.impact-num, .stat-num', entry.target);
+
+      numbers.forEach(element => {
+
+        const match = element.textContent.match(/\d+/);
+
+        if (!match) return;
+
+        const value = parseInt(match[0], 10);
+
+        if (value > 0) {
+          animateValue(element, value);
+        }
+
+      });
+
+      counterObserver.unobserve(entry.target);
+
+    });
+
+  }, {
+    threshold: 0.5
+  });
+
+  counterElements.forEach(element => {
+    counterObserver.observe(element);
+  });
+
+} else {
+
+  counterElements.forEach(container => {
+
+    $$('.impact-num, .stat-num', container).forEach(element => {
+
+      const match = element.textContent.match(/\d+/);
+
+      if (match) {
+        animateValue(element, parseInt(match[0], 10));
+      }
+
+    });
+
+  });
+
+}
+
+
+/* =====================================================
+   INITIALISATION
+===================================================== */
+
+console.info(
+  '%cJunior.dev | Portfolio chargé avec succès.',
+  'color: #2563eb; font-weight: bold; font-size: 13px;'
+);
