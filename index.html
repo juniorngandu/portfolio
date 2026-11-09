@@ -1,764 +1,1518 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Junior Ngandu — Développeur Full-Stack & Formateur NTIC</title>
-  <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Cabinet+Grotesk:wght@300;400;500;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Junior Ngandu — Développeur Full-Stack & Formateur NTIC</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Cabinet+Grotesk:wght@300;400;500;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <!-- Scroll Progress -->
-  <div class="scroll-progress" id="scrollProgress"></div>
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
 
-  <div class="cursor" id="cursor">
-    <div class="cursor-dot"></div>
-  </div>
-  <div class="cursor-ring" id="cursorRing"></div>
-
-  <!-- ── NAV ── -->
-  <nav id="navbar">
-    <a href="#" class="nav-logo">Junior<span class="logo-dot">.</span>dev</a>
-    <ul class="nav-links">
-      <li><a href="#competences">Stack</a></li>
-      <li><a href="#experience">Parcours</a></li>
-      <li><a href="#projets">Projets</a></li>
-      <li><a href="#enseignement">Formation</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <div class="nav-right">
-      <span class="nav-status"><span class="status-dot"></span>Disponible</span>
-      <a href="#contact" class="nav-btn">Me contacter →</a>
-      <button class="hamburger" id="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
+    <div class="cursor" id="cursor">
+        <div class="cursor-dot"></div>
     </div>
-  </nav>
+    <div class="cursor-ring" id="cursorRing"></div>
 
-  <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobileMenu">
-    <ul>
-      <li><a href="#competences" class="mobile-link">Stack</a></li>
-      <li><a href="#experience" class="mobile-link">Parcours</a></li>
-      <li><a href="#projets" class="mobile-link">Projets</a></li>
-      <li><a href="#enseignement" class="mobile-link">Formation</a></li>
-      <li><a href="#contact" class="mobile-link">Contact</a></li>
-    </ul>
-  </div>
+    <!-- ── NAV ── -->
+    <nav id="navbar">
+        <a href="#" class="nav-logo">Junior<span class="logo-dot">.</span>dev</a>
+        <ul class="nav-links">
+            <li><a href="#competences">Stack</a></li>
+            <li><a href="#experience">Parcours</a></li>
+            <li><a href="#projets">Projets</a></li>
+            <li><a href="#enseignement">Formation</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <span class="nav-status"><span class="status-dot"></span>Disponible</span>
+            <a href="#contact" class="nav-btn">Me contacter →</a>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
 
-  <!-- ── HERO ── -->
-  <section class="hero" id="hero">
-    <div class="hero-noise"></div>
-    <div class="hero-grid"></div>
-    <div class="hero-orb hero-orb-1"></div>
-    <div class="hero-orb hero-orb-2"></div>
-    <div class="hero-orb hero-orb-3"></div>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="#competences" class="mobile-link">Stack</a></li>
+            <li><a href="#experience" class="mobile-link">Parcours</a></li>
+            <li><a href="#projets" class="mobile-link">Projets</a></li>
+            <li><a href="#enseignement" class="mobile-link">Formation</a></li>
+            <li><a href="#contact" class="mobile-link">Contact</a></li>
+        </ul>
+    </div>
 
-    <div class="hero-content">
-      <div class="hero-left">
-        <div class="hero-badge">
-          <span class="badge-pulse"></span>
-          Disponible pour projets &amp; collaborations
+    <!-- ── HERO ── -->
+    <section class="hero" id="hero">
+        <div class="hero-noise"></div>
+        <div class="hero-grid"></div>
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-orb hero-orb-3"></div>
+
+        <div class="hero-content">
+            <div class="hero-left">
+                <div class="hero-badge">
+                    <span class="badge-pulse"></span>
+                    Disponible pour projets &amp; collaborations
+                </div>
+
+                <h1 class="hero-name">
+                    <span class="name-line name-line-1">Junior</span>
+                    <span class="name-line name-line-2"><em>Ngandu</em></span>
+                </h1>
+
+                <div class="hero-roles">
+                    <div class="role-pill role-dev">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                        Développeur Full-Stack
+                    </div>
+                    <div class="role-sep">×</div>
+                    <div class="role-pill role-form">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                        Formateur NTIC
+                    </div>
+                </div>
+
+
+                <p class="hero-desc">
+                    Développeur Full-Stack et formateur en informatique basé à Kinshasa, RDC.<br>
+                    Je conçois des solutions numériques innovantes, des applications web<br>
+                    et mobiles, au service de la transformation digitale des organisations.
+                </p>
+
+
+                <div class="hero-actions">
+                    <a href="#projets" class="btn-primary">
+                        Voir mes projets
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7v10" />
+                        </svg>
+                    </a>
+                    <a href="#contact" class="btn-ghost">Collaborer</a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-num">100<span>+</span></div>
+                        <div class="stat-lbl">Agents formés DGI</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <div class="stat-num">3<span>+</span></div>
+                        <div class="stat-lbl">Années d'expérience</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <div class="stat-num">Bac<span>+5</span></div>
+                        <div class="stat-lbl">Niveau Licence/ Master LMD</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-right">
+                <div class="avatar-wrap">
+                    <div class="avatar-glow"></div>
+                    <div class="avatar-frame">
+                        <img src="images/avatar_1769435676_9nf4XxIm.jpg.jpg" alt="Junior Ngandu" class="avatar-img">
+                    </div>
+                    <div class="avatar-badge avatar-badge-1">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                        Laravel + React
+                    </div>
+                    <div class="avatar-badge avatar-badge-2">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                        C# + VB NET
+                    </div>
+                    <div class="avatar-badge avatar-badge-3">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                        </svg>
+                        100+ formés
+                    </div>
+                    <div class="avatar-badge avatar-badge-4">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        Kinshasa, RDC
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <h1 class="hero-name">
-          <span class="name-line name-line-1">Junior</span>
-          <span class="name-line name-line-2"><em>Ngandu</em></span>
-        </h1>
+        <div class="hero-scroll-hint">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
 
-        <div class="hero-roles">
-          <div class="role-pill role-dev">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-            Développeur Full-Stack
-          </div>
-          <div class="role-sep">×</div>
-          <div class="role-pill role-form">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-            Formateur NTIC
-          </div>
+    <!-- ── MARQUEE ── -->
+    <div class="marquee-strip">
+        <div class="marquee-track">
+            <span>Laravel</span><span class="mx">·</span>
+            <span>React.js</span><span class="mx">·</span>
+            <span>MySQL</span><span class="mx">·</span>
+            <span>Oracle</span><span class="mx">·</span>
+            <span>MongoDB</span><span class="mx">·</span>
+            <span>PostgreSQL</span><span class="mx">·</span>
+            <span>PHP</span><span class="mx">·</span>
+            <span>Capacitor</span><span class="mx">·</span>
+            <span>Tauri</span><span class="mx">·</span>
+            <span>JavaScript</span><span class="mx">·</span>
+            <span>Tailwind CSS</span><span class="mx">·</span>
+            <span>Git / GitHub</span><span class="mx">·</span>
+            <span>2FA / TOTP</span><span class="mx">·</span>
+            <span>RBAC</span><span class="mx">·</span>
+            <span>Laravel</span><span class="mx">·</span>
+            <span>React.js</span><span class="mx">·</span>
+            <span>MySQL</span><span class="mx">·</span>
+            <span>PHP</span><span class="mx">·</span>
+            <span>Capacitor</span><span class="mx">·</span>
+            <span>Tauri</span><span class="mx">·</span>
+            <span>JavaScript</span><span class="mx">·</span>
+            <span>Tailwind CSS</span><span class="mx">·</span>
+            <span>Git / GitHub</span><span class="mx">·</span>
+            <span>2FA / TOTP</span><span class="mx">·</span>
+            <span>RBAC</span><span class="mx">·</span>
+        </div>
+    </div>
+
+
+    <!-- ── COMPÉTENCES ── -->
+    <section class="skills" id="competences">
+
+        <div class="section-header reveal">
+            <div class="section-eyebrow">// Stack technique</div>
+            <h2 class="section-title">Mes <em>compétences</em></h2>
+            <p class="section-sub">
+                Des compétences pratiques en développement d'applications web,
+                conception de solutions métiers, gestion des données et outils numériques.
+            </p>
         </div>
 
-        <p class="hero-desc">
-          Développeur passionné et formateur engagé basé à Kinshasa, RDC.<br>
-          Je conçois des applications web &amp; mobiles robustes et transmets<br>
-          les savoirs numériques aux institutions publiques.
+        <div class="skills-layout reveal">
+
+            <!-- ONGLETS -->
+            <div class="skill-tabs">
+
+                <button class="skill-tab active" data-cat="backend">
+                    <span class="tab-icon">⬡</span>
+                    Backend
+                    <span class="tab-count">3</span>
+                </button>
+
+                <button class="skill-tab" data-cat="frontend">
+                    <span class="tab-icon">◈</span>
+                    Frontend
+                    <span class="tab-count">5</span>
+                </button>
+
+                <button class="skill-tab" data-cat="database">
+                    <span class="tab-icon">◉</span>
+                    Base de données
+                    <span class="tab-count">3</span>
+                </button>
+
+                <button class="skill-tab" data-cat="tools">
+                    <span class="tab-icon">◎</span>
+                    Outils & Environnement
+                    <span class="tab-count">4</span>
+                </button>
+
+
+                <button class="skill-tab" data-cat="architecture">
+                    <span class="tab-icon">⌘</span>
+                    Architecture & Conception
+                    <span class="tab-count">6</span>
+                </button>
+            </div>
+
+            <!-- GRILLE DES COMPÉTENCES -->
+            <div class="skills-grid">
+
+                <!-- ================= BACKEND ================= -->
+
+                <!-- PHP -->
+                <div class="skill-card" data-cat="backend">
+                    <div class="skill-card-inner">
+                        <img src="images/logo-php-256.png" alt="PHP" class="skill-img">
+                        <div class="skill-info">
+                            <div class="skill-name">PHP</div>
+                            <div class="skill-level skill-level-85"><span></span></div>
+                        </div>
+                        <span class="skill-badge">Avancé</span>
+                    </div>
+                </div>
+
+                <!-- Laravel -->
+                <div class="skill-card" data-cat="backend">
+                    <div class="skill-card-inner">
+                        <img src="images/logo-laravel-icon-1024.png" alt="Laravel" class="skill-img">
+                        <div class="skill-info">
+                            <div class="skill-name">Laravel</div>
+                            <div class="skill-level skill-level-85"><span></span></div>
+                        </div>
+                        <span class="skill-badge">Avancé</span>
+                    </div>
+                </div>
+
+                <!-- C# -->
+                <div class="skill-card" data-cat="backend">
+                    <div class="skill-card-inner">
+                        <div class="skill-svg-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 2 21 7v10l-9 5-9-5V7z" />
+                                <path d="M9 9a3 3 0 1 0 0 6" />
+                                <path d="M15 9v6m-2-3h4" />
+                            </svg>
+                        </div>
+                        <div class="skill-info">
+                            <div class="skill-name">C# / ASP.NET Core</div>
+                            <div class="skill-level skill-level-60"><span></span></div>
+                        </div>
+                        <span class="skill-badge skill-badge-mid">Intermédiaire</span>
+                    </div>
+                </div>
+
+
+                <!-- ================= FRONTEND ================= -->
+
+                <!-- Vue.js -->
+                <div class="skill-card" data-cat="frontend">
+                    <div class="skill-card-inner">
+                        <div class="skill-svg-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M2 4h5l5 8 5-8h5L12 21z" />
+                                <path d="M7 4h5l5 8" />
+                            </svg>
+                        </div>
+                        <div class="skill-info">
+                            <div class="skill-name">Vue.js 3</div>
+                            <div class="skill-level skill-level-75"><span></span></div>
+                        </div>
+                        <span class="skill-badge skill-badge-mid">Opérationnel</span>
+                    </div>
+                </div>
+
+                <!-- JavaScript -->
+                <div class="skill-card" data-cat="frontend">
+                    <div class="skill-card-inner">
+                        <img src="images/JavaScript-logo.png" alt="JavaScript" class="skill-img">
+                        <div class="skill-info">
+                            <div class="skill-name">JavaScript</div>
+                            <div class="skill-level skill-level-70"><span></span></div>
+                        </div>
+                        <span class="skill-badge skill-badge-mid">Opérationnel</span>
+                    </div>
+                </div>
+
+                <!-- HTML / CSS -->
+                <div class="skill-card" data-cat="frontend">
+                    <div class="skill-card-inner">
+                        <div class="skill-svg-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M4 3h16l-1.5 17L12 22l-6.5-2z" />
+                                <path d="M8 8h8l-.5 4H9l.5 4 2.5 1 2.5-1" />
+                            </svg>
+                        </div>
+                        <div class="skill-info">
+                            <div class="skill-name">HTML5 / CSS3</div>
+                            <div class="skill-level skill-level-75"><span></span></div>
+                        </div>
+                        <span class="skill-badge skill-badge-mid">Opérationnel</span>
+                    </div>
+                </div>
+
+                <!-- Tailwind CSS -->
+                <div class="skill-card" data-cat="frontend">
+                    <div class="skill-card-inner">
+                        <img src="images/tailwind-css-256.png" alt="Tailwind CSS" class="skill-img">
+                        <div class="skill-info">
+                            <div class="skill-name">Tailwind CSS</div>
+                            <div class="skill-level skill-level-70"><span></span></div>
+                        </div>
+                        <span class="skill-badge skill-badge-mid">Opérationnel</span>
+                    </div>
+                </div>
+
+                <!-- React -->
+                <div class="skill-card" data-cat="frontend">
+                    <div class="skill-card-inner">
+                        <img src="images/logo-react-256.png" alt="React.js" class="skill-img">
+                        <div class="skill-info">
+                            <div class="skill-name">React.js</div>
+                            <div class="skill-level skill-level-45"><span></span></div>
+                        </div>
+                        <span class="skill-badge skill-badge-mid">Notions</span>
+                    </div>
+                </div>
+
+
+                <!-- ================= BASE DE DONNÉES ================= -->
+
+                <!-- MySQL -->
+                <div class="skill-card" data-cat="database">
+                    <div class="skill-card-inner">
+                        <img src="images/png-clipart-mysql-mysql.png" alt="MySQL" class="skill-img">
+                        <div class="skill-info">
+                            <div class="skill-name">MySQL</div>
+                            <div class="skill-level skill-level-80"><span></span></div>
+                        </div>
+                        <span class="skill-badge">Avancé</span>
+                    </div>
+                </div>
+
+                <!-- PostgreSQL -->
+                <div class="skill-card" data-cat="database">
+                    <div class="skill-card-inner">
+                        <img src="images/postgresql.png" alt="PostgreSQL" class="skill-img">
+                        <div class="skill-info">
+                            <div class="skill-name">PostgreSQL</div>
+                            <div class="skill-level skill-level-45"><span></span></div>
+                        </div>
+                        <span class="skill-badge skill-badge-mid">Notions</span>
+                    </div>
+                </div>
+
+                <!-- SQL -->
+                <div class="skill-card" data-cat="database">
+                    <div class="skill-card-inner">
+                        <div class="skill-svg-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <ellipse cx="12" cy="5" rx="9" ry="3" />
+                                <path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5" />
+                                <path d="M3 12c0 1.7 4 3 9 3s9-1.3 9-3" />
+                            </svg>
+                        </div>
+                        <div class="skill-info">
+                            <div class="skill-name">SQL / Modélisation</div>
+                            <div class="skill-level skill-level-70"><span></span></div>
+                        </div>
+                        <span class="skill-badge skill-badge-mid">Opérationnel</span>
+                    </div>
+                </div>
+
+
+                <!-- ================= OUTILS ================= -->
+
+                <!-- Git / GitHub -->
+                <div class="skill-card" data-cat="tools">
+                    <div class="skill-card-inner">
+                        <div class="skill-svg-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="18" cy="18" r="3" />
+                                <circle cx="6" cy="6" r="3" />
+                                <path d="M13 6h3a2 2 0 0 1 2 2v7" />
+                                <line x1="6" y1="9" x2="6" y2="21" />
+                            </svg>
+                        </div>
+                        <div class="skill-info">
+                            <div class="skill-name">Git / GitHub</div>
+                            <div class="skill-level skill-level-55"><span></span></div>
+                        </div>
+                        <span class="skill-badge skill-badge-mid">Pratique</span>
+                    </div>
+                </div>
+
+                <!-- Laragon / XAMPP -->
+                <div class="skill-card" data-cat="tools">
+                    <div class="skill-card-inner">
+                        <div class="skill-svg-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="3" y="3" width="18" height="18" rx="2" />
+                                <path d="M7 8h10M7 12h10M7 16h6" />
+                            </svg>
+                        </div>
+                        <div class="skill-info">
+                            <div class="skill-name">Laragon / XAMPP</div>
+                            <div class="skill-level skill-level-75"><span></span></div>
+                        </div>
+                        <span class="skill-badge skill-badge-mid">Opérationnel</span>
+                    </div>
+                </div>
+
+                <!-- Capacitor -->
+                <div class="skill-card" data-cat="tools">
+                    <div class="skill-card-inner">
+                        <div class="skill-svg-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="5" y="2" width="14" height="20" rx="2" />
+                                <line x1="12" y1="18" x2="12.01" y2="18" />
+                            </svg>
+                        </div>
+                        <div class="skill-info">
+                            <div class="skill-name">Capacitor</div>
+                            <div class="skill-level skill-level-55"><span></span></div>
+                        </div>
+                        <span class="skill-badge skill-badge-mid">Pratique</span>
+                    </div>
+                </div>
+
+                <!-- Tauri -->
+                <div class="skill-card" data-cat="tools">
+                    <div class="skill-card-inner">
+                        <div class="skill-svg-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="2" y="3" width="20" height="14" rx="2" />
+                                <line x1="8" y1="21" x2="16" y2="21" />
+                                <line x1="12" y1="17" x2="12" y2="21" />
+                            </svg>
+                        </div>
+                        <div class="skill-info">
+                            <div class="skill-name">Tauri</div>
+                            <div class="skill-level skill-level-45"><span></span></div>
+                        </div>
+                        <span class="skill-badge skill-badge-mid">Notions</span>
+                    </div>
+                </div>
+
+
+                <!-- ================= ARCHITECTURE & CONCEPTION ================= -->
+
+                <!-- Conception d'applications métiers -->
+                <div class="skill-card" data-cat="architecture">
+                    <div class="skill-card-inner">
+                        <div class="skill-svg-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="3" y="3" width="7" height="7" rx="1" />
+                                <rect x="14" y="3" width="7" height="7" rx="1" />
+                                <rect x="8.5" y="14" width="7" height="7" rx="1" />
+                                <path d="M10 6.5h4M7 10v2h10v-2M12 12v2" />
+                            </svg>
+                        </div>
+                        <div class="skill-info">
+                            <div class="skill-name">Conception d'applications métiers</div>
+                            <div class="skill-level skill-level-80"><span></span></div>
+                        </div>
+                        <span class="skill-badge">Avancé</span>
+                    </div>
+                </div>
+
+                <!-- Architecture MVC -->
+                <div class="skill-card" data-cat="architecture">
+                    <div class="skill-card-inner">
+                        <div class="skill-svg-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="8" y="2" width="8" height="5" rx="1" />
+                                <rect x="2" y="17" width="8" height="5" rx="1" />
+                                <rect x="14" y="17" width="8" height="5" rx="1" />
+                                <path d="M12 7v5M6 17v-5h12v5" />
+                            </svg>
+                        </div>
+                        <div class="skill-info">
+                            <div class="skill-name">Architecture MVC</div>
+                            <div class="skill-level skill-level-80"><span></span></div>
+                        </div>
+                        <span class="skill-badge">Avancé</span>
+                    </div>
+                </div>
+
+                <!-- API REST -->
+                <div class="skill-card" data-cat="architecture">
+                    <div class="skill-card-inner">
+                        <div class="skill-svg-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M4 7h16M4 17h16M7 4l-3 3 3 3M17 14l3 3-3 3" />
+                                <circle cx="12" cy="12" r="2" />
+                            </svg>
+                        </div>
+                        <div class="skill-info">
+                            <div class="skill-name">API REST</div>
+                            <div class="skill-level skill-level-75"><span></span></div>
+                        </div>
+                        <span class="skill-badge skill-badge-mid">Opérationnel</span>
+                    </div>
+                </div>
+
+                <!-- Authentification -->
+                <div class="skill-card" data-cat="architecture">
+                    <div class="skill-card-inner">
+                        <div class="skill-svg-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="4" y="10" width="16" height="11" rx="2" />
+                                <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+                                <circle cx="12" cy="15" r="1" />
+                                <path d="M12 16v2" />
+                            </svg>
+                        </div>
+                        <div class="skill-info">
+                            <div class="skill-name">Authentification & Sécurité</div>
+                            <div class="skill-level skill-level-70"><span></span></div>
+                        </div>
+                        <span class="skill-badge skill-badge-mid">Opérationnel</span>
+                    </div>
+                </div>
+
+                <!-- Gestion des rôles -->
+                <div class="skill-card" data-cat="architecture">
+                    <div class="skill-card-inner">
+                        <div class="skill-svg-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="9" cy="8" r="3" />
+                                <path d="M3 20v-2a6 6 0 0 1 12 0v2" />
+                                <path d="M16 5a3 3 0 0 1 0 6M18 14a5 5 0 0 1 3 4v2" />
+                            </svg>
+                        </div>
+                        <div class="skill-info">
+                            <div class="skill-name">Gestion des rôles & Permissions</div>
+                            <div class="skill-level skill-level-75"><span></span></div>
+                        </div>
+                        <span class="skill-badge skill-badge-mid">Opérationnel</span>
+                    </div>
+                </div>
+
+                <!-- Modélisation des données -->
+                <div class="skill-card" data-cat="architecture">
+                    <div class="skill-card-inner">
+                        <div class="skill-svg-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <ellipse cx="12" cy="5" rx="9" ry="3" />
+                                <path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5" />
+                                <path d="M3 12c0 1.7 4 3 9 3s9-1.3 9-3" />
+                            </svg>
+                        </div>
+                        <div class="skill-info">
+                            <div class="skill-name">Modélisation de données</div>
+                            <div class="skill-level skill-level-75"><span></span></div>
+                        </div>
+                        <span class="skill-badge skill-badge-mid">Opérationnel</span>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ── EXPÉRIENCE ── -->
+    <section class="experience" id="experience">
+        <div class="section-header reveal">
+            <div class="section-eyebrow">// Parcours professionnel</div>
+            <h2 class="section-title">Mon <em>expérience</em></h2>
+            <p class="section-sub">Formateur certifié et stagiaire dans des institutions financières et pédagogiques de
+                référence en RDC.</p>
+        </div>
+
+        <div class="timeline reveal">
+
+            <!-- DÉVELOPPEUR FREELANCE -->
+            <div class="tl-item">
+                <div class="tl-dot"></div>
+                <div class="tl-line-seg"></div>
+
+                <div class="exp-card">
+                    <div class="exp-card-accent"></div>
+
+                    <div class="exp-header">
+                        <div>
+                            <div class="exp-org">Développeur indépendant</div>
+                            <div class="exp-role">Développeur Full-Stack Freelance</div>
+                        </div>
+                        <div class="exp-meta">
+                            <span class="exp-type type-formateur">Freelance</span>
+                            <span class="exp-date">2025 – Aujourd'hui</span>
+                        </div>
+                    </div>
+
+                    <p class="exp-desc">
+                        Conception, développement et déploiement de solutions
+                        numériques adaptées aux besoins des entreprises,
+                        organisations et administrations. Réalisation
+                        d'applications web et de gestion métiers, intégration
+                        de bases de données, développement d'API REST et mise
+                        en place de systèmes d'authentification et de gestion
+                        des accès.
+                    </p>
+
+                    <div class="exp-highlight">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14
+                18.18 21.02 12 17.77 5.82 21.02 7 14.14
+                2 9.27 8.91 8.26 12 2" />
+                        </svg>
+                        Développement de solutions avec PHP, Laravel,
+                        Vue.js, JavaScript et MySQL.
+                    </div>
+                </div>
+            </div>
+
+                        <div class="tl-item">
+                <div class="tl-dot"></div>
+                <div class="tl-line-seg"></div>
+                <div class="exp-card">
+                    <div class="exp-card-accent exp-accent-accent2"></div>
+                    <div class="exp-header">
+                        <div>
+                            <div class="exp-org">École d'Application ISP/GOMBE</div>
+                            <div class="exp-role">Stage Pédagogique</div>
+                        </div>
+                        <div class="exp-meta">
+                            <span class="exp-type type-stage">Stage pédago.</span>
+                            <span class="exp-date">17/03/2025 – 17/05/2025</span>
+                        </div>
+                    </div>
+                    <p class="exp-desc">Immersion dans l'environnement pédagogique d'un établissement d'enseignement.
+                        Observation, conception de séquences didactiques et animation de cours en informatique.</p>
+                </div>
+            </div>
+
+            <div class="tl-item">
+                <div class="tl-dot"></div>
+                <div class="tl-line-seg"></div>
+                <div class="exp-card">
+                    <div class="exp-card-accent"></div>
+                    <div class="exp-header">
+                        <div>
+                            <div class="exp-org">École Nationale des Finances (ENF)</div>
+                            <div class="exp-role">Formateur en NTIC</div>
+                        </div>
+                        <div class="exp-meta">
+                            <span class="exp-type type-formateur">Formateur</span>
+                            <span class="exp-date">05/02/2024 – 30/08/2024</span>
+                        </div>
+                    </div>
+                    <p class="exp-desc">Formation intensive en outils numériques, bureautique avancée et systèmes
+                        d'information à destination des agents et cadres de la DGI. Conception de modules pédagogiques
+                        adaptés aux besoins fiscaux de l'administration congolaise.</p>
+                    <div class="exp-highlight">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                        </svg>
+                        Plus de 100 agents &amp; cadres de la DGI formés
+                    </div>
+                </div>
+            </div>
+
+            <div class="tl-item">
+                <div class="tl-dot"></div>
+                <div class="tl-line-seg"></div>
+                <div class="exp-card">
+                    <div class="exp-card-accent exp-accent-violet"></div>
+                    <div class="exp-header">
+                        <div>
+                            <div class="exp-org">FIRSTBANK DRC S.A</div>
+                            <div class="exp-role">Stage · Systèmes d'Information Bancaire</div>
+                        </div>
+                        <div class="exp-meta">
+                            <span class="exp-type type-stage">Stage ent.</span>
+                            <span class="exp-date">11/09/2023 – 14/10/2023</span>
+                        </div>
+                    </div>
+                    <p class="exp-desc">Stage au sein du département informatique d'une institution bancaire. Découverte
+                        des systèmes de gestion bancaire, processus de sécurité des données et architectures logicielles
+                        du secteur financier.</p>
+                </div>
+            </div>
+
+            <div class="tl-item">
+                <div class="tl-dot"></div>
+                <div class="exp-card">
+                    <div class="exp-card-accent exp-accent-bleu-clair"></div>
+                    <div class="exp-header">
+                        <div>
+                            <div class="exp-org">CADECO</div>
+                            <div class="exp-role">Stage · Systèmes d'Information</div>
+                        </div>
+                        <div class="exp-meta">
+                            <span class="exp-type type-stage">Stage ent.</span>
+                            <span class="exp-date">09/06/2025 – 11/07/2025</span>
+                        </div>                        
+                    </div>
+                    <p class="exp-desc">Stage en informatique au sein de la Caisse d'Épargne du Congo. Participation à
+                        la gestion des systèmes d'information, des bases de données clients et des processus de
+                        traitement numérique.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FORMATION ACADÉMIQUE ── -->
+    <section class="formation" id="formation">
+        
+<div class="section-header reveal">
+    <div class="section-eyebrow">// Formation académique</div>
+    <h2 class="section-title">Mon <em>parcours académique</em></h2>
+    <p class="section-sub">
+        Une formation universitaire associant informatique de gestion
+        et sciences de l'éducation : pédagogie générale, psychologie
+        de l'éducation, didactique générale et spéciale, ainsi que
+        méthodologie de l'enseignement de l'informatique.
+        Une double compétence au service du développement numérique
+        et de la transmission des savoirs.
+    </p>
+</div>
+
+        <div class="edu-grid reveal">
+            <div class="edu-card edu-main">
+                <div class="edu-card-num">01</div>
+                <div class="edu-icon-wrap">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                        <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                    </svg>
+                </div>
+                
+
+<div class="edu-degree">Licence en Informatique de Gestion</div>
+<div class="edu-school">Institut Supérieur Pédagogique de la Gombe (ISP-GOMBE) · Kinshasa, RDC</div>
+<p class="edu-desc">
+    Formation universitaire approfondie en informatique de gestion,
+    développement logiciel, conception des systèmes d'information
+    et gestion des bases de données. Elle intègre également les
+    sciences de l'éducation, la pédagogie, la psychologie de l'éducation,
+    la didactique générale et spéciale ainsi que la méthodologie
+    de l'enseignement de l'informatique.
+</p>
+<span class="edu-badge">Licence/Master LMD · Informatique de gestion</span>
+            </div>
+
+            <div class="edu-card">
+                <div class="edu-card-num">02</div>
+                <div class="edu-icon-wrap">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                    </svg>
+                </div>
+                
+
+<div class="edu-degree">Graduat en Informatique de Gestion</div>
+<div class="edu-school">ISP-GOMBE · Kinshasa, RDC</div>
+<p class="edu-desc">
+    Acquisition des fondamentaux de l'informatique, de l'algorithmique,
+    de la programmation, des bases de données et des systèmes
+    d'information, avec une initiation aux sciences pédagogiques,
+    à la psychologie de l'apprentissage et aux méthodes de transmission
+    des connaissances.
+</p>
+<span class="edu-badge">Graduat/Licence LMD · Bac+3</span>
+            </div>
+
+            <div class="edu-card edu-card-alt">
+                <div class="edu-card-num">03</div>
+                <div class="edu-icon-wrap">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
+                </div>
+                <div class="edu-degree">Baccalauréat en Agriculture Générale</div>
+                <div class="edu-school">ITA Mombele · Kinshasa, RDC</div>
+                <p class="edu-desc">Formation généraliste en sciences agronomiques couvrant la protection des cultures,
+                    l'élevage et les méthodes de production durable.</p>
+                <span class="edu-badge edu-badge-alt">Formation secondaire</span>
+            </div>
+        </div>
+
+        <!-- Téléchargement diplômes -->
+        <div class="diplomas-section reveal">
+            <h3 class="diplomas-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="7 10 12 15 17 10" />
+                    <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+                Télécharger mes diplômes
+            </h3>
+            <div class="diplomas-list">
+                <div class="diploma-item">
+                    <div class="diploma-left">
+                        <div class="diploma-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                <polyline points="14 2 14 8 20 8" />
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="diploma-name">Licence en Informatique de Gestion</div>
+                            <div class="diploma-meta">ISP-GOMBE · Bac+5 · Kinshasa</div>
+                        </div>
+                    </div>
+                    <a href="#" class="diploma-dl-btn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                            <polyline points="7 10 12 15 17 10" />
+                            <line x1="12" y1="15" x2="12" y2="3" />
+                        </svg>
+                        PDF
+                    </a>
+                </div>
+                <div class="diploma-item">
+                    <div class="diploma-left">
+                        <div class="diploma-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                <polyline points="14 2 14 8 20 8" />
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="diploma-name">Graduat en Informatique de Gestion</div>
+                            <div class="diploma-meta">ISP-GOMBE · Bac+3 · Kinshasa</div>
+                        </div>
+                    </div>
+                    <a href="#" class="diploma-dl-btn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                            <polyline points="7 10 12 15 17 10" />
+                            <line x1="12" y1="15" x2="12" y2="3" />
+                        </svg>
+                        PDF
+                    </a>
+                </div>
+                <div class="diploma-item">
+                    <div class="diploma-left">
+                        <div class="diploma-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                <polyline points="14 2 14 8 20 8" />
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="diploma-name">Baccalauréat en Agriculture Générale</div>
+                            <div class="diploma-meta">ITA Mombele · Secondaire</div>
+                        </div>
+                    </div>
+                    <a href="#" class="diploma-dl-btn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                            <polyline points="7 10 12 15 17 10" />
+                            <line x1="12" y1="15" x2="12" y2="3" />
+                        </svg>
+                        PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<!-- ── PROJETS ── -->
+<section class="projets" id="projets">
+    <div class="section-header reveal">
+        <div class="section-eyebrow">// Réalisations</div>
+        <h2 class="section-title">Mes <em>projets</em></h2>
+        <p class="section-sub">
+            Des solutions numériques et applications conçues pour répondre
+            aux besoins des entreprises, des organisations et des particuliers.
         </p>
-
-        <div class="hero-actions">
-          <a href="#projets" class="btn-primary">
-            Voir mes projets
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-          </a>
-          <a href="#contact" class="btn-ghost">Collaborer</a>
-        </div>
-
-        <div class="hero-stats">
-          <div class="stat">
-            <div class="stat-num">100<span>+</span></div>
-            <div class="stat-lbl">Agents formés DGI</div>
-          </div>
-          <div class="stat-divider"></div>
-          <div class="stat">
-            <div class="stat-num">3<span>+</span></div>
-            <div class="stat-lbl">Années d'expérience</div>
-          </div>
-          <div class="stat-divider"></div>
-          <div class="stat">
-            <div class="stat-num">Bac<span>+5</span></div>
-            <div class="stat-lbl">Niveau Master</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero-right">
-        <div class="avatar-wrap">
-          <div class="avatar-glow"></div>
-          <div class="avatar-frame">
-            <img src="images/avatar_1769435676_9nf4XxIm.jpg.jpg" alt="Junior Ngandu" class="avatar-img">
-          </div>
-          <div class="avatar-badge avatar-badge-1">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-            Laravel + React
-          </div>
-          <div class="avatar-badge avatar-badge-2">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-            C# + VB NET
-          </div>
-          <div class="avatar-badge avatar-badge-3">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
-            100+ formés
-          </div>
-          <div class="avatar-badge avatar-badge-4">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-            Kinshasa, RDC
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="hero-scroll-hint">
-      <span>Scroll</span>
-      <div class="scroll-line"></div>
-    </div>
-  </section>
-
-  <!-- ── MARQUEE ── -->
-  <div class="marquee-strip">
-    <div class="marquee-track">
-      <span>Laravel</span><span class="mx">·</span>
-      <span>React.js</span><span class="mx">·</span>
-      <span>MySQL</span><span class="mx">·</span>
-      <span>Oracle</span><span class="mx">·</span>
-      <span>MongoDB</span><span class="mx">·</span>
-      <span>PostgreSQL</span><span class="mx">·</span>
-      <span>PHP</span><span class="mx">·</span>
-      <span>Capacitor</span><span class="mx">·</span>
-      <span>Tauri</span><span class="mx">·</span>
-      <span>JavaScript</span><span class="mx">·</span>
-      <span>Tailwind CSS</span><span class="mx">·</span>
-      <span>Git / GitHub</span><span class="mx">·</span>
-      <span>2FA / TOTP</span><span class="mx">·</span>
-      <span>RBAC</span><span class="mx">·</span>
-      <span>Laravel</span><span class="mx">·</span>
-      <span>React.js</span><span class="mx">·</span>
-      <span>MySQL</span><span class="mx">·</span>
-      <span>PHP</span><span class="mx">·</span>
-      <span>Capacitor</span><span class="mx">·</span>
-      <span>Tauri</span><span class="mx">·</span>
-      <span>JavaScript</span><span class="mx">·</span>
-      <span>Tailwind CSS</span><span class="mx">·</span>
-      <span>Git / GitHub</span><span class="mx">·</span>
-      <span>2FA / TOTP</span><span class="mx">·</span>
-      <span>RBAC</span><span class="mx">·</span>
-    </div>
-  </div>
-
-  <!-- ── COMPÉTENCES ── -->
-  <section class="skills" id="competences">
-    <div class="section-header reveal">
-      <div class="section-eyebrow">// Stack technique</div>
-      <h2 class="section-title">Mes <em>compétences</em></h2>
-      <p class="section-sub">Un arsenal technologique couvrant le développement fullstack, les bases de données et les outils pédagogiques numériques.</p>
-    </div>
-
-    <div class="skills-layout reveal">
-      <div class="skill-tabs">
-        <button class="skill-tab active" data-cat="backend">
-          <span class="tab-icon">⬡</span> Backend <span class="tab-count">4</span>
-        </button>
-        <button class="skill-tab" data-cat="frontend">
-          <span class="tab-icon">◈</span> Frontend <span class="tab-count">4</span>
-        </button>
-        <button class="skill-tab" data-cat="database">
-          <span class="tab-icon">◉</span> Base de données <span class="tab-count">3</span>
-        </button>
-        <button class="skill-tab" data-cat="tools">
-          <span class="tab-icon">◎</span> Outils <span class="tab-count">4</span>
-        </button>
-      </div>
-
-      <div class="skills-grid">
-        <div class="skill-card" data-cat="backend">
-          <div class="skill-card-inner">
-            <img src="images/logo-laravel-icon-1024.png" alt="Laravel" class="skill-img">
-            <div class="skill-info">
-              <div class="skill-name">Laravel</div>
-              <div class="skill-level skill-level-92"><span></span></div>
-            </div>
-            <span class="skill-badge">Avancé</span>
-          </div>
-        </div>
-        <div class="skill-card" data-cat="backend">
-          <div class="skill-card-inner">
-            <img src="images/logo-php-256.png" alt="PHP" class="skill-img">
-            <div class="skill-info">
-              <div class="skill-name">PHP</div>
-              <div class="skill-level skill-level-88"><span></span></div>
-            </div>
-            <span class="skill-badge">Avancé</span>
-          </div>
-        </div>
-        <div class="skill-card" data-cat="frontend">
-          <div class="skill-card-inner">
-            <img src="images/logo-react-256.png" alt="React" class="skill-img">
-            <div class="skill-info">
-              <div class="skill-name">React.js</div>
-              <div class="skill-level skill-level-90"><span></span></div>
-            </div>
-            <span class="skill-badge">Avancé</span>
-          </div>
-        </div>
-        <div class="skill-card" data-cat="database">
-          <div class="skill-card-inner">
-            <img src="images/png-clipart-mysql-mysql.png" alt="MySQL" class="skill-img">
-            <div class="skill-info">
-              <div class="skill-name">MySQL</div>
-              <div class="skill-level skill-level-85"><span></span></div>
-            </div>
-            <span class="skill-badge">Avancé</span>
-          </div>
-        </div>
-        <div class="skill-card" data-cat="database">
-          <div class="skill-card-inner">
-            <img src="images/oracle.png" alt="oracle" class="skill-img">
-            <div class="skill-info">
-              <div class="skill-name">Oracle</div>
-              <div class="skill-level skill-level-85"><span></span></div>
-            </div>
-            <span class="skill-badge">Avancé</span>
-          </div>
-        </div>
-        <div class="skill-card" data-cat="database">
-          <div class="skill-card-inner">
-            <img src="images/postgresql.png" alt="postgesql" class="skill-img">
-            <div class="skill-info">
-              <div class="skill-name">PostgreSQL</div>
-              <div class="skill-level skill-level-85"><span></span></div>
-            </div>
-            <span class="skill-badge">Avancé</span>
-          </div>
-        </div>
-        <div class="skill-card" data-cat="database">
-          <div class="skill-card-inner">
-            <img src="images/mongodb.png" alt="mongodb" class="skill-img">
-            <div class="skill-info">
-              <div class="skill-name">MongoDB</div>
-              <div class="skill-level skill-level-85"><span></span></div>
-            </div>
-            <span class="skill-badge">Avancé</span>
-          </div>
-        </div>
-        <div class="skill-card" data-cat="frontend">
-          <div class="skill-card-inner">
-            <img src="images/JavaScript-logo.png" alt="JS" class="skill-img">
-            <div class="skill-info">
-              <div class="skill-name">JavaScript</div>
-              <div class="skill-level skill-level-88"><span></span></div>
-            </div>
-            <span class="skill-badge">Avancé</span>
-          </div>
-        </div>
-        <div class="skill-card" data-cat="frontend">
-          <div class="skill-card-inner">
-            <img src="images/tailwind-css-256.png" alt="Tailwind" class="skill-img">
-            <div class="skill-info">
-              <div class="skill-name">Tailwind CSS</div>
-              <div class="skill-level skill-level-87"><span></span></div>
-            </div>
-            <span class="skill-badge">Avancé</span>
-          </div>
-        </div>
-        <div class="skill-card" data-cat="tools">
-          <div class="skill-card-inner">
-            <div class="skill-svg-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg>
-            </div>
-            <div class="skill-info">
-              <div class="skill-name">Git / GitHub</div>
-              <div class="skill-level skill-level-86"><span></span></div>
-            </div>
-            <span class="skill-badge">Avancé</span>
-          </div>
-        </div>
-        <div class="skill-card" data-cat="tools">
-          <div class="skill-card-inner">
-            <div class="skill-svg-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-            </div>
-            <div class="skill-info">
-              <div class="skill-name">Capacitor</div>
-              <div class="skill-level skill-level-72"><span></span></div>
-            </div>
-            <span class="skill-badge skill-badge-mid">Intermédiaire</span>
-          </div>
-        </div>
-        <div class="skill-card" data-cat="tools">
-          <div class="skill-card-inner">
-            <div class="skill-svg-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-            </div>
-            <div class="skill-info">
-              <div class="skill-name">Tauri</div>
-              <div class="skill-level skill-level-68"><span></span></div>
-            </div>
-            <span class="skill-badge skill-badge-mid">Intermédiaire</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── EXPÉRIENCE ── -->
-  <section class="experience" id="experience">
-    <div class="section-header reveal">
-      <div class="section-eyebrow">// Parcours professionnel</div>
-      <h2 class="section-title">Mon <em>expérience</em></h2>
-      <p class="section-sub">Formateur certifié et stagiaire dans des institutions financières et pédagogiques de référence en RDC.</p>
-    </div>
-
-    <div class="timeline reveal">
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-line-seg"></div>
-        <div class="exp-card">
-          <div class="exp-card-accent"></div>
-          <div class="exp-header">
-            <div>
-              <div class="exp-org">École Nationale des Finances (ENF)</div>
-              <div class="exp-role">Formateur en NTIC</div>
-            </div>
-            <span class="exp-type type-formateur">Formateur</span>
-          </div>
-          <p class="exp-desc">Formation intensive en outils numériques, bureautique avancée et systèmes d'information à destination des agents et cadres de la DGI. Conception de modules pédagogiques adaptés aux besoins fiscaux de l'administration congolaise.</p>
-          <div class="exp-highlight">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            Plus de 100 agents &amp; cadres de la DGI formés
-          </div>
-        </div>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-line-seg"></div>
-        <div class="exp-card">
-          <div class="exp-card-accent exp-accent-accent2"></div>
-          <div class="exp-header">
-            <div>
-              <div class="exp-org">École d'Application ISP/GOMBE</div>
-              <div class="exp-role">Stage Pédagogique</div>
-            </div>
-            <span class="exp-type type-stage">Stage pédago.</span>
-          </div>
-          <p class="exp-desc">Immersion dans l'environnement pédagogique d'un établissement d'enseignement. Observation, conception de séquences didactiques et animation de cours en informatique.</p>
-        </div>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-line-seg"></div>
-        <div class="exp-card">
-          <div class="exp-card-accent exp-accent-violet"></div>
-          <div class="exp-header">
-            <div>
-              <div class="exp-org">FIRSTBANK DRC S.A</div>
-              <div class="exp-role">Stage · Systèmes d'Information Bancaire</div>
-            </div>
-            <span class="exp-type type-stage">Stage ent.</span>
-          </div>
-          <p class="exp-desc">Stage au sein du département informatique d'une institution bancaire. Découverte des systèmes de gestion bancaire, processus de sécurité des données et architectures logicielles du secteur financier.</p>
-        </div>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="exp-card">
-          <div class="exp-card-accent exp-accent-bleu-clair"></div>
-          <div class="exp-header">
-            <div>
-              <div class="exp-org">CADECO</div>
-              <div class="exp-role">Stage · Systèmes d'Information</div>
-            </div>
-            <span class="exp-type type-stage">Stage ent.</span>
-          </div>
-          <p class="exp-desc">Stage en informatique au sein de la Caisse d'Épargne du Congo. Participation à la gestion des systèmes d'information, des bases de données clients et des processus de traitement numérique.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── FORMATION ACADÉMIQUE ── -->
-  <section class="formation" id="formation">
-    <div class="section-header reveal">
-      <div class="section-eyebrow">// Diplômes & études</div>
-      <h2 class="section-title">Mon <em>parcours académique</em></h2>
-      <p class="section-sub">Une formation pluridisciplinaire alliant informatique de gestion et sciences agronomiques à l'ISP de la Gombe, Kinshasa.</p>
-    </div>
-
-    <div class="edu-grid reveal">
-      <div class="edu-card edu-main">
-        <div class="edu-card-num">01</div>
-        <div class="edu-icon-wrap">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-        </div>
-        <div class="edu-degree">Licence en Informatique de Gestion</div>
-        <div class="edu-school">Institut Supérieur Pédagogique de la Gombe (ISP-GOMBE) · Kinshasa, RDC</div>
-        <p class="edu-desc">Cursus complet en informatique de gestion couvrant la conception de SI, les bases de données, la gestion de projets et le développement d'applications professionnelles.</p>
-        <span class="edu-badge">Bac+5 · Niveau Master</span>
-      </div>
-
-      <div class="edu-card">
-        <div class="edu-card-num">02</div>
-        <div class="edu-icon-wrap">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-        </div>
-        <div class="edu-degree">Graduat en Informatique de Gestion</div>
-        <div class="edu-school">ISP-GOMBE · Kinshasa, RDC</div>
-        <p class="edu-desc">Formation de trois ans axée sur les fondamentaux de l'informatique, la programmation, les bases de données et la gestion des systèmes d'information.</p>
-        <span class="edu-badge">Bac+3</span>
-      </div>
-
-      <div class="edu-card edu-card-alt">
-        <div class="edu-card-num">03</div>
-        <div class="edu-icon-wrap">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <div class="edu-degree">Baccalauréat en Agriculture Générale</div>
-        <div class="edu-school">ITA Mombele · Kinshasa, RDC</div>
-        <p class="edu-desc">Formation généraliste en sciences agronomiques couvrant la protection des cultures, l'élevage et les méthodes de production durable.</p>
-        <span class="edu-badge edu-badge-alt">Formation secondaire</span>
-      </div>
-    </div>
-
-    <!-- Téléchargement diplômes -->
-    <div class="diplomas-section reveal">
-      <h3 class="diplomas-title">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Télécharger mes diplômes
-      </h3>
-      <div class="diplomas-list">
-        <div class="diploma-item">
-          <div class="diploma-left">
-            <div class="diploma-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-            </div>
-            <div>
-              <div class="diploma-name">Licence en Informatique de Gestion</div>
-              <div class="diploma-meta">ISP-GOMBE · Bac+5 · Kinshasa</div>
-            </div>
-          </div>
-          <a href="#" class="diploma-dl-btn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            PDF
-          </a>
-        </div>
-        <div class="diploma-item">
-          <div class="diploma-left">
-            <div class="diploma-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-            </div>
-            <div>
-              <div class="diploma-name">Graduat en Informatique de Gestion</div>
-              <div class="diploma-meta">ISP-GOMBE · Bac+3 · Kinshasa</div>
-            </div>
-          </div>
-          <a href="#" class="diploma-dl-btn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            PDF
-          </a>
-        </div>
-        <div class="diploma-item">
-          <div class="diploma-left">
-            <div class="diploma-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-            </div>
-            <div>
-              <div class="diploma-name">Baccalauréat en Agriculture Générale</div>
-              <div class="diploma-meta">ITA Mombele · Secondaire</div>
-            </div>
-          </div>
-          <a href="#" class="diploma-dl-btn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            PDF
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── PROJETS ── -->
-  <section class="projets" id="projets">
-    <div class="section-header reveal">
-      <div class="section-eyebrow">// Réalisations</div>
-      <h2 class="section-title">Mes <em>projets</em></h2>
-      <p class="section-sub">Applications concrètes développées pour des institutions publiques et privées en RDC.</p>
     </div>
 
     <div class="projets-grid reveal">
-      <!-- Projet 1: Feature -->
-      <div class="projet-card projet-featured">
-        <div class="projet-card-bg"></div>
-        <div class="projet-card-content">
-          <div class="projet-top-row">
-            <div class="projet-icon-wrap">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+
+        <!-- Projet 1 : KITENDI -->
+        <div class="projet-card projet-featured">
+            <div class="projet-card-bg"></div>
+            <div class="projet-card-content">
+                <div class="projet-top-row">
+                    <div class="projet-icon-wrap">
+                        <svg width="22" height="22" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 7h12l1 14H5L6 7z"/>
+                            <path d="M9 7a3 3 0 0 1 6 0"/>
+                        </svg>
+                    </div>
+                    <span class="projet-status status-wip">En développement</span>
+                </div>
+
+                <h3 class="projet-name">KITENDI</h3>
+                <p class="projet-desc">
+                    Plateforme e-commerce dédiée à la mode et aux vêtements.
+                    Une expérience d'achat en ligne moderne permettant aux clients
+                    de découvrir les collections, commander et payer leurs articles
+                    en ligne, avec un service de livraison.
+                </p>
+
+                <div class="projet-techs">
+                    <span>Laravel</span>
+                    <span>Vue.js 3</span>
+                    <span>Tailwind CSS</span>
+                    <span>MySQL</span>
+                    <span>Mobile Money</span>
+                </div>
+
+                <div class="projet-footer">
+                    <a href="https://www.kitendi.com"
+                       target="_blank" rel="noopener noreferrer"
+                       class="projet-link">
+                        www.kitendi.com →
+                    </a>
+                </div>
             </div>
-            <span class="projet-status status-live">
-              <span class="live-dot"></span> En production
-            </span>
-          </div>
-          <h3 class="projet-name">RedressApp</h3>
-          <p class="projet-desc">Application enterprise de gestion des audits fiscaux et redressements pour la DGI. Système de rôles avancé (7 rôles), 2FA multi-méthodes (Email + TOTP), tableaux de bord analytiques et calcul automatique des taxes.</p>
-          <div class="projet-techs">
-            <span>Laravel</span><span>React</span><span>MySQL</span><span>2FA/TOTP</span><span>RBAC</span>
-          </div>
-          <div class="projet-footer">
+        </div>
+
+        <!-- Projet 2 : LivMed -->
+        <div class="projet-card">
+            <div class="projet-card-content">
+                <div class="projet-top-row">
+                    <div class="projet-icon-wrap">
+                        <svg width="22" height="22" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 21s-8-4.5-8-11a5 5 0 0 1 8-4
+                                     5 5 0 0 1 8 4c0 6.5-8 11-8 11z"/>
+                            <path d="M12 8v6M9 11h6"/>
+                        </svg>
+                    </div>
+                    <span class="projet-status status-wip">En développement</span>
+                </div>
+
+                <h3 class="projet-name">LivMed</h3>
+                <p class="projet-desc">
+                    Application de livraison pharmaceutique visant à faciliter
+                    la recherche, la commande et la livraison de produits
+                    pharmaceutiques aux clients.
+                </p>
+
+                <div class="projet-techs">
+                    <span>Laravel</span>
+                    <span>Vue.js 3</span>
+                    <span>API REST</span>
+                    <span>MySQL</span>
+                </div>
+
+                <div class="projet-footer">
+                    <span class="projet-confidential">
+                        Projet en cours de réalisation
+                    </span>
+                </div>
+            </div>
+        </div>
+
+
+<!-- Projet 3 : MELMUND APP -->
+<div class="projet-card">
+    <div class="projet-card-content">
+        <div class="projet-top-row">
+            <div class="projet-icon-wrap">
+                <svg width="22" height="22" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="3"/>
+                    <path d="M7 8h10M7 12h10M7 16h6"/>
+                </svg>
+            </div>
+            <span class="projet-status status-done">Réalisé</span>
+        </div>
+
+        <h3 class="projet-name">MELMUND APP</h3>
+        <p class="projet-desc">
+            Application de gestion commerciale destinée aux boutiques
+            d'habillement. Elle permet de gérer les articles, les stocks,
+            les opérations de vente et la facturation, dans un environnement
+            local adapté aux activités quotidiennes d'une boutique.
+        </p>
+
+        <div class="projet-techs">
+            <span>Laravel</span>
+            <span>MySQL</span>
+            <span>Bootstrap</span>
+            <span>Laragon</span>
+        </div>
+
+        <div class="projet-footer">
             <span class="projet-confidential">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-              Projet confidentiel DGI
+                Application de gestion locale
             </span>
-          </div>
         </div>
-      </div>
-
-      <!-- Projet 2 -->
-      <div class="projet-card">
-        <div class="projet-card-content">
-          <div class="projet-top-row">
-            <div class="projet-icon-wrap">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-            </div>
-            <span class="projet-status status-wip">En cours</span>
-          </div>
-          <h3 class="projet-name">Fleet Manager</h3>
-          <p class="projet-desc">Application cross-platform de gestion de parc automobile couvrant iOS, Android et Windows. Suivi véhicules, maintenance, conducteurs et rapports analytiques temps réel.</p>
-          <div class="projet-techs">
-            <span>Laravel</span><span>React</span><span>Capacitor</span><span>Tauri</span><span>MySQL</span>
-          </div>
-          <div class="projet-footer">
-            <a href="#" class="projet-link">En développement →</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Projet 3 -->
-      <div class="projet-card">
-        <div class="projet-card-content">
-          <div class="projet-top-row">
-            <div class="projet-icon-wrap">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 2l1.5 1.5"/><path d="M19 2l-1.5 1.5"/><path d="M12 2v2"/><path d="M12 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/><path d="M12 15v7"/><path d="M9 18h6"/></svg>
-            </div>
-            <span class="projet-status status-done">Livré</span>
-          </div>
-          <h3 class="projet-name">Restaurant Luxe</h3>
-          <p class="projet-desc">Landing page haut de gamme pour restaurant gastronomique. Design cinématographique, animations fluides, curseur personnalisé, galerie immersive et système de réservation.</p>
-          <div class="projet-techs">
-            <span>HTML/CSS</span><span>JavaScript</span><span>CSS Animations</span><span>UX Design</span>
-          </div>
-          <div class="projet-footer">
-            <a href="#" class="projet-link">Voir le projet →</a>
-          </div>
-        </div>
-      </div>
     </div>
-  </section>
+</div>
 
-  <!-- ── ENSEIGNEMENT ── -->
-  <section class="enseignement" id="enseignement">
+<!-- Projet 4 : ACACIA PRINT -->
+<div class="projet-card">
+    <div class="projet-card-content">
+        <div class="projet-top-row">
+            <div class="projet-icon-wrap">
+                <svg width="22" height="22" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M7 8V3h10v5"/>
+                    <rect x="5" y="14" width="14" height="7" rx="1"/>
+                    <path d="M5 17H3V9h18v8h-2"/>
+                    <path d="M17 11h.01"/>
+                </svg>
+            </div>
+            <span class="projet-status status-done">Réalisé</span>
+        </div>
+
+        <h3 class="projet-name">ACACIA PRINT</h3>
+        <p class="projet-desc">
+            Application locale de facturation développée pour une imprimerie.
+            Elle permet de gérer les opérations de facturation et de faciliter
+            le suivi des transactions liées aux prestations d'impression.
+        </p>
+
+        <div class="projet-techs">
+            <span>Laravel</span>
+            <span>MySQL</span>
+            <span>Bootstrap</span>
+            <span>Laragon</span>
+        </div>
+
+        <div class="projet-footer">
+            <span class="projet-confidential">
+                Application de gestion locale
+            </span>
+        </div>
+    </div>
+</div>
+
+<!-- Projet 5 : DELIB APP -->
+<div class="projet-card">
+    <div class="projet-card-content">
+        <div class="projet-top-row">
+            <div class="projet-icon-wrap">
+                <svg width="22" height="22" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16v16H4z"/>
+                    <path d="M8 9h8M8 13h8M8 17h5"/>
+                    <path d="M8 4V2M16 4V2"/>
+                </svg>
+            </div>
+            <span class="projet-status status-done">Réalisé</span>
+        </div>
+
+        <h3 class="projet-name">DELIB APP</h3>
+        <p class="projet-desc">
+            Projet universitaire de gestion académique consacré au suivi
+            des cotes et à la délibération des apprenants. L'application
+            facilite l'enregistrement des résultats, le calcul des
+            performances et le processus de délibération.
+        </p>
+
+        <div class="projet-techs">
+            <span>Laravel</span>
+            <span>MySQL</span>
+            <span>Bootstrap</span>
+            <span>Laragon</span>
+        </div>
+
+        <div class="projet-footer">
+            <span class="projet-confidential">
+                Projet universitaire
+            </span>
+        </div>
+    </div>
+</div>
+    </div>
+</section>
+
+
+
+<!-- ── ENSEIGNEMENT ── -->
+<section class="enseignement" id="enseignement">
     <div class="enseignement-inner">
-      <div class="section-header reveal">
-        <div class="section-eyebrow">// Transmission des savoirs</div>
-        <h2 class="section-title light">Ce que <em>j'enseigne</em></h2>
-        <p class="section-sub light">Des modules pratiques, orientés terrain, pour les professionnels et institutions qui veulent maîtriser le numérique.</p>
-      </div>
 
-      <div class="modules-grid reveal">
-        <div class="module-card">
-          <div class="module-num">01</div>
-          <svg class="module-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-          <div class="module-name">Bureautique avancée</div>
-          <p class="module-desc">Word, Excel, PowerPoint — utilisation professionnelle et productivité pour l'administration.</p>
+        <div class="section-header reveal">
+            <div class="section-eyebrow">// Transmission des savoirs</div>
+            <h2 class="section-title light">Ce que <em>j'enseigne</em></h2>
+            <p class="section-sub light">
+                Formateur en informatique et pédagogue, je transmets des
+                compétences numériques à travers une approche pratique,
+                progressive et adaptée aux besoins des apprenants,
+                des professionnels et des institutions.
+            </p>
         </div>
-        <div class="module-card">
-          <div class="module-num">02</div>
-          <svg class="module-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          <div class="module-name">Sécurité informatique</div>
-          <p class="module-desc">Bonnes pratiques, protection des données, authentification et risques numériques.</p>
-        </div>
-        <div class="module-card">
-          <div class="module-num">03</div>
-          <svg class="module-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
-          <div class="module-name">Bases de données</div>
-          <p class="module-desc">Conception de BDD, requêtes SQL, modélisation et gestion de données métier.</p>
-        </div>
-        <div class="module-card">
-          <div class="module-num">04</div>
-          <svg class="module-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          <div class="module-name">Développement web</div>
-          <p class="module-desc">Introduction au HTML/CSS, aux frameworks modernes et à la logique de programmation.</p>
-        </div>
-        <div class="module-card">
-          <div class="module-num">05</div>
-          <svg class="module-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-          <div class="module-name">Systèmes d'information</div>
-          <p class="module-desc">Comprendre les SI d'entreprise, les ERP et les flux de données institutionnels.</p>
-        </div>
-        <div class="module-card module-card-accent">
-          <div class="module-num">06</div>
-          <svg class="module-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2z"/></svg>
-          <div class="module-name">Intelligence Artificielle</div>
-          <p class="module-desc">Introduction à l'IA, outils pratiques et impacts sur les métiers administratifs.</p>
-        </div>
-      </div>
 
-      <div class="impact-row reveal">
-        <div class="impact-card">
-          <div class="impact-num">100+</div>
-          <div class="impact-lbl">Apprenants formés</div>
+        <div class="modules-grid reveal">
+
+            <!-- Module 01 -->
+            <div class="module-card">
+                <div class="module-num">01</div>
+                <svg class="module-icon" width="32" height="32" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="2" y="3" width="20" height="14" rx="2"/>
+                    <line x1="8" y1="21" x2="16" y2="21"/>
+                    <line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>
+                <div class="module-name">Bureautique professionnelle</div>
+                <p class="module-desc">
+                    Maîtrise de Microsoft Word, Excel et PowerPoint.
+                    Production de documents professionnels, traitement
+                    des données et automatisation des tâches administratives.
+                </p>
+            </div>
+
+            <!-- Module 02 -->
+            <div class="module-card">
+                <div class="module-num">02</div>
+                <svg class="module-icon" width="32" height="32" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="3" y="11" width="18" height="11" rx="2"/>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+                <div class="module-name">Sécurité informatique</div>
+                <p class="module-desc">
+                    Sensibilisation aux risques numériques, protection des
+                    données, gestion des mots de passe, authentification
+                    et bonnes pratiques de sécurité.
+                </p>
+            </div>
+
+            <!-- Module 03 -->
+            <div class="module-card">
+                <div class="module-num">03</div>
+                <svg class="module-icon" width="32" height="32" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="1.5">
+                    <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                    <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                    <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+                </svg>
+                <div class="module-name">Bases de données</div>
+                <p class="module-desc">
+                    Initiation à la conception des bases de données,
+                    modélisation, langage SQL, manipulation et organisation
+                    des données dans les applications de gestion.
+                </p>
+            </div>
+
+            <!-- Module 04 -->
+            <div class="module-card">
+                <div class="module-num">04</div>
+                <svg class="module-icon" width="32" height="32" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="2" y1="12" x2="22" y2="12"/>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10
+                        15.3 15.3 0 0 1-4 10
+                        15.3 15.3 0 0 1-4-10
+                        15.3 15.3 0 0 1 4-10z"/>
+                </svg>
+                <div class="module-name">Développement web</div>
+                <p class="module-desc">
+                    Apprentissage des fondamentaux du développement web :
+                    HTML, CSS, JavaScript, programmation, conception
+                    d'applications et utilisation de frameworks.
+                </p>
+            </div>
+
+            <!-- Module 05 -->
+            <div class="module-card">
+                <div class="module-num">05</div>
+                <svg class="module-icon" width="32" height="32" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="1.5">
+                    <line x1="18" y1="20" x2="18" y2="10"/>
+                    <line x1="12" y1="20" x2="12" y2="4"/>
+                    <line x1="6" y1="20" x2="6" y2="14"/>
+                </svg>
+                <div class="module-name">Systèmes d'information</div>
+                <p class="module-desc">
+                    Compréhension des systèmes d'information,
+                    des applications de gestion, des ERP et des flux
+                    d'informations au sein des organisations.
+                </p>
+            </div>
+
+            <!-- Module 06 -->
+            <div class="module-card">
+                <div class="module-num">06</div>
+                <svg class="module-icon" width="32" height="32" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1
+                        a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3
+                        a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5
+                        a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3
+                        a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73
+                        c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2z"/>
+                </svg>
+                <div class="module-name">Intelligence artificielle</div>
+                <p class="module-desc">
+                    Découverte des concepts fondamentaux de l'IA,
+                    utilisation des outils d'intelligence artificielle
+                    et applications dans les activités professionnelles.
+                </p>
+            </div>
+
+            <!-- Module 07 -->
+            <div class="module-card module-card-accent">
+                <div class="module-num">07</div>
+                <svg class="module-icon" width="32" height="32" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M2 5h20M4 5v14h16V5"/>
+                    <path d="M8 9h8M8 13h5"/>
+                    <path d="M12 19v-3"/>
+                </svg>
+                <div class="module-name">Pédagogie et didactique</div>
+                <p class="module-desc">
+                    Préparation des séquences pédagogiques, élaboration
+                    des objectifs d'apprentissage, méthodes d'enseignement,
+                    didactique de l'informatique et évaluation des apprenants.
+                </p>
+            </div>
+
         </div>
-        <div class="impact-card">
-          <div class="impact-num">2+</div>
-          <div class="impact-lbl">Institutions nationales</div>
+
+        <!-- IMPACT -->
+        <div class="impact-row reveal">
+
+            <div class="impact-card">
+                <div class="impact-num">100+</div>
+                <div class="impact-lbl">Agents et apprenants formés</div>
+            </div>
+
+            <div class="impact-card">
+                <div class="impact-num">DGI</div>
+                <div class="impact-lbl">Formation professionnelle</div>
+            </div>
+
+            <div class="impact-card">
+                <div class="impact-num">07</div>
+                <div class="impact-lbl">Domaines de formation</div>
+            </div>
+
+            <div class="impact-card">
+                <div class="impact-num">ENF</div>
+                <div class="impact-lbl">École Nationale des Finances</div>
+            </div>
+
         </div>
-        <div class="impact-card">
-          <div class="impact-num">6</div>
-          <div class="impact-lbl">Modules pédagogiques</div>
-        </div>
-        <div class="impact-card">
-          <div class="impact-num">3+</div>
-          <div class="impact-lbl">Années d'enseignement</div>
-        </div>
-      </div>
+
     </div>
-  </section>
+</section>
 
-  <!-- ── CONTACT ── -->
-  <section class="contact" id="contact">
+
+
+<!-- ── CONTACT ── -->
+<section class="contact" id="contact">
     <div class="section-header reveal">
-      <div class="section-eyebrow">// Travaillons ensemble</div>
-      <h2 class="section-title">Me <em>contacter</em></h2>
-      <p class="section-sub">Disponible pour des projets de développement, des missions de formation ou des collaborations techniques à Kinshasa et à distance.</p>
+        <div class="section-eyebrow">// Entrons en contact</div>
+        <h2 class="section-title">Construisons <em>ensemble</em></h2>
+        <p class="section-sub">
+            Vous avez un projet numérique, un besoin en développement
+            informatique ou une mission de formation ?
+            Je suis disponible pour étudier vos besoins et vous proposer
+            des solutions adaptées, à Kinshasa et à distance.
+        </p>
     </div>
 
     <div class="contact-layout reveal">
-      <div class="contact-left">
-        <div class="contact-card">
-          <div class="contact-card-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          </div>
-          <div>
-            <div class="contact-card-label">Localisation</div>
-            <div class="contact-card-val">Kinshasa, RDC</div>
-          </div>
-        </div>
-        <div class="contact-card">
-          <div class="contact-card-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-          </div>
-          <div>
-            <div class="contact-card-label">Disponibilité</div>
-            <div class="contact-card-val">Freelance · Formation · Emploi</div>
-          </div>
-        </div>
-        <div class="contact-card">
-          <div class="contact-card-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/></svg>
-          </div>
-          <div>
-            <div class="contact-card-label">Formation</div>
-            <div class="contact-card-val">Licence Informatique · ISP Gombe</div>
-          </div>
-        </div>
-        <div class="contact-card">
-          <div class="contact-card-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          </div>
-          <div>
-            <div class="contact-card-label">Langues</div>
-            <div class="contact-card-val">Français · Lingala · Anglais</div>
-          </div>
+
+        <div class="contact-left">
+
+            <!-- Localisation -->
+            <div class="contact-card">
+                <div class="contact-card-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="contact-card-label">Localisation</div>
+                    <div class="contact-card-val">Kinshasa, République démocratique du Congo</div>
+                </div>
+            </div>
+
+            <!-- Disponibilité -->
+            <div class="contact-card">
+                <div class="contact-card-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="7" width="20" height="14" rx="2"/>
+                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="contact-card-label">Collaboration</div>
+                    <div class="contact-card-val">
+                        Freelance · Missions · Formation · Opportunités professionnelles
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formation -->
+            <div class="contact-card">
+                <div class="contact-card-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                        <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="contact-card-label">Formation académique</div>
+                    <div class="contact-card-val">
+                        Informatique de gestion · ISP-Gombe
+                    </div>
+                </div>
+            </div>
+
+            <!-- Langues -->
+            <div class="contact-card">
+                <div class="contact-card-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="2" y1="12" x2="22" y2="12"/>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10
+                            15.3 15.3 0 0 1-4 10
+                            15.3 15.3 0 0 1-4-10
+                            15.3 15.3 0 0 1 4-10z"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="contact-card-label">Langues</div>
+                    <div class="contact-card-val">
+                        Français · Lingala · Anglais
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coordonnées -->
+            <div class="contact-cta-block">
+                <p class="contact-cta-text">
+                    Un projet à concrétiser ou une collaboration à envisager ?
+                    Échangeons sur vos besoins.
+                </p>
+
+                <a href="mailto:juniorngandu18@gmail.com"
+                    class="contact-email-btn">
+                    juniorngandu18@gmail.com
+                    <svg width="14" height="14" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 17L17 7M17 7H7M17 7v10"/>
+                    </svg>
+                </a>
+
+                <a href="tel:+243818618735"
+                    class="contact-email-btn">
+                    +243 818 618 735
+                    <svg width="14" height="14" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 17L17 7M17 7H7M17 7v10"/>
+                    </svg>
+                </a>
+
+                <a href="https://wa.me/243818618735"
+                    target="_blank" rel="noopener noreferrer"
+                    class="contact-email-btn">
+                    Me contacter sur WhatsApp
+                    <svg width="14" height="14" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 17L17 7M17 7H7M17 7v10"/>
+                    </svg>
+                </a>
+            </div>
         </div>
 
-        <div class="contact-cta-block">
-          <p class="contact-cta-text">Prêt à démarrer un projet ? Discutons de vos besoins.</p>
-          <a href="mailto:juniorngandu18@gmail.com" class="contact-email-btn">
-            juniorngandu18@gmail.com
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-          </a>
-          <a href="tel:+243818618735" class="contact-email-btn">
-            +243 818 618 735
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-          </a>
-        </div>
-      </div>
+        <!-- FORMULAIRE -->
+        <div class="contact-form-wrap">
+            <div id="contactForm">
 
-      <div class="contact-form-wrap">
-        <div id="contactForm">
-          <div class="form-row-2">
-            <div class="form-group">
-              <label class="form-lbl">Nom</label>
-              <input id="userName" type="text" class="form-inp" placeholder="Votre nom" required>
+                <div class="form-row-2">
+                    <div class="form-group">
+                        <label class="form-lbl" for="userName">Nom complet</label>
+                        <input id="userName" type="text"
+                            class="form-inp"
+                            placeholder="Votre nom complet"
+                            autocomplete="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-lbl" for="userEmail">Adresse email</label>
+                        <input id="userEmail" type="email"
+                            class="form-inp"
+                            placeholder="votre@email.com"
+                            autocomplete="email" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-lbl" for="userSubject">Objet de la demande</label>
+                    <input id="userSubject" type="text"
+                        class="form-inp"
+                        placeholder="Ex. : Développement d'une application"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-lbl" for="userMessage">Votre message</label>
+                    <textarea id="userMessage"
+                        class="form-txt"
+                        placeholder="Présentez votre projet, vos besoins ou votre proposition de collaboration..."
+                        required></textarea>
+                </div>
+
+                <button type="button" id="sendBtn" class="form-btn">
+                    <span id="btnText">Envoyer le message →</span>
+                    <div class="btn-shimmer"></div>
+                </button>
+
+                <div id="formMessage" class="form-msg"></div>
+
             </div>
-            <div class="form-group">
-              <label class="form-lbl">Email</label>
-              <input id="userEmail" type="email" class="form-inp" placeholder="votre@email.com" required>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="form-lbl">Objet</label>
-            <input id="userSubject" type="text" class="form-inp" placeholder="Projet de développement, formation..." required>
-          </div>
-          <div class="form-group">
-            <label class="form-lbl">Message</label>
-            <textarea id="userMessage" class="form-txt" placeholder="Décrivez votre besoin..." required></textarea>
-          </div>
-          <button type="button" id="sendBtn" class="form-btn">
-            <span id="btnText">Envoyer le message →</span>
-            <div class="btn-shimmer"></div>
-          </button>
-          <div id="formMessage" class="form-msg"></div>
         </div>
-      </div>
+
     </div>
-  </section>
+</section>
 
-  <!-- ── FOOTER ── -->
-  <footer>
+
+<!-- ── FOOTER ── -->
+<footer>
     <div class="footer-top">
-      <div class="footer-logo">Junior<span>.</span>dev</div>
-      <p class="footer-tagline">Développeur Full-Stack · Formateur NTIC · Kinshasa, RDC</p>
+        <div class="footer-logo">Junior<span>.</span>dev</div>
+        <p class="footer-tagline">
+            Développeur Full-Stack · Formateur en informatique · Kinshasa, RDC
+        </p>
     </div>
-    <div class="footer-bottom">
-      <p class="footer-copy">© 2026 Junior Ngandu. Tous droits réservés.</p>
-      <nav class="footer-nav">
-        <a href="#competences">Stack</a>
-        <a href="#projets">Projets</a>
-        <a href="#enseignement">Formation</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </footer>
 
-  <script src="script.js"></script>
+    <div class="footer-bottom">
+        <p class="footer-copy">
+            © 2026 Junior Ngandu. Tous droits réservés.
+        </p>
+
+        <nav class="footer-nav">
+            <a href="#competences">Compétences</a>
+            <a href="#projets">Projets</a>
+            <a href="#enseignement">Enseignement</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+
 </body>
+
 </html>
